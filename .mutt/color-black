@@ -1,0 +1,150 @@
+# sidebar delim colot
+#color sidebar brightblue black
+
+# new messages in sidebar folder
+#color sidebar_new cyan	black
+
+# New mails
+#color index cyan black ~N
+
+# Header colors
+color hdrdefault magenta black
+color header brightgreen black "^From:"
+color header brightyellow black "^Subject:"
+color header cyan   black To:
+color header cyan   black ^Cc:
+color header red black	^(x-mailer|x-editor|x-agent|user-agent|mailer):
+
+# Indicator color for ARROW
+#color indicator	brightgreen	black
+
+# Indicator color for BAR
+color indicator	brightgreen blue
+#color indicator	black black 
+#mono indicator	reverse
+
+# Tilde ~
+color tilde blue black
+
+# Color Status BAR
+color status	green blue
+#color status	brightgreen black
+
+# Attachment color
+color attachment	magenta black
+
+# Default colors
+color normal	white	black
+#color quoted	magenta black
+#color quoted1	magenta black
+#color quoted2	blue    black
+#color quoted3	blue    black
+color search	yellow	black
+color signature	red	black
+color tree	red 	black
+#color tree	magenta	black
+color underline green	black
+
+# big messages
+color index brightred     black "!~N ~z 1202400-"
+color index brightred     cyan    "~T !~F !~p !~P ~z 1202400-"
+color index brightred     white   "~N ~z 1202400-"
+
+# DragonFly developers
+color header brightwhite black "(corecode|dillon|saw|swildner|justin|sepherosa|hasso|mneumann|aggelos|nthery|thomas.nikolajsen)"
+
+# Internal Uni Mails
+#color index red black "~R (~f mathematik.uni-marburg.de)"
+#color index red black "~R (~f informatik.uni-marburg.de)"
+
+# Read messages
+color index white black ~R
+
+# Mark duplicate mails
+color index black red ~=
+
+# DragonFly issue tracker mails
+color index cyan black "issue[0-9]*"
+
+# Rechnungen
+color index black yellow "Rechnung"
+
+# Ebay
+color header brightmagenta black "eBay-Rechnung"
+color header brightmagenta black "eBay-Angebot"
+color header brightmagenta black "Frage zum"
+color header brightmagenta black "Zahlungshinweise"
+color header brightmagenta black "Ihr Artikel"
+color header brightmagenta black "Ich werde die B"
+
+# Mail is addressed to me
+color index black yellow ~p
+
+# I wrote this msg
+color index brightyellow black ~P
+
+# Mail marked for deletion
+color index blue black "!~N ~D"
+color index blue white "~N ~D"
+
+# Unread mails
+color index red	black ~U
+
+# Mails I replied to
+color index green black ~Q
+
+# Tagged mails
+color index brightred black ~T
+
+# Flagged mails
+color index brightred black ~F
+
+# GPG mails
+color index brightgreen black ~G
+
+color quoted magenta black
+color body magenta black "^[^>].*(wrote|writes|said|\
+says|schrieb|schreibt|schrub|\
+schreibselte|tippte|meinte|teilte folgendes mit|\
+escreveu|escribió|scripsit|[0-9]+\\]|\\.[a-z]{2,4}>).*:"
+
+color quoted1 brightred black
+color body brightred black "^>[^>].*(wrote|writes|said|\
+says|schrieb|schreibt|schrub|\
+schreibselte|tippte|meinte|teilte folgendes mit|\
+escreveu|escribió|scripsit|[0-9]+\\]|\\.[a-z]{2,4}>).*:"
+
+color quoted2 brightcyan black
+color body brightcyan black "^>[ ]?>[^>].*(wrote|writes|\
+said|says|schrieb|schreibt|schrub|\
+schreibselte|tippte|meinte|teilte folgendes mit|\
+escreveu|escribió|scripsit|[0-9]+\\]|\\.[a-z]{2,4}>).*:"
+
+# URL colors
+color body brightblue black "((ftp|http|https)://|(file|mailto|news):|www\\.)[-a-z0-9_.:]*[a-z0-9](/[^][{} \t\n\r\"<>()]*[^][{} \t\n\r\"<>().,:!])?/?"
+#color body white brightblue "((ftp|http|https)://|(file|mailto|news):|www\\.)[-a-z0-9_.:]*[a-z0-9](/[^][{} \t\n\r\"<>()]*[^][{} \t\n\r\"<>().,:!])?/?"
+
+# Color of the string <URL:foobar> in the body
+color body brightblue     black  "<URL:.*>"
+
+# Color of smileys in the body
+color body yellow black	" >?[;:][-^]?[][)(><}{|/DP][)}]*"
+#color body yellow black	"(>From )|(:[-^]?[][)(><}{|/DP])"
+
+# Color for *fat* text in the body
+color body brightred black  "\\*+[^\\*]+\\*+"
+
+# Color of mail-adresses in the body
+color body brightblue black  "<[-a-z_0-9.+]+[- ]at[- ][-a-z_0-9.]+>"
+color body brightblue black  "[-a-z_0-9.+]+@[-a-z_0-9.]*"
+
+# Color for _underline_ text in the body
+color body brightwhite black  "(\ )+_+[^_]+_(\ )+"
+
+# Border lines.
+color body blue black "( *[-+=#*~_]){6,}"
+
+# GPG
+color body brightblack black  "^gpg:.*"
+
+

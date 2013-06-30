@@ -1,0 +1,23 @@
+application/msword;	antiword %s > /tmp/aw.back && vim -c 'set nospell' /tmp/aw.back; rm /tmp/aw.back;
+application/vnd.msword;	antiword %s > /tmp/aw.back && vim -c 'set nospell' /tmp/aw.back; rm /tmp/aw.back;
+application/excel;	xlhtml %s > /tmp/aw.back && links -force-html /tmp/aw.back ; rm /tmp/aw.back;
+application/vnd.ms-excel;	xlhtml %s > /tmp/aw.back && links -force-html /tmp/aw.back ; rm /tmp/aw.back;
+#text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; links -force-html -codepage UTF-8 -dump %s; nametemplate=%s.html; copiousoutput;
+text/plain;	vim %s
+
+application/pdf; evince %s
+application/octet-stream; open %s
+image/bmp; eog %s
+image/jpeg; eog %s
+image/jpg; eog %s
+image/JPG; eog %s
+image/psd; eog %s
+image/PSD; eog %s
+application/msword; soffice --nologo %s
+application/vnd.msword; soffice --nologo %s
+application/msexcel; soffice --nologo %s
+application/vnd.ms-excel; soffice --nologo %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; soffice --nologo %s
+application/RTF ; soffice --nologo %s
+text/richtext; open %s
