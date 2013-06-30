@@ -1,0 +1,20 @@
+download_dir = "/home/xhr/Music/Podcasts/"
+show-progress = yes
+
+url http://feeds.feedburner.com/cre-podcast
+{
+	num_downloads = 1
+	max_downloads = 5
+}
+
+url http://alternativlos.org/alternativlos.rss
+{
+	num_downloads = 2
+	max_downloads = 3
+}
+
+url http://feeds.feedburner.com/Bsdtalk
+{
+	num_downloads = 3
+	max_downloads = 3
+}
