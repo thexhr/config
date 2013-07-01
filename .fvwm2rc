@@ -1,0 +1,176 @@
+# FVWM 2 config file
+#
+# Beispiele und configs unter: http://dev.gentoo.org/~taviso/
+###########################################################
+# Wie schwer ist es ein Desktop zu wechseln?
+# x == Zeit in ms, wo der Zeiger am Rand sein muss
+# y == Anzahl Pixel, die das Bild im neuen Desktop sein muss
+EdgeResistance 200 150
+# Scrollen aus dem Desktop raus (aus mit 0 0)
+EdgeScroll 0 0
+# Fensterinhalt beim Verschieben bis zur Groesse x darstellen
+OpaqueMoveSize 50
+# Anzahl der virtuellen Desktops <horiz> x <vertikal>
+DeskTopSize 4x1
+# Anordnung der Fenster
+Style "*"	SmartPlacement, RandomPlacement
+# focus follows mouse, aber nur bei existierenden Fenstern
+Style "*"	SloppyFocus
+# Attraction mit x Pixeln Annaeherung
+# Window == Nur Fenster snappen, Screen == Fenster snappen am Rand auch
+SnapAttraction  8 Window Screen
+# Jedes neue Fenster (egal welches) bekommt den Fokus
+Style "*"	GrabFocus
+# Klick in ein ueberlagertes Fenster holt dieses in den Vordergrund
+Style "*"	MouseFocusClickRaises
+###########################################################
+#Style * Colorset 3, HilightColorset 4, RootTransparent Buffer, Tint black 80
+Style * Font "Shadow=0 Align=right 1 SE:xft:sans:bold:pixelsize=11:minspace=True"
+#Colorset 7 fg black, bg Gray60, sh black
+#, RootTransparent Buffer, Tint darkblue 45
+#Colorset 7 fg white , bg white, sh white, RootTransparent Buffer, Tint black 80, Highlight white
+Colorset 7 RootTransparent Buffer, Tint black 80, Highlight white
+#Style * Font "SE:xft:Bitstream Vera Sans Mono:style=Roman:size=8"
+# Aktives Fenster 1. Title-Bar 2. Rahmenfarbe
+#HilightColor	white
+# Farben fuer alle Fenster
+#Style "*"	Color Gray60/black
+# Fluechtigen Fenstern, also Dialogfelder o.ae. auch ein FVWM Dekor spendieren
+Style "*"	DecorateTransient
+# Fensterumrandung
+# NoHandles == Keine Zieh-Elemente an den Ecken
+Style "*"	BorderWidth 0, NoHandles
+
+Colorset 13 fg #f6f6f6, bg black, IconAlpha 40
+Colorset 14 fg white, bg black, fgsh black, IconAlpha 100
+Style * Colorset 13, HilightColorset 14, MWMFunctions, MWMDecor, HintOverride
+
+#, Handlewidth 0
+# Aktives bzw Inaktives Fenster
+TitleStyle  Inactive	Colorset 7 -- flat
+TitleStyle  Active	Colorset 7 -- flat
+###########################################################
+#TitleStyle	ActiveUp 	Gray90
+#TitleStyle	Inactive	Gray40
+###########################################################
+# Desktops wechseln Oben, Unten, Links, Rechts
+# Oben und Unten wegen Window Maker Kompatibilitaet auskommentiert
+#Key	Up	A	M	Scroll 0 -100
+#Key	Down	A	M	Scroll 0 100
+Key	Left	A	M	Scroll -100 0
+Key	Right	A	M	Scroll 100 0
+# Die zweiten Tasten neben den Pfeiltasten auf einem neuen IBM Thinkpad dienen
+# zum Fesnterwechsel.  Eintrag in .Xmodmap nicht vergessen
+#keycode 234 = XF86Back
+#keycode 233 = XF86Forward
+Key	XF86Forward	A	A 	Next [CurrentDesk !Iconic] Focus
+Key	XF86Back 	A	A 	Prev [CurrentDesk !Iconic] Focus
+#Scroll -100 0
+#Key	XF86Forward	A	A 	Scroll +100 0
+###########################################################
+# Key == Taste, Function == Funktion die ausgefuehrt werden soll
+# Modif C	Control	M	Meta (Alt)
+#	S	Shift	L	Caps Lock
+#	A	Any
+#
+# Context	R	Root Window	D	Desktop App (KDE)
+#		W	App Window	T	Window Titlebar
+#		S	Window Bar	F	Window Frame (corners)
+#		I	Icon Window	A	Any
+
+# rxvt starten mit Ctrl+Meta+V
+#	Key	Context	Modif	Function
+#Key	V	A	CM	Exec exec aterm +sb -tr -fg white -bg black -sh 40 -geometry 80x25 -ls -fn 9x15 -name "rxvt" -fade 40
+#Key	V	A	CM	Exec exec aterm +sb -fg white -bg black -sh 40 -geometry 80x25 -ls -fn 9x15 -name "rxvt"
+Key	V	A	CM	Exec exec mrxvt +sb -fg white -bg black -ls -fn 9x15 -shade 40 -tabfg white -tabbg black -tnum 5 -bt -hb -itabfg white -itabbg black 
+#-geometry 155x65
+#Key	V	A	CM	Exec exec Terminal
+Key	X	A	CM	Exec exec ~/scripts/sh/start_term.sh
+# xterm starten
+#Key	X	A	CM	Exec exec aterm +sb -tr -fg white -bg black -sh 40 -geometry 76x32 -ls -fn 9x15 -name "xterm" -fade 40
+#Key	X	A	CM	Exec exec aterm +sb -tr -fg white -bg black -sh 15 -fn 6x13 -name "xterm" -fade 40
+# Firefox
+Key	M	A	C	Exec exec firefox
+# Acrobat Reader
+#Key	K	A	C	Exec exec acroread
+# gRun Dialog
+#Key	R	A	CM	Exec exec grun
+Key	F2	A	M	Exec exec grun
+###########################################################
+# Fenster mit C+A+m maximieren
+Key	M	WTF	CM	Maximize
+# Fenster mit C+A+n minimieren (heisst als Icon auf den Desktop legen)
+Key	N	WTF	CM	Iconify
+#Key	N	WTF	CM	Thumbnail
+# Fenster mit A+unten nach hinten
+Key	Down	WTF	M	Lower
+# Fenster mit A+oben nach vorne
+Key	Up	WTF	M	Raise
+# Fenster schliessen
+Key	F4	WTF	M	Delete
+# Fenster resizen
+Key	H	WTF	C	Resize
+# Fenster shaden
+Key	S	WTF	CM	WindowShade
+# Einzelne Desktops per Alt+<nr> erreichen
+Key	1	A	M	GotoPage 0 0
+Key	2	A	M	GotoPage 1 0
+Key	3	A	M	GotoPage 2 0
+Key	4	A	M	GotoPage 3 0
+Key	5	A	M	GotoPage 4 0
+Key	6	A	M	GotoPage 5 0
+Key	7	A	M	GotoPage 6 0
+Key	8	A	M	GotoPage 7 0
+###########################################################
+Mouse	1	I	N	Maximize
+###########################################################
+#   for other parts of the window/borders/icons:
+#Mouse 1	F	A	Resize-or-Raise
+#Mouse 1	TS	A	Move-or-Raise
+#Mouse 1	I	A	Move-or-Iconify
+Mouse 2	I	A	Iconify
+#Mouse 2	FST	A	Menu Window-Ops2 Nop
+Mouse 3	TSIF	A	RaiseLower
+###########################################################
+# Menues bei Mausclicks wie bei Window Maker
+# 1 (Linke) 2 (Mittlere) 3 (Rechte) Maustaste
+Mouse 3	R   	A       Menu RootMenu Nop
+Mouse 1	R    	A      	Menu Window-Ops Nop
+Mouse 2	R    	A      	WindowList
+###########################################################
+# Farben fuers Menu setzen
+Colorset 0 fg black, bg grey
+Colorset 1 fg black, bg #6b83b5, hi #dcdcdc, sh #dcdcdc
+MenuStyle * Hilight3DThin, PopupOffset 0 100, PopupDelay 300
+MenuStyle * Font "Shadow=1 1 SE:xft:Bitstream Vera Sans Mono:style=Roman:size=8"
+MenuStyle * MenuColorset 0, HilightBack, ActiveColorset 1
+MenuStyle * BorderWidth 1, TitleUnderlines1, SeparatorsLong, TrianglesSolid, Animation
+MenuStyle * ItemFormat "%.2|%.5i%.5l%.5i%2.3>%2|"
+# MenuStyle * AutomaticHotKeys
+###########################################################
+AddToMenu RootMenu	"Root Menu"	Title
++	"Rxvt"		Exec exec mrxvt +sb -fg white -bg black -geometry 80x25 -ls -fn 9x15 -shade 40 -tabfg white -tabbg black -tnum 5 -bt -hb -itabfg white -itabbg black
+#+			"XTerm"		Exec exec aterm +sb -tr -fg white -bg black -sh 50 -geometry 80x25 -fn 6x13 -name "xterm"
+#+	"XTerm 1"	Exec exec aterm +sb -tr -fg white -bg black -sh 50 -geometry 116x77+0+0 -fn 6x13 -name "xterm" -fade 40
+#+	"XTerm 2"	Exec exec aterm +sb -tr -fg white -bg black -sh 50 -geometry 116x77+694+0 -fn 6x13 -name "xterm" -fade 40
++	"XTerm 1"	Exec exec aterm +sb -tr -fg white -bg black -sh 20 -fn 6x13 -name "xterm" -fade 35
++	"XTerm 2"	Exec exec aterm +sb -tr -fg white -bg black -sh 20 -fn 6x13 -name "xterm" -fade 35
++			"OpenOffice"	Exec exec /home/matthias/stuff/soffice/soffice
++			""		Nop
++                       "Restart FVWM"   Restart
+
+AddToMenu Window-Ops	"Window Ops"	Title
++			"Move"		Move
++			"Resize"	Resize
++			"Raise"		Raise
++			"Lower"		Lower
++			"Delete"	Delete
++			"Close"		Close
++			"Destroy"	Destroy
++			""		Nop
++			"Refresh Window" RefreshWindow
+###########################################################
+# Standard Maus Cursor anstatt des X
+CursorStyle root top_left_arrow
+CursorStyle stroke hand2
+###########################################################
