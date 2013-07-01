@@ -1,0 +1,80 @@
+
+set realname "Matthias Schmidt"
+set username "usenet"
+set hostname "example.org"
+set editor_command "vim '+set tw=78' +%d '%s'
+visible_headers "From:,Subject:,Newsgroups:,Followup-To:,Reply-To:,User-Agent:"
+header_display_format 0 "%F %D ( ) %20r [%4b] %T%s"
+set sorting_method 1
+set display_cursor_bar 1
+set followup_string "* %f wrote:"
+set highlight_unread_subjects 1
+set overview_date_format "%d.%m.%y %H:%M"
+set use_header_numbers 0
+set auto_mark_article_as_read 0
+set check_new_groups 0
+set query_read_group_cutoff 0
+
+% If non-zero, the subjects of unread articles are highlighted
+set highlight_unread_subjects 1
+
+% If non-zero, URLs are highlighted.
+set highlight_urls 1
+
+setkey article next                    "<Tab>"
+setkey article hide_article            "q"	% Hide/Show the article window
+setkey article quit                 "i"		% Quit slrn
+setkey article save                 "s"		% Save article
+setkey article delete_thread           "^R"	% Mark (Sub-)Thread as read
+setkey article toggle_headers          "h"	% Full headers (on/off)
+setkey article browse_url              "^b"	% Search for URL and follow it
+setkey article toggle_sort             "o"	% Select threading method
+setkey article toggle_collapse_threads "*"	% Collapse/Uncollapse thread
+
+set non_Xbrowser "links '%s'" 
+
+color article		"white" 	"black"
+color author		"white"	"black"
+color boldtext		"blue"		"black"
+color box		"white"		"black"
+color cursor		"brightgreen"	"blue"
+color date		"white"	"black"  
+color description	"blue"		"black"
+color error		"red"		"black"
+color frame		"yellow"	"blue"
+color from_myself	"yellow"	"black"
+color group		"white"		"black"
+color grouplens_display	"blue"		"black"
+color header_name	"red"		"black"
+color header_number	"red"		"black"
+color headers		"brightred" 	"black"
+color message		"white"		"black"
+color neg_score		"brightred"		"black"
+color pos_score		"red"		"black"
+color high_score	"red"		"black"
+color italicstext	"green"		"black"
+color url		"red"		"black"
+color menu		"green"	"blue"
+color menu_press	"red"		"black"
+color normal		"white"		"default"
+color pgpsignature	"blue"		"black"
+color quotes		"magenta"	"black"
+color quotes1   "magenta" "black"
+color quotes2   "blue"    "black"
+color quotes3   "blue"    "black"
+color quotes4		"brown"		"black"
+color quotes5		"brown"		"black"
+color quotes6		"brown"		"black"
+color quotes7		"brown"		"black"
+color response_char	"red"		"black"
+color signature		"red"		"black"
+color selection		"darkred"	"blue"
+color status		"green"	"blue"
+color subject		"white"		"black"
+color unread_subject	"red"		"black"
+color thread_number	"white"		"black"
+color tilde		"blue"		"black"
+color tree		"red"		"black"
+color underlinetext	"white" 	 	"black"
+color verbatim		"brightwhite"		"black"
+
