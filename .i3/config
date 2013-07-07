@@ -133,6 +133,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 bindsym Mod1+Ctrl+l exec "i3lock -d -c 073642"
 
+bindsym $mod+z exec "~/Documents/bin/i3layout.sh"
+
 bindsym XF86AudioLowerVolume exec "amixer set Master 5%-"
 bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+"
 bindsym XF86AudioMute exec "amixer -c 0 set Master toggle"
@@ -199,6 +201,11 @@ for_window [class="libreoffice-writer"] floating enable
 for_window [class="libreoffice-calc"] floating enable
 for_window [class="libreoffice-impress"] floating enable
 for_window [class="libreoffice-startcenter"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="Sxiv"] floating enable
+for_window [class="Xpdf"] floating enable
+for_window [class="Xournal"] floating enable
+for_window [class="Firefox"] border none
 
 exec ~/.i3/autostart
 
