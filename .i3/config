@@ -10,8 +10,10 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Mod1 = Alt, Mod4 = Win
-set $mod Mod1
-set $sup Mod4
+set $mod Mod4
+set $sup Mod1
+#set $mod Mod1
+#set $sup Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -40,7 +42,7 @@ bindsym $mod+d exec dmenu_run
 
 bindsym $mod+Tab focus right
 bindsym $mod+Shift+Tab focus left
-bindsym Mod4+Tab workspace back_and_forth
+bindsym $sup+Tab workspace back_and_forth
 
 # border changing
 bindsym $mod+b border toggle
@@ -187,16 +189,13 @@ bar {
 
 # workspace assignment (use "xprop")
 assign [class="Chromium"] 3
+assign [class="Firefox"] 3
 #assign [class="XTerm" instance="^mutt$"] 1
 assign [class="URxvt" instance="^mutt$"] 1
 
 # custom window settings
 for_window [class="URxvt" instance="scratchpad"] border 1pixel; move scratchpad
-#for_window [class="XTerm" instance="scratchpad"] border 1pixel; move scratchpad
 for_window [class="Chromium"] border none
-#for_window [class="XTerm" instance="^mutt$"] border none
-
-# Libreoffice
 for_window [class="libreoffice-writer"] floating enable
 for_window [class="libreoffice-calc"] floating enable
 for_window [class="libreoffice-impress"] floating enable
@@ -206,12 +205,14 @@ for_window [class="Sxiv"] floating enable
 for_window [class="Xpdf"] floating enable
 for_window [class="Xournal"] floating enable
 for_window [class="Firefox"] border none
+for_window [title="Firefox Preferences"] floating enable
+for_window [title="Library"] floating enable
 
 exec ~/.i3/autostart
 
 #exec xterm -bg black -fg green -name scratchpad -e bash -l
 exec urxvt -name scratchpad -ls
 # autostart
-exec chromium
+exec firefox
 #exec xterm -bg black -fg white -title mutt -name mutt -e bash -l -c "mutt"
 exec urxvt -title mutt -name mutt -e bash -l -c "mutt"
