@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sublime Text 2
+GenericName=Text Editor
+Exec="/home/xhr/Downloads/Software/Sublime Text 2/sublime_text"
+Icon=/home/xhr/Downloads/Software/Sublime Text 2/Icon/48x48/sublime_text.png
+Categories=Development;
+
+Actions=NewWindow;
+
+[Desktop Action NewWindow]
+Name=Open New Window
+Exec="/home/xhr/Downloads/Software/Sublime Text 2/sublime_text" -n
+OnlyShowIn=Unity;
