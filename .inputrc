@@ -1,3 +1,8 @@
-"\e[A":history-search-backward
-"\e[B":history-search-forward
+$include /etc/inputrc
 
+# Set visual bell
+set bell-style visible
+
+# Bash history search
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
