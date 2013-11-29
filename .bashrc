@@ -60,9 +60,17 @@ byobu_prompt_status() { local e=$?; [ $e != 0 ] && echo -e "$e "; }
 #PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] \$ "
 
 if [ `id -u` -eq 0 ]; then
-	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]!\[\e[0;101m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
+	if [ -z "$SSH_CLIENT" ]; then
+		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]!\[\e[0;101m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
+	else
+		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]@\[\e[0;101m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
+	fi
 else
-	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]!\[\e[38;5;245m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
+	if [ -z "$SSH_CLIENT" ]; then
+		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]!\[\e[38;5;245m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
+	else
+		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]@\[\e[38;5;245m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
+	fi
 fi
 
 export GREP_COLORS="ms=01;38;5;202:mc=01;31:sl=:cx=:fn=01;38;5;132:ln=32:bn=32:se=00;38;5;242"
@@ -108,6 +116,10 @@ export EDITOR=vim
 
 if [ -f ~/.aliasrc ]; then
     . ~/.aliasrc
+fi
+
+if [ -f ~/.aliasrc.private ]; then
+	. ~/.aliasrc.private
 fi
 
 ##############################################################################

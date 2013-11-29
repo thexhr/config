@@ -1,0 +1,52 @@
+##############################################################################
+# Alias
+##############################################################################
+
+if [ `uname` = FreeBSD ]
+then
+	alias 	ls='ls -FGh'
+	alias 	ll='ls -lo'
+	alias 	rm='rm -P'
+	alias 	helpcommand='man \!:1'
+	alias	df='df -t ufs,ext2fs,cd9660,msdosfs'
+	alias	fetch='fetch -p'
+elif [ `uname` = DragonFly ]
+then
+	alias   ls='ls -FGs'
+	alias   ll='ls -lo'
+	alias	rm='rm -I'
+	alias	cs='setenv CSCOPE_DB /usr/src/'
+elif [ `uname` = Darwin ]
+then
+	export LSCOLORS=Dxfxcxdxbxegedabagacad
+	alias 	ls='ls -FGs'
+	alias 	ll='ls -lo'
+	alias 	helpcommand='man \!:1'
+	alias	fetch='wget'
+elif [ `uname` = OpenBSD ]
+then
+       export LSCOLORS=Dxfxcxdxbxegedabagacad
+	   alias	ls='colorls -FGs'
+       alias	ll='ls -lo'
+       alias	rm='rm -I'
+elif [ `uname` = Linux ]
+then
+	alias 	ls='ls --color=auto -h -F -s'
+	alias 	ll='ls -l'
+	alias	fetch='wget'
+	export PAGER=less
+fi
+
+alias g='git'
+alias sudo='sudo -H'
+alias mc='mc --color'
+alias xlock="xlock -mode blank +usefirst -timeout 5 -icongeometry 1x1 -bg black -fg darkgray -validate ' ' -invalid 'Hmm, bad ...' -username ' ' -password ' ' -font fixed +description -planfont fixed"
+alias oi='offlineimap -q'
+alias aterm="aterm +sb +tr -fg white -bg black -fn 6x13 -name 'xterm' -fade 40"
+alias mult="aterm -geometry 118x61+20+0 &; aterm -geometry 105x49+745+0 &; aterm -geometry 105x24+745+678 &"
+alias grep="grep --color=auto"
+alias open="xdg-open"
+alias i3lock='i3lock -c 073642'
+alias chromium='chromium --disk-cache-dir=/tmp'
+alias ip6='ip -6'
+
