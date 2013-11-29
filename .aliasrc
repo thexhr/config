@@ -33,7 +33,6 @@ elif [ `uname` = Linux ]
 then
 	alias 	ls='ls --color=auto -h -F -s'
 	alias 	ll='ls -l'
-	alias	fetch='wget'
 	export PAGER=less
 fi
 
