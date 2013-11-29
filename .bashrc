@@ -122,6 +122,10 @@ if [ -f ~/.aliasrc.private ]; then
 	. ~/.aliasrc.private
 fi
 
+if [ -f ~/.aliasrc.work ]; then
+	. ~/.aliasrc.work
+fi
+
 ##############################################################################
 
 
