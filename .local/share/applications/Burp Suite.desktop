@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Burp Suite
+GenericName=Web Proxy
+Exec="java -jar /home/xhr/Downloads/Web/Burp/burpsuite_free_v1.5.jar"
+Icon=/home/xhr/Downloads/Web/Burp/logo.png
+Categories=Development;
+
