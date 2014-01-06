@@ -48,4 +48,5 @@ alias open="xdg-open"
 alias i3lock='i3lock -c 073642'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias ip6='ip -6'
-
+alias ipls='iptables -L -n -v --line-numbers'
+alias ip6ls='ip6tables -L -n -v --line-numbers'
