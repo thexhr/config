@@ -1,0 +1,18 @@
+[user]
+	name = the xhr
+	email = xhr@giessen.ccc.de
+
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+
+[diff]
+	color = auto
+	rename = copy
+
+[pager]
+	color = true
+
+[status]
+	color = auto
