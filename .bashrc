@@ -46,6 +46,14 @@ esac
 # Color
 ##############################################################################
 
+DISTRI=0
+
+if [ -x /etc/fedora-release ]; then
+	DISTRI=1
+elif [ -x /etc/debian_version ]; then
+	DISTRI=2
+fi
+
 #    byobu's bashrc -- colorize the prompt
 #    Copyright (C) 2013 Dustin Kirkland
 #
@@ -59,18 +67,16 @@ byobu_prompt_status() { local e=$?; [ $e != 0 ] && echo -e "$e "; }
 # Use Ubuntu colors (grey / aubergine / orange)
 #PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] \$ "
 
-if [ `id -u` -eq 0 ]; then
-	if [ -z "$SSH_CLIENT" ]; then
-		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]!\[\e[0;101m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
-	else
-		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]@\[\e[0;101m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
-	fi
+if [ -z "$SSH_CLIENT" ]; then
+	TRENNER="!"
 else
-	if [ -z "$SSH_CLIENT" ]; then
-		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]!\[\e[38;5;245m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
-	else
-		PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]@\[\e[38;5;245m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
-	fi
+	TRENNER="@"
+fi
+
+if [ `id -u` -eq 0 ]; then
+	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}!\[\e[0;101m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
+else
+	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}\[\e[38;5;245m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
 fi
 
 export GREP_COLORS="ms=01;38;5;202:mc=01;31:sl=:cx=:fn=01;38;5;132:ln=32:bn=32:se=00;38;5;242"
