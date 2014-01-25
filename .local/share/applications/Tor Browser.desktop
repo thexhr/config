@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Tor Browser
+GenericName=Web Browser
+Comment=Browse the Web
+Exec="/home/xhr/Downloads/Software/tor-browser_en-US/start-tor-browser"
+Icon=/home/xhr/Downloads/Software/tor.png
+Type=Application
