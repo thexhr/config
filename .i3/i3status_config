@@ -46,11 +46,11 @@ battery 0 {
 }
 
 run_watch DHCP {
-        pidfile = "/var/run/dhcpcd-*.pid"
+        pidfile = "/run/dhcpcd-*.pid"
 }
 
 run_watch VPN {
-        pidfile = "/var/run/openvpn.pid"
+        pidfile = "/run/openvpn*.pid"
 }
 
 tztime local {
