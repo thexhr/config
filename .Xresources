@@ -17,14 +17,27 @@ xterm*scrollBar:          false
 xterm*rightScrollBar:     false
 xterm*jumpScroll:         true
 xterm*multiScroll:        true
-xterm*utf8:               2
+xterm*utf8:               1
 xterm*eightBitInput:      true
 xterm*background:	black
 xterm*foreground:	white
 xterm*termName:		xterm-256color
 xterm*locale: 		true
+XTerm*visualbell: true
 xterm*bellIsUrgent: 	true
 xterm*borderWidth: 	0
+
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+
+
+XTerm*font:  -misc-fixed-medium-r-normal--10-120-75-75-C-70-iso10646-1
+XTerm*font1: -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*
+XTerm*font2: -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+XTerm*font3: -*-terminus-medium-*-*-*-16-*-*-*-*-*-iso10646-*
+XTerm*font4: -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-*
+XTerm*font5: -*-terminus-medium-*-*-*-24-*-*-*-*-*-iso10646-*
+XTerm*font6: -*-terminus-medium-*-*-*-32-*-*-*-*-*-iso10646-*
 
 ! Forbid bold font faces; bold type is light blue.
 !XTerm*colorBDMode: true
@@ -72,46 +85,47 @@ xterm*borderWidth: 	0
 ! modified version of solarized fg color: brighter
 #define S_base99		#86b3a9
 
-*background:            S_base03
-!*foreground:            S_base00
-*foreground:            S_base99
-*fading:                40
-*fadeColor:             S_base03
-*cursorColor:           S_base1
-*pointerColorBackground:S_base01
-*pointerColorForeground:S_base1
+*background:            black
+!*background:            S_base03
+*foreground:            white
+!*foreground:            S_base99
+!*fading:                40
+!*fadeColor:             S_base03
+!*cursorColor:           S_base1
+!*pointerColorBackground:S_base01
+!*pointerColorForeground:S_base1
 
 !! black dark/light
-*color0:                S_base02
-*color8:                S_base03
+!*color0:                S_base02
+!*color8:                S_base03
 
 !! red dark/light
-*color1:                S_red
-*color9:                S_orange
+!*color1:                S_red
+!*color9:                S_orange
 
 !! green dark/light
-*color2:                S_green
-*color10:               S_base01
+!*color2:                S_green
+!*color10:               S_base01
 
 !! yellow dark/light
-*color3:                S_yellow
-*color11:               S_base00
+!*color3:                S_yellow
+!*color11:               S_base00
 
 !! blue dark/light
-*color4:                S_blue
-*color12:               S_base0
+!*color4:                S_blue
+!*color12:               S_base0
 
 !! magenta dark/light
-*color5:                S_magenta
-*color13:               S_violet
+!*color5:                S_magenta
+!*color13:               S_violet
 
 !! cyan dark/light
-*color6:                S_cyan
-*color14:               S_base1
+!*color6:                S_cyan
+!*color14:               S_base1
 
 !! white dark/light
-*color7:                S_base2
-*color15:               S_base3
+!*color7:                S_base2
+!*color15:               S_base3
 
 ! urxvt settings ---------------------------------------------------------------
 
@@ -120,3 +134,4 @@ URxvt.scrollBar:		false
 URxvt.termName:			xterm-256color
 URxvt.urgentOnBell: 	true
 URxvt*dynamicColors:	on
+URxvt*fading:				30
