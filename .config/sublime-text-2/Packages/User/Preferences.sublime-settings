@@ -1,0 +1,13 @@
+{
+	"color_scheme": "Packages/Theme - Phoenix/Color Scheme/Tomorrow-Night.tmTheme",
+	"dictionary": "Packages/Language - English/en_US.dic",
+	"font_face": "Monospace",
+	"font_size": 8,
+	"phoenix_color_red": true,
+	"phoenix_highlight_current_tab": true,
+	"theme": "Phoenix Dark.sublime-theme",
+	"phoenix_eighties": true,
+	"phoenix_solid_current_tab": true,
+	"phoenix_dirty_bottom_bar": true,
+	"phoenix_dirty_bottom_bar_red": true
+}
