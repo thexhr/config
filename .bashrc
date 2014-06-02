@@ -42,9 +42,16 @@ case "$TERM" in
 	;;
 esac
 
+# Set visual bell
+set bell-style visible
+
+# No beep
+xset -b
 ##############################################################################
 # Color
 ##############################################################################
+
+TERMINAL=/usr/bin/urxvt256c
 
 DISTRI=0
 

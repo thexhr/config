@@ -134,4 +134,4 @@ URxvt.scrollBar:		false
 URxvt.termName:			xterm-256color
 URxvt.urgentOnBell: 	true
 URxvt*dynamicColors:	on
-URxvt*fading:				30
+URxvt*fading:			40
