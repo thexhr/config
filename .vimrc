@@ -39,6 +39,12 @@ nmap <silent> <C-n> :noh<CR>
 set tabstop=4
 set softtabstop=4
 
+" Wrap search around
+set wrapscan
+
+" Show line numbers
+set number
+
 " Hide the toolbar:
 set go-=T
 
@@ -97,17 +103,10 @@ nmap <Esc>p	:set bg=light<CR>
 syntax on
 set ruler
 
-" Abbreviations for emails
-ab vgr Viele Grüße<CR><CR><TAB>Matthias
-ab gr Grüße<CR><CR><TAB>Matthias
-ab rg Regards<CR><CR><TAB>Matthias
-ab ch Cheers<CR><CR><TAB>Matthias
-ab mfg Mit freundlichen Grüßen<CR><CR><TAB>Matthias Schmidt
-
-hi mailHeader      ctermfg=Gray
-hi mailSubject     ctermfg=Red
-hi mailEmail       ctermfg=Blue
-hi mailSignature   ctermfg=DarkRed
-hi mailQuoted1     ctermfg=Darkyellow
-hi mailQuoted2     ctermfg=Green
+"hi mailHeader      ctermfg=Gray
+"hi mailSubject     ctermfg=Red
+"hi mailEmail       ctermfg=Blue
+"hi mailSignature   ctermfg=DarkRed
+"hi mailQuoted1     ctermfg=Darkyellow
+"hi mailQuoted2     ctermfg=Green
 
