@@ -159,3 +159,6 @@ complete -f -o default -X '!*.+(gz|GZ)'   gunzip
 complete -f -o default -X '*.+(bz2|BZ2)'  bzip2
 complete -f -o default -X '!*.+(bz2|BZ2)' bunzip2
 complete -f -o default -X '!*.+(zip|ZIP|z|Z|gz|GZ|bz2|BZ2)' extract
+
+# Suck in GPG agent vars
+source ~/.gpgssh.env
