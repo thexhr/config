@@ -36,6 +36,8 @@ then
 	export PAGER=less
 fi
 
+alias p='pushd'
+alias d='popd'
 alias g='git'
 alias sudo='sudo -H'
 alias mc='mc --color'
