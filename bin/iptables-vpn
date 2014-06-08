@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Local network with the default router
+NET=192.168.1.0/24
+# For @#$%*& broken hotel WLANs (1.1.1.1 is the login page) 
+ANET=1.1.1.1/32
+
+echo -n "[+] Create backup of existing rules..."
+
+FILE="/root/iptables-save-$(date +%s)"
+iptables-save > $FILE || exit 1
+echo "done."
+
+echo -n "[+] Flush all old rules..."
+iptables -F || exit 1
+iptables -t nat -F || exit 1
+iptables -t mangle -F || exit 1
+echo "done."
+
+echo "[+] Allow loopback traffic"
+iptables -A INPUT -i lo -j ACCEPT -m comment --comment "Allow loopback traffic"
+iptables -A OUTPUT -o lo -j ACCEPT -m comment --comment "Allow loopback traffic"
+
+echo "[+] Allow vboxnet traffic"
+iptables -A INPUT -i vboxnet+ -j ACCEPT -m comment --comment "Allow VBox traffic"
+iptables -A OUTPUT -o vboxnet+ -j ACCEPT -m comment --comment "Allow VBox traffic"
+
+echo "[+] Allow local $NET traffic"
+iptables -A INPUT -s $NET -j ACCEPT -m comment --comment "Allow local $NET traffic"
+iptables -A OUTPUT -d $NET -j ACCEPT -m comment --comment "Allow local $NET traffic"
+
+echo "[+] Allow local $ANET traffic"
+iptables -A INPUT -s $ANET -j ACCEPT -m comment --comment "Allow local $ANET traffic"
+iptables -A OUTPUT -d $ANET -j ACCEPT -m comment --comment "Allow local $ANET traffic"
+
+echo "[+] Allow VPN establishment"
+iptables -A OUTPUT -p udp --dport 1194 -j ACCEPT -m comment --comment "VPN establishment OpenVPN"
+iptables -A INPUT -p udp --sport 1194 -j ACCEPT -m comment --comment "VPN establishment generic OpenVPN"
+
+iptables -A OUTPUT -p udp --dport 1195 -j ACCEPT -m comment --comment "VPN establishment kronos"
+iptables -A INPUT -p udp --sport 1195 -j ACCEPT -m comment --comment "VPN establishment kronos"
+
+echo "[+] Accept all TUN connections (tun = VPN tunnel)"
+iptables -A OUTPUT -o tun+ -j ACCEPT -m comment --comment "TUN connections"
+iptables -A INPUT -i tun+ -j ACCEPT -m comment --comment "TUN connections"
+
+echo "[+] Allow connection tracking"
+iptables -A INPUT -i tun+ -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT -m comment --comment "Connection tracking"
+
+echo "[+] Set default policies to drop"
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+
+echo "[+] Set IPv6 default policies to drop"
+ip6tables -P INPUT DROP
+ip6tables -P OUTPUT DROP
+ip6tables -P FORWARD DROP
