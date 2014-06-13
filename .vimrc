@@ -103,10 +103,5 @@ nmap <Esc>p	:set bg=light<CR>
 syntax on
 set ruler
 
-"hi mailHeader      ctermfg=Gray
-"hi mailSubject     ctermfg=Red
-"hi mailEmail       ctermfg=Blue
-"hi mailSignature   ctermfg=DarkRed
-"hi mailQuoted1     ctermfg=Darkyellow
-"hi mailQuoted2     ctermfg=Green
-
+autocmd BufNewFile,BufRead ferm.conf setf ferm
+autocmd BufNewFile,BufRead *.ferm setf ferm
