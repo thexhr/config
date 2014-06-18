@@ -87,13 +87,24 @@ else
 fi
 
 export GREP_COLORS="ms=01;38;5;202:mc=01;31:sl=:cx=:fn=01;38;5;132:ln=32:bn=32:se=00;38;5;242"
-export LESS_TERMCAP_mb=$(printf '\e[01;31m')       # enter blinking mode – red
-export LESS_TERMCAP_md=$(printf '\e[01;38;5;180m') # enter double-bright mode – bold light orange
-export LESS_TERMCAP_me=$(printf '\e[0m')           # turn off all appearance modes (mb, md, so, us)
-export LESS_TERMCAP_se=$(printf '\e[0m')           # leave standout mode
-export LESS_TERMCAP_so=$(printf '\e[03;38;5;202m') # enter standout mode – orange background highlight (or italics)
-export LESS_TERMCAP_ue=$(printf '\e[0m')           # leave underline mode
-export LESS_TERMCAP_us=$(printf '\e[04;38;5;139m')   # enter underline mode – underline aubergine
+
+# UBUNTU COLORS
+#export LESS_TERMCAP_mb=$(printf '\e[01;31m')       # enter blinking mode – red
+#export LESS_TERMCAP_md=$(printf '\e[01;38;5;180m') # enter double-bright mode – bold light orange
+#export LESS_TERMCAP_me=$(printf '\e[0m')           # turn off all appearance modes (mb, md, so, us)
+#export LESS_TERMCAP_se=$(printf '\e[0m')           # leave standout mode
+#export LESS_TERMCAP_so=$(printf '\e[03;38;5;202m') # enter standout mode – orange background highlight (or italics)
+#export LESS_TERMCAP_ue=$(printf '\e[0m')           # leave underline mode
+#export LESS_TERMCAP_us=$(printf '\e[04;38;5;139m')   # enter underline mode – underline aubergine
+
+# Less Colors for Man Pages
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
