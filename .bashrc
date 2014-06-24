@@ -163,3 +163,10 @@ complete -f -o default -X '!*.+(zip|ZIP|z|Z|gz|GZ|bz2|BZ2)' extract
 
 # Suck in GPG agent vars
 source ~/.gpgssh.env
+
+alias sshopen='rm -f "$HOME"/.ssh/`hostname`.agent ; ssh-agent -t 7200 | grep -v echo > "$HOME"/.ssh/`hostname`.agent;  source "$HOME"/.ssh/`hostname`.agent ; ssh-add'
+alias sshclose='pkill -u $USER ssh-agent && echo "SSH-Agents killed."; rm -f "$HOME"/.ssh/`hostname`.agent'
+
+if [ -e "$HOME"/.ssh/`hostname`.agent ]; then
+	source "$HOME"/.ssh/`hostname`.agent ;
+fi
