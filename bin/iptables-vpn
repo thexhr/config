@@ -47,7 +47,7 @@ iptables -A INPUT -i tun+ -j ACCEPT -m comment --comment "TUN connections"
 echo "[+] Allow connection tracking"
 iptables -A INPUT -i tun+ -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT -m comment --comment "Connection tracking"
 
-echo "[+] Set default policies to drop"
+echo "[+] Set IPv4 default policies to drop"
 iptables -P INPUT DROP
 iptables -P OUTPUT DROP
 iptables -P FORWARD DROP
