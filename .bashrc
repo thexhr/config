@@ -47,6 +47,7 @@ set bell-style visible
 
 # No beep
 xset -b
+
 ##############################################################################
 # Color
 ##############################################################################
@@ -115,7 +116,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -172,8 +172,14 @@ complete -f -o default -X '*.+(bz2|BZ2)'  bzip2
 complete -f -o default -X '!*.+(bz2|BZ2)' bunzip2
 complete -f -o default -X '!*.+(zip|ZIP|z|Z|gz|GZ|bz2|BZ2)' extract
 
+##############################################################################
+# SSH/GPG Agent stuff
+##############################################################################
+
 # Suck in GPG agent vars
-source ~/.gpgssh.env
+if [ -e "$HOME"/.gpgssh.env ]; then
+	source ~/.gpgssh.env
+fi
 
 alias sshopen='rm -f "$HOME"/.ssh/`hostname`.agent ; ssh-agent -t 7200 | grep -v echo > "$HOME"/.ssh/`hostname`.agent;  source "$HOME"/.ssh/`hostname`.agent ; ssh-add'
 alias sshclose='pkill -u $USER ssh-agent && echo "SSH-Agents killed."; rm -f "$HOME"/.ssh/`hostname`.agent'
