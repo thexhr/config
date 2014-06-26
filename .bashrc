@@ -181,7 +181,7 @@ if [ -e "$HOME"/.gpgssh.env ]; then
 	source ~/.gpgssh.env
 fi
 
-alias sshopen='rm -f "$HOME"/.ssh/`hostname`.agent ; ssh-agent -t 7200 | grep -v echo > "$HOME"/.ssh/`hostname`.agent;  source "$HOME"/.ssh/`hostname`.agent ; ssh-add'
+alias sshopen='rm -f "$HOME"/.ssh/`hostname`.agent ; ssh-agent -t 14400 | grep -v echo > "$HOME"/.ssh/`hostname`.agent;  source "$HOME"/.ssh/`hostname`.agent ; ssh-add'
 alias sshclose='pkill -u $USER ssh-agent && echo "SSH-Agents killed."; rm -f "$HOME"/.ssh/`hostname`.agent'
 
 if [ -e "$HOME"/.ssh/`hostname`.agent ]; then
