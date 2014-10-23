@@ -1,0 +1,42 @@
+xsetroot -solid '#000000' &
+
+# Udiskie for auto disc mounting
+udiskie &
+
+# run gpg-agent
+#~/Documents/bin/start-gpg-agent &
+
+# notifications
+dunst &
+
+# start scratchpad
+urxvt -name scratchpad -ls &
+
+# Set keyboard layout and variant
+setxkbmap -layout us -variant intl
+
+# Hide mouse cursor when idle
+unclutter -root &
+
+# Browser
+#firefox -P default &
+
+# email
+#urxvt -title mutt -name mutt -e bash -l -c "mutt" &
+urxvt -title mutt -name mutt &
+
+xbindkeys &
+
+## Disable beeps
+xset -b &
+
+## DPMS monitor setting (standby -> suspend -> off) (seconds)
+#xset dpms 300 900 1200 &
+# screen powersave
+xset +dpms
+# No suspend, no standy, turn off screen after 120 secs
+xset dpms 0 0 120
+
+## Set LCD brightness
+xbacklight -set 30 &
+

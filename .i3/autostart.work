@@ -1,0 +1,38 @@
+xsetroot -solid '#000000' &
+
+# Screenlock after 5 minutes
+xautolock -detectsleep -time 5 -locker "i3lock -i ~/Pictures/hackers3.png -t -d" &
+
+# Set wallpaper
+feh --bg-center ~/Pictures/hackers.jpg &
+
+# Start NetworkManager applet
+nm-applet &
+
+# Set keyboard layout and variant
+setxkbmap -layout us -variant intl
+
+# start scratchpad
+rxvt -name scratchpad -ls &
+
+# Hide mouse cursor when idle
+unclutter -root &
+
+# Clipboard sync
+autocutsel -s PRIMARY &
+
+xbindkeys &
+
+## Disable beeps
+xset -b &
+
+## DPMS monitor setting (standby -> suspend -> off) (seconds)
+#xset dpms 300 900 1200 &
+# screen powersave
+xset +dpms
+# No suspend, no standy, turn off screen after 120 secs
+xset dpms 0 0 120
+
+## Set LCD brightness
+xbacklight -set 30 &
+
