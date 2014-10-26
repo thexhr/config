@@ -186,7 +186,18 @@ if [ -e "$HOME"/.gpgssh.env ]; then
 	source ~/.gpgssh.env
 fi
 
-alias sshopen='rm -f "$HOME"/.ssh/`hostname`.agent ; ssh-agent -t 86400 | grep -v echo > "$HOME"/.ssh/`hostname`.agent;  source "$HOME"/.ssh/`hostname`.agent ; ssh-add'
+function sshopen()
+{
+	rm -f "$HOME"/.ssh/`hostname`.agent
+	ssh-agent -t 86400 | grep -v echo > "$HOME"/.ssh/`hostname`.agent
+	source "$HOME"/.ssh/`hostname`.agent
+	unalias ls
+	for i in `ls $HOME/.ssh/*.pub`; do
+		echo "Add key $_key"
+		ssh-add $_key
+	done
+}
+
 alias sshclose='pkill -u $USER ssh-agent && echo "SSH-Agents killed."; rm -f "$HOME"/.ssh/`hostname`.agent'
 
 if [ -e "$HOME"/.ssh/`hostname`.agent ]; then
