@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# set umask
+umask 026
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -149,7 +152,7 @@ fi
 
 function cds()
 {
-	cd "$1" && ls -l
+	cd "$1" && ls -la
 }
 
 ##############################################################################
