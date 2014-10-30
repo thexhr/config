@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# From https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/
+
+BATTINFO=`acpi -b`
+
+echo "`date` $BATTINFO" >> /tmp/foo
+if [[ `echo $BATTINFO | grep Discharging` && `echo $BATTINFO | cut -f 5 -d " "` < 00:15:00 ]] ; then
+    DISPLAY=:0.0 /usr/bin/notify-send -u critical "Low Battery" "$BATTINFO"
+fi
