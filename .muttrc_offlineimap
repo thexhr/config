@@ -5,21 +5,6 @@
 # to the original authors ;)
 ###############################################################################
 
-# labels
-#macro index y "<enter-command>set editor=\"~/bin/editlabel append\"\n\
-#<edit><sync-mailbox><next-undeleted>\
-#<enter-command>set editor=vim\n" "Append label"
-#macro pager y "<enter-command>set editor=\"~/bin/editlabel append\"\n\
-#<edit><sync-mailbox><next-undeleted>\
-#<enter-command>set editor=vim\n" "Append label"
-#macro index Y "<enter-command>set editor=\"~/bin/editlabel menu\"\n\
-#<edit><sync-mailbox><next-undeleted>\
-#<enter-command>set editor=vim\n" "Edit labels"
-#macro pager Y "<enter-command>set editor=\"~/bin/editlabel menu\"\n\
-#<edit><sync-mailbox><next-undeleted>\
-#<enter-command>set editor=vim\n" "Edit labels"
-#macro index \Cy "<limit>~y " "Limit view to label"
-
 ###############################################################################
 # Paths
 ###############################################################################
@@ -34,6 +19,8 @@ set tmpdir           = ~/.mutt/temp          # where to keep temp files
 source ~/.mutt/smime.rc
 # Path to GPG include
 source ~/.mutt/gpg.rc
+# Suck in alias file
+source ~/.mutt/alias
 
 ###############################################################################
 # GPG, SMTP and security
@@ -61,15 +48,15 @@ set pgp_autoencrypt = no
 set pgp_sign_as=0x2AA88ED1
 
 # My SMTP servers
-set smtp_url="smtps://mutt@alpha.xosc.org@alpha.xosc.org:465"
+set smtp_url="smtps://mutt@alpha.xosc.org@xosc.org:465"
 
 # Force TLS for all outgoing conns
 set ssl_force_tls
 # Do not use SSLv2
 #unset ssl_use_sslv2
 
-# Wrapper script 
-set my_smtp_pass=`/sbin/pass Mail/mutt_alpha_xosc_org`
+# Wrapper script
+set my_smtp_pass=`/usr/bin/pass Mail/mutt_alpha_xosc_org`
 set smtp_pass=$my_smtp_pass
 
 # Don't wait to enter mailbox manually
@@ -106,20 +93,30 @@ mailboxes +xosc.de/INBOX \
 	+xosc.de/INBOX.general.system \
 	+xosc.de/INBOX.Drafts \
 	+xosc.de/INBOX.Sent \
+	+xosc.de/INBOX.arch.security \
+	+xosc.de/INBOX.arch.announce \
+	+xosc.de/INBOX.arch.dev \
+	+xosc.de/INBOX.arch.general \
 	+xosc.de/INBOX.ccc.mrm \
 	+xosc.de/INBOX.ccc.intern \
+	+xosc.de/INBOX.ccc.entropia \
+	+xosc.de/INBOX.dragonfly.inbox \
 	+xosc.de/INBOX.dragonfly.commits \
 	+xosc.de/INBOX.dragonfly.submit \
 	+xosc.de/INBOX.dragonfly.kernel \
 	+xosc.de/INBOX.dragonfly.bugs \
 	+xosc.de/INBOX.dragonfly.users \
+	+xosc.de/INBOX.bsd.freebsd-src \
+	+xosc.de/INBOX.security.owasp \
 	+xosc.de/INBOX.security.cvs \
 	+xosc.de/INBOX.security.devel \
+	+xosc.de/INBOX.security.fd \
 	+xosc.de/INBOX.security.oss-security \
 	+xosc.de/INBOX.misc.accept \
 	+xosc.de/INBOX.misc.announce \
 	+xosc.de/INBOX.misc.uni \
 	+xosc.de/INBOX.misc.iv \
+	+xosc.de/INBOX.misc.ipv6 \
 	+xosc.de/INBOX.misc.dsg \
 	+xosc.de/INBOX.misc.scm \
 	.mutt/mairix-search
@@ -180,8 +177,8 @@ bind index n           next-unread
 macro index B   "<limit>~b "                "search message bodies"
 macro index I   "<change-folder>!<enter>"   "go to Inbox"
 
-# Sync mailbox with TAB key
-#bind index <tab>    sync-mailbox
+# Sync mailbox
+bind index $    sync-mailbox
 
 # Sync email
 macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
@@ -201,24 +198,9 @@ macro index a "<limit>all\n" "show all messages (undo limit)"
 bind index N search-opposite
 bind pager N search-opposite
 
-# Add new email addresses to Google Contacts address book
-#macro index a "~/stuff/goobook-read-only/goobook.py add" "Add email address to Google Contacts"
-#macro pager a "~/stuff/goobook-read-only/goobook.py add" "Add email address to Google Contacts" 
-
-#macro index a "|~/Documents/Code/python/mgcq/mgcq.py -a" "Add email address to Google Contacts"
-#macro pager a "|~/Documents/Code/python/mgcq/mgcq.py -a" "Add email address to Google Contacts"
-#macro index \ep "|~/Documents/Code/python/mgcq/mgcq.py -p" "Show contacts photo"
-#macro pager \ep "|~/Documents/Code/python/mgcq/mgcq.py -p" "Show contacts photo"
-
 # Save messages/attachments to the following directory
 macro attach s <save-message><bol>~/Downloads/
 
-# Display filters
-#set display_filter="/usr/local/bin/display-filter"
-macro generic \e0 ":unset display_filter\n" "Display filter off"
-macro generic \e9 ":set display_filter='/usr/local/bin/display-filter'\n" "Display filter on"
-macro pager \e0 ":unset display_filter; exec exit\n:exec display-message\n" "Display filter off"
-macro pager \e9 ":set display_filter='/usr/local/bin/display-filter'; exec exit\n:exec display-message\n" "Display filter on"
 color body      brightmagenta   default "^\\[---\=[|].*"
 
 # grepm search
@@ -232,22 +214,10 @@ macro pager "\em"    "<shell-escape>$HOME/.mutt/msearch.sh " "Run a Mairix searc
 macro pager "\eF"    "<change-folder-readonly>.mutt/mairix-search\n" "Switch to Mairix search results"
 
 # In compose mode, select one of my From: lines (see .alias)
-macro compose v "<edit-from>^Uidentity_<tab>" "Select from"
+macro compose v "<edit-from>^Uidentity_<Tab>" "Select from"
 
 # use <tab> to complete email addresses instead of Ctrl-t add this:
-bind editor <Tab> complete-query
-
-#bind index 	<left> 	sidebar-prev
-#bind index 	<right> sidebar-next
-#bind index 	o 	sidebar-open
-#bind pager 	o 	sidebar-open
-#bind pager 	<right> sidebar-next
-#bind pager 	<left> 	sidebar-prev
-#macro index - ':toggle sidebar_visible<enter><refresh>'
-#macro pager - ':toggle sidebar_visible<enter><redraw-screen>'
-#set sidebar_width=19
-#set sidebar_visible=yes
-#set sidebar_delim=" "
+#bind editor <Tab> complete-query
 
 # Mark all new messages as read
 macro index \en "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<clear-flag>*" "Catchup all new messages"
@@ -261,7 +231,6 @@ bind generic 	Home	first-entry
 bind generic 	End	last-entry
 bind pager 	End	bottom
 bind pager	Home	top
-
 
 # Go to last entry
 bind index G	last-entry
@@ -312,8 +281,8 @@ macro	pager	\Cb	":set pipe_decode\n|urlview\n:unset pipe_decode\n" \
 # COLORS
 ###############################################################################
 
-#source ~/mail/clight
 source ~/.mutt/color
+
 ###############################################################################
 # SETTINGS
 ###############################################################################
@@ -354,32 +323,11 @@ set auto_tag
 set ispell = "/usr/bin/aspell -d de -e -c"
 #set ispell = "/usr/local/bin/ispell -d ndeutsch"
 
-# Set the xterm title ...
-#unset xterm_set_titles
-
-# to ...
-#set xterm_title="%f [n/%m here]"
-
-# Use abook with mutt
-#set query_command="~/Documents/Code/python/mgcq/mgcq.py -q '%s'"
-set query_command="goobook query '%s'"
-
 # Dont sleep during folder changes
 set sleep_time = 0
 
 # Make trees narrower
 unset narrow_tree
-
-# Sidebar format string
-# %d Number of deleted messages. 1)
-# %F Number of flagged messages.
-# %m Total number of messages.
-# %M Total number of messages shown, i.e. not hidden by a limit. 1)
-# %n Number of new messages.
-# %t Number of tagged messages. 1)
-#%?<item>?<string if nonzero>&<string if zero>?
-#set sidebar_number_format = "%?n?(%n)&?"
-#set sidebar_number_format = "%?n?[%2n/%4m]&[  ][%4m]?"
 
 # When viewing next page of info, retain last line of previous page
 set pager_context = 1
@@ -421,7 +369,7 @@ set pager_index_lines=10
 set sendmail_wait="-1"
 
 # My Hostname (for MSG ID)
-set hostname="arakis.v6.xosc.org"
+set hostname="hyperion.v6.xosc.org"
 
 # My From: line
 my_hdr From: Matthias Schmidt <schmidt@ieee.org>
@@ -455,7 +403,6 @@ set autoedit=yes
 #unset beep
 set beep=yes
 set beep_new=yes
-
 
 # My charset
 #set charset=utf-8
@@ -534,9 +481,6 @@ unset wait_key
 
 # Use an -> (set) or a BAR (unset)
 unset arrow_cursor
-
-# My send charset
-#set send_charset="us-ascii:iso-8859-15:iso-8859-1:utf-8"
 
 # Location of the signature file
 set signature="~/.signature"
