@@ -212,11 +212,16 @@ function sshopen()
 	rm -f "$HOME"/.ssh/`hostname`.agent
 	ssh-agent -t 86400 | grep -v echo > "$HOME"/.ssh/`hostname`.agent
 	source "$HOME"/.ssh/`hostname`.agent
-	unalias ls
-	for i in `ls $HOME/.ssh/*.pub`; do
-		echo "Add key $_key"
+	# Find all public keys...
+	for i in `find $HOME/.ssh/ -maxdepth 1 -name "*.pub"`; do
+		# ... and strip the .pub suffix
+		_key=`echo $i | sed -e 's/\.pub//'`
 		ssh-add $_key
 	done
+
+	if [ -e "$HOME"/.ssh/`hostname`.agent ]; then
+		source "$HOME"/.ssh/`hostname`.agent ;
+	fi
 }
 
 alias sshclose='pkill -u $USER ssh-agent && echo "SSH-Agents killed."; rm -f "$HOME"/.ssh/`hostname`.agent'
