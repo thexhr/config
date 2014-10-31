@@ -174,6 +174,15 @@ complete -f -o default -X '*.+(bz2|BZ2)'  bzip2
 complete -f -o default -X '!*.+(bz2|BZ2)' bunzip2
 complete -f -o default -X '!*.+(zip|ZIP|z|Z|gz|GZ|bz2|BZ2)' extract
 
+_completemarks() {
+	local curw=${COMP_WORDS[COMP_CWORD]}
+	local wordlist=$(find $MARKPATH -type l -printf "%f\n")
+	COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+	return 0
+}
+
+complete -F _completemarks jump unmark j
+
 ##############################################################################
 # Functions
 ##############################################################################

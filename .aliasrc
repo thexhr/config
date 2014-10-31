@@ -36,6 +36,7 @@ then
 	export PAGER=less
 fi
 
+alias j='jump'
 alias p='pushd'
 alias d='popd'
 alias g='git'
