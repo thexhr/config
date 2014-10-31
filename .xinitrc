@@ -1,22 +1,19 @@
 
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+# Suck in global xinitrc files
+for _ in /etc/X11/xinit/xinitrc.d/*; do
+	[[ -f $_ ]] && . "$_"
+done
 
-# Custom Key mapping
-#xbindkeys
+# Import DISPLAY variable into systemd user env
+systemctl --user import-environment 'DISPLAY'
 
-# No bell
-xset -b
-
-# screen powersave
-xset +dpms
-# No suspend, no standy, turn off screen after 120 secs
-xset dpms 0 0 120
+# merge Xresources file
+[[ -e ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # pulseaudio
 start-pulseaudio-x11
 
-# Copy & paste
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &
+# Set Keybard
+setxkbmap -layout us -variant intl
 
 exec i3
