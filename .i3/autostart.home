@@ -1,10 +1,11 @@
+#xsetroot -solid '#002b36' &
 xsetroot -solid '#000000' &
+
+# Background image
+feh --bg-center ~/Pictures/background
 
 # Udiskie for auto disc mounting
 udiskie &
-
-# run gpg-agent
-#~/Documents/bin/start-gpg-agent &
 
 # notifications
 dunst &
