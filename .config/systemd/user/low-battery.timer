@@ -1,0 +1,11 @@
+[Unit]
+Description=Low-battery script timer
+
+[Timer]
+# Run every 5 minutes
+OnCalendar=*:0/5
+Persistent=false
+Unit=low-battery.service
+
+[Install]
+WantedBy=timers.target

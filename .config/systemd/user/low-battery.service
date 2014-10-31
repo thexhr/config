@@ -1,0 +1,9 @@
+[Unit]
+Description=Show low battery warning
+
+[Service]
+Type=simple
+ExecStart=/home/xhr/Documents/bin/low-battery
+
+[Install]
+WantedBy=multi-user.target
