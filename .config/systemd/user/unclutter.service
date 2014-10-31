@@ -1,0 +1,12 @@
+[Unit]
+Description=Hide mouse cursor with unclutter
+Requires=graphical.target
+After=graphical.target
+
+[Service]
+Restart=always
+RestartSec=10
+ExecStart=/usr/bin/unclutter -root
+
+[Install]
+WantedBy=default.target

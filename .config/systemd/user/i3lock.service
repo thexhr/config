@@ -1,0 +1,9 @@
+[Unit]
+Description=i3lock
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/i3lock -d -c 000000 -p default
+
+[Install]
+WantedBy=default.target

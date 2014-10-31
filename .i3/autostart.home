@@ -4,23 +4,11 @@ xsetroot -solid '#000000' &
 # Background image
 feh --bg-center ~/Pictures/background
 
-# Udiskie for auto disc mounting
-udiskie &
-
-# notifications
-dunst &
-
 # start scratchpad
 urxvt -name scratchpad -ls &
 
 # Set keyboard layout and variant
 setxkbmap -layout us -variant intl
-
-# Hide mouse cursor when idle
-unclutter -root &
-
-# Browser
-#firefox -P default &
 
 # email
 #urxvt -title mutt -name mutt -e bash -l -c "mutt" &
