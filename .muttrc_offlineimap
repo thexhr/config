@@ -181,9 +181,9 @@ macro index I   "<change-folder>!<enter>"   "go to Inbox"
 bind index $    sync-mailbox
 
 # Sync email
-macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index O "<shell-escape>offlineimap &<enter>"           "run offlineimap to sync all mail"
 # quick-sync immediately with offlineimap
-macro index o "<shell-escape>offlineimap -q -f INBOX,INBOX.general.inbox,INBOX.general.uni<enter>" "Sync INBOX, uni, inbox with IMAP"
+macro index o "<shell-escape>offlineimap -f INBOX,INBOX.general.inbox,INBOX.general.uni &<enter>" "Sync INBOX, uni, inbox with IMAP"
 
 # Collapse thread
 bind index <space>  collapse-thread
