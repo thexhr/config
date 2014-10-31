@@ -150,31 +150,7 @@ if [ -f ~/.aliasrc.work ]; then
 	. ~/.aliasrc.work
 fi
 
-function ipif()
-{
-		if grep -P "(([1-9]\d{0,2})\.){3}(?2)" <<< "$1"
-		then
-			curl ipinfo.io/"$1"
-		else
-			local ipadd=$(host "$1") &&
-			local ipawk=$(awk '{ print $4 }' <<< "$ipadd")
-			curl ipinfo.io/"$ipawk"
-		fi
-		echo
-}
-
-function calc()
-{
-	echo "scale=3;$@" | bc -l
-}
-
-function cds()
-{
-	cd "$1" && ls -la
-}
-
 ##############################################################################
-
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -197,6 +173,12 @@ complete -f -o default -X '!*.+(gz|GZ)'   gunzip
 complete -f -o default -X '*.+(bz2|BZ2)'  bzip2
 complete -f -o default -X '!*.+(bz2|BZ2)' bunzip2
 complete -f -o default -X '!*.+(zip|ZIP|z|Z|gz|GZ|bz2|BZ2)' extract
+
+##############################################################################
+# Functions
+##############################################################################
+
+source $HOME/.functions
 
 ##############################################################################
 # SSH/GPG Agent stuff
