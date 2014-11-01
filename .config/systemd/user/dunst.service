@@ -1,11 +1,13 @@
 [Unit]
 Description=Notifications with dunst
+Requires=xorg.target
+After=xorg.target
 
 [Service]
-Type=forking
+Type=simple
 Restart=always
 RestartSec=10
 ExecStart=/usr/bin/dunst
 
 [Install]
-WantedBy=default.target
+WantedBy=xorg.target

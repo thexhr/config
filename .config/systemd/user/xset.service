@@ -1,0 +1,16 @@
+[Unit]
+Description=Set X misc stuff with xset
+Requires=xorg.target
+After=xorg.target
+
+[Service]
+Type=oneshot
+# No beep
+ExecStart=/usr/bin/xset -b
+# Enable screen powermanagement
+ExecStart=/usr/bin/xset +dpms
+# No suspend, no standy, turn off screen after 120 secs
+ExecStart=/usr/bin/xset dpms 0 0 120
+
+[Install]
+WantedBy=xorg.target

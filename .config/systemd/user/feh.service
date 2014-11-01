@@ -1,0 +1,11 @@
+[Unit]
+Description=Set X background image
+Requires=xorg.target
+After=xorg.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/feh --bg-center %h/Pictures/background
+
+[Install]
+WantedBy=xorg.target

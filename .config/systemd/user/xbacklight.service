@@ -1,0 +1,11 @@
+[Unit]
+Description=Set X backlight brightness
+Requires=xorg.target
+After=xorg.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xbacklight -set 30
+
+[Install]
+WantedBy=xorg.target

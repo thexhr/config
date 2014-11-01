@@ -1,31 +1,7 @@
-#xsetroot -solid '#002b36' &
-xsetroot -solid '#000000' &
-
-# Background image
-feh --bg-center ~/Pictures/background
-
 # start scratchpad
 urxvt -name scratchpad -ls &
-
-# Set keyboard layout and variant
-setxkbmap -layout us -variant intl
 
 # email
 #urxvt -title mutt -name mutt -e bash -l -c "mutt" &
 urxvt -title mutt -name mutt &
-
-xbindkeys &
-
-## Disable beeps
-xset -b &
-
-## DPMS monitor setting (standby -> suspend -> off) (seconds)
-#xset dpms 300 900 1200 &
-# screen powersave
-xset +dpms
-# No suspend, no standy, turn off screen after 120 secs
-xset dpms 0 0 120
-
-## Set LCD brightness
-xbacklight -set 30 &
 

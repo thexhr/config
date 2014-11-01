@@ -1,5 +1,7 @@
 [Unit]
 Description=Show low battery warning
+Requires=xorg.target
+After=xorg.target
 
 [Service]
 Type=simple

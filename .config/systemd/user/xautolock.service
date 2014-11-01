@@ -1,9 +1,14 @@
 [Unit]
 Description=lock screen after a few minutes of inactivity
+Requires=xorg.target
+After=xorg.target
 
 [Service]
 Type=simple
+Restart=always
+RestartSec=10
 ExecStart=/usr/bin/xautolock -time 5 -locker "systemctl --user restart i3lock.service"
+ExecReload=/bin/kill -HUB $MAINPID
 
 [Install]
-WantedBy=default.target
+WantedBy=xorg.target

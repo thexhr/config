@@ -1,0 +1,11 @@
+[Unit]
+Description=Set X keyboard stuff
+Requires=xorg.target
+After=xorg.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/setxkbmap -layout us -variant intl
+
+[Install]
+WantedBy=xorg.target

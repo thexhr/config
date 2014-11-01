@@ -1,5 +1,7 @@
 [Unit]
-Description=i3lock
+Description=Lock screen with i3lock
+Requires=xorg.target
+After=xorg.target
 
 [Service]
 Type=forking

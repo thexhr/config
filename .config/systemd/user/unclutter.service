@@ -1,7 +1,7 @@
 [Unit]
 Description=Hide mouse cursor with unclutter
-Requires=graphical.target
-After=graphical.target
+Requires=xorg.target
+After=xorg.target
 
 [Service]
 Restart=always
