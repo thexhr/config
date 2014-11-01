@@ -10,9 +10,6 @@ systemctl --user import-environment 'DISPLAY'
 # merge Xresources file
 [[ -e ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-# pulseaudio
-start-pulseaudio-x11
-
 # Set Keybard
 setxkbmap -layout us -variant intl
 
