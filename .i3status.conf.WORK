@@ -12,6 +12,7 @@ general {
 }
 
 order += "ipv6"
+order += "disk /"
 order += "disk /home"
 #order += "run_watch DHCP"
 #order += "run_watch VPN"
@@ -61,6 +62,18 @@ load {
         format = "%1min"
 }
 
-disk "/home" {
-        format = "%free/%total"
+disk "/" {
+        format = "r: %free"
 }
+disk "/home" {
+        format = "h: %free"
+}
+
+volume master {
+		format = "♪: %volume"
+		format_muted = "♪: muted (%volume)"
+		device = "default"
+		mixer = "Master"
+		mixer_idx = 0
+}
+
