@@ -13,11 +13,11 @@ general {
 
 order += "ipv6"
 order += "disk /"
-order += "disk /home"
 #order += "run_watch DHCP"
 #order += "run_watch VPN"
 order += "wireless wlan0"
 order += "ethernet em1"
+order += "ethernet vpn0"
 order += "battery 0"
 #order += "load"
 order += "cpu_usage"
@@ -39,6 +39,11 @@ ethernet em1 {
         #format_up = "E: %ip (%speed)"
         format_up = "E: %ip"
         format_down = "E: down"
+}
+
+ethernet vpn0 {
+        format_up = "V: %ip"
+        format_down = "V: down"
 }
 
 battery 0 {
@@ -64,9 +69,6 @@ load {
 
 disk "/" {
         format = "r: %free"
-}
-disk "/home" {
-        format = "h: %free"
 }
 
 volume master {
