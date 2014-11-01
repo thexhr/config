@@ -180,6 +180,8 @@ _completemarks() {
 
 complete -F _completemarks jump unmark j
 
+[ -f /usr/share/git/completion/git-completion.bash ] && source /usr/share/git/completion/git-completion.bash
+
 ##############################################################################
 # Functions
 ##############################################################################
