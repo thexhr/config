@@ -29,7 +29,7 @@ color signature    	color102      	default
 color message      	color253      	default 
 color attachment	color117      	default 
 color error        	color30      	default 
-color tilde        	color130     	color235 
+color tilde        	color130     	default
 
 color search       color100     default 
 color markers      color138     default 
