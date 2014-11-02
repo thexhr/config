@@ -8,6 +8,24 @@ function pacman()
 	sync && sync
 }
 
+function sshopen()
+{
+	rm -f "$HOME"/.ssh/`hostname`.agent
+	ssh-agent -t 172800 | grep -v echo > "$HOME"/.ssh/`hostname`.agent
+	source "$HOME"/.ssh/`hostname`.agent
+	# Find all public keys...
+	for i in `find $HOME/.ssh/ -maxdepth 1 -name "*.pub"`; do
+		# ... and strip the .pub suffix
+		_key=`echo $i | sed -e 's/\.pub//'`
+		ssh-add $_key
+	done
+
+	if [ -e "$HOME"/.ssh/`hostname`.agent ]; then
+		source "$HOME"/.ssh/`hostname`.agent ;
+	fi
+}
+
+
 function mkcd()
 {
 	[[ $1 ]] || return 0
