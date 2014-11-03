@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Spotify
+GenericName=Music Player
+Exec=/usr/bin/spotify
+Icon=/opt/spotify/spotify-client/Icons/spotify-linux-64.png
+Type=Application
+
