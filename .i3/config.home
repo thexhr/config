@@ -190,9 +190,10 @@ mode "focused" {
 		# hardcoded focus keybindings
 		bindsym b [class="(?i)firefox"] focus
 		bindsym t [class="(?i)thunderbird"] focus
-		bindsym m [class="mutt"] focus
+		bindsym m [title="mutt"] focus
 		bindsym s [class="(?i)spotify"] focus
 		bindsym p [class="(?i)pidgin"] focus
+		bindsym e [class="(?i)sublime"] focus
 
 		# keybindings for marking and jumping to clients
 		bindsym a exec i3-input -F 'mark %s' -P 'Mark name: '
