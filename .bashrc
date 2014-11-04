@@ -52,8 +52,6 @@ set bell-style visible
 # Color
 ##############################################################################
 
-TERMINAL=/usr/bin/urxvt256c
-
 DISTRI=0
 
 if [ -x /etc/fedora-release ]; then
