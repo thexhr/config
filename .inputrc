@@ -6,3 +6,18 @@ set bell-style visible
 # Bash history search
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
+
+# mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+
+ Mimic Zsh run-help ability
+"\eh": "\C-a\eb\ed\C-y\e#man \C-y\C-m\C-p\C-p\C-a\C-d\C-e"
+
+# produce such a list only when no completion is possible
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
