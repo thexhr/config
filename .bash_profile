@@ -13,4 +13,4 @@ export PATH
 # Make PATH available to systemd
 systemctl --user import-environment PATH
 
-TERMINAL=urxvt256c
+export TERMINAL=urxvtc
