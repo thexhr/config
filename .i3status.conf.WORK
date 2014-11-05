@@ -36,8 +36,8 @@ wireless wlan0 {
 
 ethernet em1 {
         # if you use %speed, i3status requires root privileges
-        #format_up = "E: %ip (%speed)"
-        format_up = "E: %ip"
+        format_up = "E: %ip (%speed)"
+        #format_up = "E: %ip"
         format_down = "E: down"
 }
 
