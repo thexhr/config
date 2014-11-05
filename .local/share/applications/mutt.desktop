@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Mutt
+GenericName=Mutt Mail User Agent
+Comment=Mutt Mail User Agent
+Exec=urxvtc -title mutt -e mutt
+Icon=urxvt
+StartupNotify=true
+Terminal=false
+Type=Application
