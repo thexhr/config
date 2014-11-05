@@ -6,7 +6,7 @@ set $sup Mod1
 #set $sup Mod4
 
 # My default terminal
-set $defterm rxvt
+set $defterm urxvtc
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -135,6 +135,9 @@ workspace 10 output HDMI3
 #############################################################################
 # Special keys
 ##############################################################################
+
+# Jump to urgent window
+bindsym $mod+x [urgent=latest] focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
