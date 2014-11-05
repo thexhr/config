@@ -14,3 +14,8 @@ export PATH
 systemctl --user import-environment PATH
 
 export TERMINAL=urxvtc
+
+[[ `tty` == /dev/tty1 ]] && \
+	(( $UID ))			 && \
+	[[ -z $DISPLAY ]]	 && \
+	exec startx
