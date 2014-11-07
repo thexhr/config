@@ -2,6 +2,7 @@ $include /etc/inputrc
 
 # Set visual bell
 set bell-style visible
+set prefer-visible-bell
 
 # Bash history search
 "\e[A": history-search-backward
@@ -22,3 +23,21 @@ set bell-style visible
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
+
+# Do not autocomplete hidden files unless the pattern explicitly begins with a dot
+set match-hidden-files off
+
+
+# Be more intelligent when autocompleting by also looking at the text after
+# the cursor. For example, when the current line is "cd ~/src/mozil", and
+# the cursor is on the "z", pressing Tab will not autocomplete it to "cd
+# ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
+# Readline used by Bash 4.)
+set skip-completed-text on
+
+# Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
+set input-meta on
+set output-meta on
+set convert-meta off
