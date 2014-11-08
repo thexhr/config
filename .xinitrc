@@ -1,8 +1,11 @@
 
 # Suck in global xinitrc files
-for _ in /etc/X11/xinit/xinitrc.d/*; do
-	[[ -f $_ ]] && . "$_"
-done
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
 
 # Import DISPLAY variable into systemd user env
 systemctl --user import-environment 'DISPLAY'
@@ -12,5 +15,7 @@ systemctl --user import-environment 'DISPLAY'
 
 # Set Keybard
 setxkbmap -layout us -variant intl
+
+start-pulseaudio-x11 &
 
 exec i3
