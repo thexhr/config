@@ -80,9 +80,9 @@ else
 fi
 
 if [ `id -u` -eq 0 ]; then
-	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}!\[\e[0;101m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
+	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}\[\e[0;101m\]\u\[\e[00m\]: \[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
 else
-	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}\[\e[38;5;245m\]\u\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
+	PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}\[\e[38;5;245m\]\u\[\e[00m\]: \[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
 fi
 
 export GREP_COLORS="ms=01;38;5;202:mc=01;31:sl=:cx=:fn=01;38;5;132:ln=32:bn=32:se=00;38;5;242"
