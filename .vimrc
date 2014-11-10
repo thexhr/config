@@ -12,6 +12,14 @@ let Tlist_File_Fold_Auto_Close = 1
 " turn off blinking cursor
 set gcr=n:blinkon0
 
+" When editing a file, always jump to the last cursor position
+au BufReadPost *
+	\ if ! exists("g:leave_my_cursor_position_alone") |
+	\     if line("'\"") > 0 && line ("'\"") <= line("$") |
+	\         exe "normal g'\"" |
+	\     endif |
+	\ endif
+
 set statusline=%<%1*(%M%R)%f(%F)%=\ [%n]%1*%-19(%2*\ %03lx%02c(%p%%)\ %1*%)%O'%3*%02b%1*'
 " now set it up to change the status line based on mode
 au InsertEnter * hi User1 term=inverse,bold ctermbg=darkblue ctermfg=cyan guibg=#18163e guifg=grey
@@ -105,3 +113,10 @@ set ruler
 
 autocmd BufNewFile,BufRead ferm.conf setf ferm
 autocmd BufNewFile,BufRead *.ferm setf ferm
+
+hi mailHeader      ctermfg=Gray
+hi mailSubject     ctermfg=Red
+hi mailEmail       ctermfg=Blue
+hi mailSignature   ctermfg=DarkRed
+hi mailQuoted1     ctermfg=Darkyellow
+hi mailQuoted2     ctermfg=Green
