@@ -40,6 +40,7 @@ alias j='jump'
 alias p='pushd'
 alias d='popd'
 alias g='git'
+alias s='ssh'
 alias sudo='sudo -H'
 alias mc='mc --color'
 alias xlock="xlock -mode blank +usefirst -timeout 5 -icongeometry 1x1 -bg black -fg darkgray -validate ' ' -invalid 'Hmm, bad ...' -username ' ' -password ' ' -font fixed +description -planfont fixed"
