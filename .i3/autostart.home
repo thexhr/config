@@ -1,7 +1,9 @@
 # start scratchpad
-urxvt -name scratchpad -ls &
+urxvt -name scratchpad &
 
 # email
 #urxvt -title mutt -name mutt -e bash -l -c "mutt" &
-urxvt -title mutt -name mutt &
+urxvt -name mutt -title mutt &
+
+udiskie &
 
