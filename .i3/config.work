@@ -146,12 +146,12 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym Mod1+Ctrl+l exec "/usr/bin/i3lock -i ~/Pictures/hackers3.png -t -d"
+bindsym Mod1+Ctrl+l exec "/usr/bin/i3lock -i ~/Pictures/default -t -d"
 
 # Multimedia keys
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5%
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd dump | perl -a -n -e 'print $F[1] if /set-default-sink/') -- -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd dump | perl -a -n -e 'print $F[1] if /set-default-sink/') -- +5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd dump | perl -a -n -e 'print $F[1] if /set-default-sink/') toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
 bindsym XF86AudioNext exec --no-startup-id playerctl next
