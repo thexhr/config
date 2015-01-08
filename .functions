@@ -26,11 +26,21 @@ function sshopen()
 
 function ssh()
 {
+	source_ssh_agent
+	/usr/bin/ssh "$@"
+}
+
+function scp()
+{
+	source_ssh_agent
+	/usr/bin/scp "$@"
+}
+
+function source_ssh_agent()
+{
 	local AGPATH="$HOME"/.ssh/$(hostname).agent
 
 	[[ -f $AGPATH ]] && source $AGPATH
-
-	/usr/bin/ssh "$@"
 }
 
 function mkcd()
