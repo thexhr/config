@@ -30,14 +30,6 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 case "$TERM" in
 	xterm)
 		# Try to ensure we have 256 colors
@@ -52,14 +44,6 @@ set bell-style visible
 # Color
 ##############################################################################
 
-DISTRI=0
-
-if [ -x /etc/fedora-release ]; then
-	DISTRI=1
-elif [ -x /etc/debian_version ]; then
-	DISTRI=2
-fi
-
 #    byobu's bashrc -- colorize the prompt
 #    Copyright (C) 2013 Dustin Kirkland
 #
@@ -69,20 +53,20 @@ fi
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, version 3 of the License.
 # Ensure that we're in bash, in a byobu environment
-byobu_prompt_status() { local e=$?; [ $e != 0 ] && echo -e "$e "; }
 # Use Ubuntu colors (grey / aubergine / orange)
-#PS1="${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;5m\]\h\[\e[00m\]:\[\e[38;5;172m\]\w\[\e[00m\] \$ "
 
 if [ -z "$SSH_CLIENT" ]; then
 	TRENNER="!"
 else
 	TRENNER="@"
 fi
+txtrst='\e[0m'    # Text Reset
 
 if [ `id -u` -eq 0 ]; then
-	PS1="\e[0;36m[\A]\e[00m ${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}\[\e[0;101m\]\u\[\e[00m\]: \[\e[38;5;172m\]\w\[\e[00m\] [\j] # "
+	PS1="\[\e[0;36m\][\A]\[${txtrst}\] \[\e[38;5;202m\]\[\e[38;5;5m\]\h\[${txtrst}\]${TRENNER}\[\e[0;101m\]\u\[${txtrst}\]: \[\e[38;5;172m\]\w\[${txtrst}\] [\j] # "
 else
-	PS1="\e[0;36m[\A]\e[00m ${debian_chroot:+($debian_chroot)}\[\e[38;5;202m\]\$(byobu_prompt_status)\[\e[38;5;5m\]\h\[\e[00m\]${TRENNER}\[\e[38;5;245m\]\u\[\e[00m\]: \[\e[38;5;172m\]\w\[\e[00m\] [\j] \$ "
+	PS1="\[\e[0;36m\][\A]\[${txtrst}\] \[\e[38;5;202m\]\[\e[38;5;5m\]\h\[${txtrst}\]${TRENNER}\[\e[38;5;245m\]\u\[${txtrst}\]: \[\e[38;5;172m\]\w\[${txtrst}\] [\j] \$ "
+
 fi
 
 export GREP_COLORS="ms=01;38;5;202:mc=01;31:sl=:cx=:fn=01;38;5;132:ln=32:bn=32:se=00;38;5;242"
@@ -108,7 +92,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\h!\u: \w\a\]$PS1"
+    PS1="\[\e]0;\h!\u: \w\a\]$PS1"
     ;;
 *)
     ;;
