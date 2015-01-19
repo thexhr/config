@@ -1,13 +1,6 @@
 # collection of shell functions found in dot_files, wikis, etc
 # around the world.
 
-function pacman()
-{
-	echo "-=[ Start pacman sync ]=-"
-	/usr/bin/pacman "$@"
-	sync && sync
-}
-
 function sshopen()
 {
 	local AGPATH="$HOME"/.ssh/$(hostname).agent
