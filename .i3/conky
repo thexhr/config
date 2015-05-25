@@ -20,14 +20,14 @@ TEXT
 
   { "full_text" : "h: ${fs_free /home}" , "color" : "\#ffffff" },
 
-  ${if_up tun0}{"full_text": "V: ${addr tun0} [${downspeed tun0}, ${upspeed tun0}]","color":"\#0cf947"},
+  ${if_up tun0}{"full_text": "V: ${addr tun0} (${downspeed tun0}, ${upspeed tun0})","color":"\#0cf947"},
   $else{"full_text": "V: no","color":"\#ff0000"},
   $endif
 
-  ${if_up wlan0}{"full_text": "W: (${wireless_link_qual_perc wlan0}% at ${wireless_essid wlan0}, ${wireless_bitrate wlan0}) ${addr wlan0} [${downspeed wlan0}, ${upspeed wlan0}]","color":"\#0cf947"},
+  ${if_up wlan0}{"full_text": "W: (${wireless_link_qual_perc wlan0}% at ${wireless_essid wlan0}, ${wireless_bitrate wlan0}) ${addr wlan0} (${downspeed wlan0}, ${upspeed wlan0})","color":"\#0cf947"},
   $else{"full_text": "W: no","color":"\#ff0000"},$endif
 
-  ${if_up eth0}{"full_text": "E: ${addr eth0} [${downspeed eth0}, ${upspeed eth0}]","color":"\#0cf947"},
+  ${if_up eth0}{"full_text": "E: ${addr eth0} (${downspeed eth0}, ${upspeed eth0})","color":"\#0cf947"},
   $else{"full_text": "E: no","color":"\#ff0000"},
   $endif
 
@@ -37,7 +37,7 @@ TEXT
 
   {"full_text": "♪: ${execpi 60 pactl list sinks | grep "Volume: front-left" | cut -d " " -f6 }", "color":"\#ffffff"},
 
-  {"full_text": "u: ${uptime}","color":"\#ffffff"},
+  {"full_text": "${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ EDSB temperature}°","color":"\#ffffff"},
 
   {"full_text": "${time %Y-%m-%d %H:%M}","color":"\#ffffff"}
 ],
