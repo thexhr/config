@@ -146,6 +146,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Git completion
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+	source /usr/share/git/completion/git-prompt.sh
+fi
+
 # Compression
 complete -f -o default -X '*.+(zip|ZIP)'  zip
 complete -f -o default -X '!*.+(zip|ZIP)' unzip

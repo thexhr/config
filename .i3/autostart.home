@@ -1,9 +1,9 @@
 # start scratchpad
-urxvt -name scratchpad &
+exec --no-startup-id urxvt -name scratchpad &
 
 # email
 #urxvt -title mutt -name mutt -e bash -l -c "mutt" &
-urxvt -name mutt -title mutt &
+exec --no-startup-id urxvt -name mutt -title mutt &
 
-udiskie &
+exec --no-startup-id udiskie &
 
