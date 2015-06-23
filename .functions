@@ -17,6 +17,11 @@ function sshopen()
 	done
 }
 
+function psg()
+{
+	ps aux | grep "$@"
+}
+
 function ssh()
 {
 	source_ssh_agent
