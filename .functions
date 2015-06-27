@@ -6,7 +6,7 @@ function sshopen()
 	local AGPATH="$HOME"/.ssh/$(hostname).agent
 
 	rm -f $AGPATH
-	ssh-agent -t 172800 | grep -v echo > $AGPATH
+	ssh-agent -t 345600 | grep -v echo > $AGPATH
 	source $AGPATH
 
 	# Find all public keys...
