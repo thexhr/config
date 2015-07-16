@@ -1,5 +1,30 @@
 # collection of shell functions found in dot_files, wikis, etc
-# around the world.
+# around the world and written by me, of course.
+
+# Generates a RSA 2048 bit keypair with DUMMY password
+function kgenkey()
+{
+	[ -z "$1" ] && echo "No key alias given" && return
+	keytool -genkeypair -keyalg RSA -keysize 2048 -alias "$1" \
+		-dname "CN=Unknown,OU=Unknown,O=Unknown,L=Unknown,ST=Unknown,C=Unknown" \
+		-storepass "test123" -keypass "test123" -keystore keystore.jks
+}
+
+# Generate a CSR from the keystore generated w/ the cmd above
+function kgencsr()
+{
+	[ -z "$1" ] && echo "No key alias given" && return
+	keytool -certreq -alias "$1" -keystore keystore.jks -file "${1}.csr" \
+		-storepass "test123" -keypass "test123"
+}
+
+function kimportcert()
+{
+	[ -z "$1" ] && echo "No key alias given" && return
+	[ -z "$2" ] && echo "No cert file given" && return
+	keytool -import -alias "$1" -file "$2" -keystore keystore.jks \
+		-storepass "test123" -keypass "test123" -trustcacerts
+}
 
 function sshopen()
 {
