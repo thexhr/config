@@ -144,9 +144,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume $(pac
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list short sinks | awk '{ printf $1 }') toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id "~/Documents/bin/playerctl-wrapper next"
+bindsym XF86AudioPrev exec --no-startup-id "~/Documents/bin/playerctl-wrapper previous"
+bindsym XF86AudioPlay exec --no-startup-id "~/Documents/bin/playerctl-wrapper play-pause"
 
 bindsym XF86TouchpadToggle exec "~/Documents/bin/toogle_touchpad.sh"
 bindsym XF86Display exec "~/Documents/bin/dtoggle -t"
@@ -258,10 +258,6 @@ assign [class="URxvt" instance="^mutt$"] 1
 for_window [class="URxvt" instance="scratchpad"] border 1pixel; move scratchpad
 for_window [class="Chromium"] border none
 for_window [class="Chrome"] border none
-for_window [class="libreoffice-writer"] floating enable
-for_window [class="libreoffice-calc"] floating enable
-for_window [class="libreoffice-impress"] floating enable
-for_window [class="libreoffice-startcenter"] floating enable
 for_window [class="VirtualBox"] floating enable
 for_window [class="Sxiv"] floating enable
 for_window [class="Xpdf"] floating enable
