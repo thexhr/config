@@ -19,6 +19,9 @@ if [ ! -z $(pgrep cmus) ]; then
 		play-pause)
 			$cr --pause
 		;;
+		stop)
+			$cr --stop
+		;;
 	esac
 else
 	playerctl $1

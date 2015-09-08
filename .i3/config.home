@@ -147,6 +147,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 bindsym XF86AudioNext exec --no-startup-id "~/Documents/bin/playerctl-wrapper next"
 bindsym XF86AudioPrev exec --no-startup-id "~/Documents/bin/playerctl-wrapper previous"
 bindsym XF86AudioPlay exec --no-startup-id "~/Documents/bin/playerctl-wrapper play-pause"
+bindsym XF86AudioStop exec --no-startup-id "~/Documents/bin/playerctl-wrapper stop"
 
 bindsym XF86TouchpadToggle exec "~/Documents/bin/toogle_touchpad.sh"
 bindsym XF86Display exec "~/Documents/bin/dtoggle -t"
