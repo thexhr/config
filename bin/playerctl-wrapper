@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Switch between native playerctl commands and cmus-remote commands.  Uses
+# a trivial logic that is sufficient for me.
+
+cr=cmus-remote
+
+[ -z $1 ] && exit 1
+
+# cmus process is running
+if [ ! -z $(pgrep cmus) ]; then
+	case "$1" in
+		next)
+			$cr --next
+		;;
+		previous)
+			$cr --prev
+		;;
+		play-pause)
+			$cr --pause
+		;;
+	esac
+else
+	playerctl $1
+fi
+
+exit $?
