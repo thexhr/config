@@ -4,11 +4,12 @@
 # a trivial logic that is sufficient for me.
 
 cr=cmus-remote
+sk=$XDG_RUNTIME_DIR/cmus-socket
 
 [ -z $1 ] && exit 1
 
 # cmus process is running
-if [ ! -z $(pgrep cmus) ]; then
+if [ -S $sk ]; then
 	case "$1" in
 		next)
 			$cr --next
