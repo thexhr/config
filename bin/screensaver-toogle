@@ -1,0 +1,18 @@
+#!/bin/bash
+
+LOCKFILE="$HOME/.screensaver-enabled.lock"
+
+if [ -e $LOCKFILE ]
+then
+        if /usr/bin/xset dpms 0 0 0 && /usr/bin/xautolock -disable && /bin/rm -f $LOCKFILE; then
+             echo "Screenlock and screensaver disabled.";
+        else
+             echo "Something went wrong. Please check screenlock and screensaver settings.";
+        fi;
+else
+        if /usr/bin/xset dpms 0 0 120 && /usr/bin/xautolock -enable && /bin/touch $LOCKFILE; then
+             echo "Screenlock and screensaver enabled."
+        else
+             echo "Something went wrong. Please check screenlock and screensaver settings."
+        fi;
+fi
