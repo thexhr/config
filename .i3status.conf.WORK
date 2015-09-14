@@ -11,6 +11,7 @@ general {
         interval = 5
 }
 
+order += "path_exists screensaver-toggle"
 order += "ipv6"
 order += "disk /"
 #order += "run_watch DHCP"
@@ -18,11 +19,17 @@ order += "disk /"
 order += "wireless wlan0"
 order += "ethernet em1"
 order += "ethernet vpn0"
+order += "ethernet tun0"
 order += "battery 0"
 #order += "load"
 order += "cpu_usage"
 order += "volume master"
 order += "tztime local"
+
+path_exists screensaver-toggle {
+        path = "/home/matthias/.screensaver-enabled.lock"
+        format = "Autolock: %status"
+}
 
 ipv6 {
 		format_up = "%ip"
@@ -44,6 +51,11 @@ ethernet em1 {
 ethernet vpn0 {
         format_up = "V: %ip"
         format_down = "V: down"
+}
+
+ethernet tun0 {
+        format_up = "O: %ip"
+        format_down = "O: down"
 }
 
 battery 0 {
