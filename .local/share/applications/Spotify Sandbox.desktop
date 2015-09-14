@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Name=Spotify Sandbox
+Exec=~/Documents/bin/spotify-sandbox
+Icon=spotify
+Terminal=false
+Type=Application
