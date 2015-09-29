@@ -1,6 +1,34 @@
 # collection of shell functions found in dot_files, wikis, etc
 # around the world and written by me, of course.
 
+# Trivial conversion of a hex number to decimal
+function hex2dec()
+{
+	[ -z "$1" ] && echo "No hex number given" && return
+	if [[ ${1:0:2} != "0x" ]]; then
+		echo "Please prefix string with 0x"
+		return
+	fi
+	re='^[0-9a-fA-Fx]+$'
+	if ! [[ $1 =~ $re ]]; then
+		echo "Hex only contains 0-9a-fA-F and 0x as prefix"
+		return
+	fi
+	printf "%d\n" $1
+}
+
+# Trivial conversion of a decimal number to hex
+function dec2hex()
+{
+	[ -z "$1" ] && echo "No decimal number given" && return
+	re='^[0-9]+$'
+	if ! [[ $1 =~ $re ]]; then
+		echo "Decimal only contains 0-9"
+		return
+	fi
+	printf "0x%x\n" $1
+}
+
 # Generates a RSA 2048 bit keypair with DUMMY password
 function kgenkey()
 {
