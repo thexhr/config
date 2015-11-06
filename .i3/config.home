@@ -257,8 +257,9 @@ assign [class="URxvt" instance="^mutt$"] 1
 
 # custom window settings
 for_window [class="URxvt" instance="scratchpad"] border 1pixel; move scratchpad
-for_window [class="Chromium"] border none
+for_window [class="chromium"] border none
 for_window [class="Chrome"] border none
+for_window [class="Spotify"] border none
 for_window [class="VirtualBox"] floating enable
 for_window [class="Xpdf"] floating enable
 for_window [class="Xournal"] floating enable
