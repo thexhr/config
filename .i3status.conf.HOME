@@ -65,8 +65,8 @@ battery 0 {
 }
 
 run_watch D {
-        #pidfile = "/run/dhcpcd*.pid"
-        pidfile = "/run/dhclient*.pid"
+        pidfile = "/run/dhcpcd*.pid"
+        #pidfile = "/run/dhclient*.pid"
 }
 
 run_watch V {
