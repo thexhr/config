@@ -34,6 +34,7 @@ bindsym $mod+Shift+q kill
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id rofi -show run -font "fixed 10"
 
 bindsym $sup+Tab focus right
 bindsym $sup+Shift+Tab focus left
@@ -257,6 +258,7 @@ assign [class="URxvt" instance="^mutt$"] 1
 
 # custom window settings
 for_window [class="URxvt" instance="scratchpad"] border 1pixel; move scratchpad
+for_window [title="mutt"] border none
 for_window [class="chromium"] border none
 for_window [class="Chrome"] border none
 for_window [class="Spotify"] border none

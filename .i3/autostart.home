@@ -1,9 +1,22 @@
+# urxvt daemon
+exec /usr/bin/urxvtd &
 # start scratchpad
-exec --no-startup-id urxvt -name scratchpad &
-
-# email
-#urxvt -title mutt -name mutt -e bash -l -c "mutt" &
-exec --no-startup-id urxvt -name mutt -title mutt &
-
-exec --no-startup-id udiskie &
-
+exec urxvt -name scratchpad &
+# mutt terminal
+exec urxvt -title mutt -name mutt -e bash -l -c "mutt" &
+# Start dunst
+exec /usr/bin/dunst &
+# Start udiksie
+exec udiskie &
+# No beep
+exec /usr/bin/xset -b &
+# Enable screen powermanagement
+exec /usr/bin/xset +dpms &
+# No suspend, no standy, turn off screen after 120 secs
+exec /usr/bin/xset dpms 0 0 120 &
+# Set keyboard layout
+exec /usr/bin/setxkbmap -layout us -variant intl &
+# Start unclutter
+exec /usr/bin/unclutter -root &
+# Start xautolock
+exec /usr/bin/xautolock -time 5 -locker "i3lock" &
