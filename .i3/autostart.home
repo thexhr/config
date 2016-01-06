@@ -4,6 +4,9 @@ exec /usr/bin/urxvtd &
 exec urxvt -name scratchpad &
 # mutt terminal
 exec urxvt -title mutt -name mutt -e bash -l -c "mutt" &
+# monitoring tools
+exec urxvt -title htop -name htop -e bash -l -c "htop" &
+exec urxvt -title iftop -name iftop -e bash -l -c "iftop" &
 # Start dunst
 exec /usr/bin/dunst &
 # Start udiksie
@@ -19,4 +22,6 @@ exec /usr/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
 exec /usr/bin/unclutter -root &
 # Start xautolock
-exec /usr/bin/xautolock -time 5 -locker "i3lock" &
+exec /usr/bin/xautolock -time 5 -locker "/usr/bin/i3lock" &
+# Set background image
+exec feh --bg-center ~/Pictures/background &
