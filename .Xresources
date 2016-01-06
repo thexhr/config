@@ -40,6 +40,7 @@ XTerm*font5: -*-terminus-medium-*-*-*-24-*-*-*-*-*-iso10646-*
 XTerm*font6: -*-terminus-medium-*-*-*-32-*-*-*-*-*-iso10646-*
 
 *font:	-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*
+!*font: -*-terminus-medium-*-*-*-13-*-*-*-*-*-iso8859-*
 
 ! Forbid bold font faces; bold type is light blue.
 !XTerm*colorBDMode: true
