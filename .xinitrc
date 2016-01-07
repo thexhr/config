@@ -8,7 +8,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # Import DISPLAY variable into systemd user env
-systemctl --user import-environment 'DISPLAY' &
+if [ -n $(which systemctl) ]; then
+	systemctl --user import-environment 'DISPLAY' &
+fi
 
 # merge Xresources file
 [[ -e ~/.Xresources ]] && xrdb -merge ~/.Xresources &
