@@ -33,7 +33,8 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn \"fixed-10\" -i"
+#bindsym $mod+d exec --no-startup-id rofi -show run -font "fixed 10"
 
 bindsym $sup+Tab focus right
 bindsym $sup+Shift+Tab focus left
@@ -254,11 +255,15 @@ bar {
 #assign [class="Chromium"] 3
 #assign [class="Firefox"] 3
 assign [class="URxvt" instance="^mutt$"] 1
+assign [class="URxvt" instance="^htop$"] 10
+assign [class="URxvt" instance="^iftop$"] 10
 
 # custom window settings
 for_window [class="URxvt" instance="scratchpad"] border 1pixel; move scratchpad
-for_window [class="Chromium"] border none
+for_window [title="mutt"] border none
+for_window [class="chromium"] border none
 for_window [class="Chrome"] border none
+for_window [class="Spotify"] border none
 for_window [class="VirtualBox"] floating enable
 for_window [class="Xpdf"] floating enable
 for_window [class="Xournal"] floating enable

@@ -87,6 +87,12 @@ function scp()
 	/usr/bin/scp "$@"
 }
 
+function sshfs()
+{
+	source_ssh_agent
+	/usr/bin/sshfs "$@"
+}
+
 function source_ssh_agent()
 {
 	local AGPATH="$HOME"/.ssh/$(hostname).agent

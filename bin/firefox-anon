@@ -1,0 +1,5 @@
+#!/bin/sh
+
+scp ~/.Xauthority firefoxa@localhost:
+exec ssh firefoxa@localhost -n "export DISPLAY=:0.0; firefox"
+

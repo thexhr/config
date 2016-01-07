@@ -1,0 +1,5 @@
+#!/bin/sh
+
+scp ~/.Xauthority spotify@localhost:
+ssh spotify@localhost -n "export DISPLAY=:0.0; spotify"
+

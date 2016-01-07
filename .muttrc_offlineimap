@@ -56,7 +56,7 @@ set ssl_force_tls
 #unset ssl_use_sslv2
 
 # Wrapper script
-set my_smtp_pass=`/usr/bin/pass Mail/mutt_alpha_xosc_org`
+set my_smtp_pass=`/usr/bin/pass email/muttAtalpha.xosc.org,MuttAtkronos`
 set smtp_pass=$my_smtp_pass
 
 # Don't wait to enter mailbox manually
@@ -81,44 +81,54 @@ set imap_keepalive=300
 # Charset and mailbox settings
 ###############################################################################
 
-set spoolfile	= "+xosc.de/INBOX.general.inbox"
+set spoolfile	= "+posteo.de/INBOX.general.inbox"
 # Other special folders.
-set mbox		= "+xosc.de/INBOX"
-set postponed	= "+xosc.de/INBOX.Drafts"
-set record		= "+xosc.de/INBOX.Sent"
+set mbox		= "+posteo.de/INBOX"
+set postponed	= "+posteo.de/INBOX.Drafts"
+set record		= "+posteo.de/Sent"
 
-mailboxes +xosc.de/INBOX \
-	+xosc.de/INBOX.general.inbox \
-	+xosc.de/INBOX.general.uni \
-	+xosc.de/INBOX.general.system \
-	+xosc.de/INBOX.Drafts \
-	+xosc.de/INBOX.Sent \
-	+xosc.de/INBOX.arch.security \
-	+xosc.de/INBOX.arch.announce \
-	+xosc.de/INBOX.arch.dev \
-	+xosc.de/INBOX.arch.general \
-	+xosc.de/INBOX.ccc.mrm \
-	+xosc.de/INBOX.ccc.intern \
-	+xosc.de/INBOX.ccc.entropia \
-	+xosc.de/INBOX.dragonfly.inbox \
-	+xosc.de/INBOX.dragonfly.commits \
-	+xosc.de/INBOX.dragonfly.submit \
-	+xosc.de/INBOX.dragonfly.kernel \
-	+xosc.de/INBOX.dragonfly.bugs \
-	+xosc.de/INBOX.dragonfly.users \
-	+xosc.de/INBOX.bsd.freebsd-src \
-	+xosc.de/INBOX.security.owasp \
-	+xosc.de/INBOX.security.cvs \
-	+xosc.de/INBOX.security.devel \
-	+xosc.de/INBOX.security.fd \
-	+xosc.de/INBOX.security.oss-security \
-	+xosc.de/INBOX.misc.accept \
-	+xosc.de/INBOX.misc.announce \
-	+xosc.de/INBOX.misc.uni \
-	+xosc.de/INBOX.misc.iv \
-	+xosc.de/INBOX.misc.ipv6 \
-	+xosc.de/INBOX.misc.dsg \
-	+xosc.de/INBOX.misc.scm \
+mailboxes \
+	+x-backup-2015/INBOX \
+	+x-backup-2015/INBOX.general.inbox \
+	+x-backup-2015/INBOX.general.uni \
+	+x-backup-2015/INBOX.general.uni.uni \
+	+x-backup-2015/INBOX.general.uni.dsg \
+	+x-backup-2015/INBOX.dragonfly.inbox \
+	+posteo.de/INBOX \
+	+posteo.de/INBOX.general.inbox \
+	+posteo.de/INBOX.general.uni \
+	+posteo.de/INBOX.general.uni.uni \
+	+posteo.de/INBOX.general.uni.dsg \
+	+posteo.de/INBOX.dragonfly.inbox \
+	+posteo.de/INBOX.general.system \
+	+posteo.de/INBOX.general.system \
+	+posteo.de/INBOX.Drafts \
+	+posteo.de/Sent \
+	+posteo.de/INBOX.arch.security \
+	+posteo.de/INBOX.arch.announce \
+	+posteo.de/INBOX.arch.dev \
+	+posteo.de/INBOX.arch.general \
+	+posteo.de/INBOX.ccc.mrm \
+	+posteo.de/INBOX.ccc.intern \
+	+posteo.de/INBOX.ccc.entropia \
+	+posteo.de/INBOX.dragonfly.commits \
+	+posteo.de/INBOX.dragonfly.submit \
+	+posteo.de/INBOX.dragonfly.kernel \
+	+posteo.de/INBOX.dragonfly.bugs \
+	+posteo.de/INBOX.dragonfly.users \
+	+posteo.de/INBOX.bsd.freebsd-src \
+	+posteo.de/INBOX.security.owasp \
+	+posteo.de/INBOX.security.cvs \
+	+posteo.de/INBOX.security.devel \
+	+posteo.de/INBOX.security.fd \
+	+posteo.de/INBOX.security.oss-security \
+	+posteo.de/INBOX.misc.accept \
+	+posteo.de/INBOX.misc.announce \
+	+posteo.de/INBOX.misc.uni \
+	+posteo.de/INBOX.misc.iv \
+	+posteo.de/INBOX.misc.ipv6 \
+	+posteo.de/INBOX.misc.dsg \
+	+posteo.de/INBOX.misc.scm \
 	.mutt/mairix-search
 
 #set locale=C
