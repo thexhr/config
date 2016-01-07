@@ -40,6 +40,9 @@ esac
 # Set visual bell
 set bell-style visible
 
+# Set selection for pass password-manager
+PASSWORD_STORE_X_SELECTION=primary
+
 ##############################################################################
 # Color
 ##############################################################################
