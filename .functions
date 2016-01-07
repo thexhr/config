@@ -59,14 +59,14 @@ function sshopen()
 	local AGPATH="$HOME"/.ssh/$(hostname).agent
 
 	rm -f $AGPATH
-	ssh-agent -t 345600 | grep -v echo > $AGPATH
+	command ssh-agent -t 345600 | grep -v echo > $AGPATH
 	source $AGPATH
 
 	# Find all public keys...
 	for i in `find $HOME/.ssh/ -maxdepth 1 -name "*.pub"`; do
 		# ... and strip the .pub suffix
 		_key=`echo $i | sed -e 's/\.pub//'`
-		ssh-add $_key
+		command ssh-add $_key
 	done
 }
 
