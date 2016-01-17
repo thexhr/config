@@ -82,10 +82,15 @@ load {
 }
 
 disk "/" {
-        format = "r: %free"
+        format = "r: %avail"
+		low_threshold = 2
+		threshold_type = gbytes_avail
 }
+
 disk "/home" {
-        format = "h: %free"
+        format = "h: %avail"
+		low_threshold = 5
+		threshold_type = gbytes_avail
 }
 
 volume master {
