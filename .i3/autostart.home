@@ -6,7 +6,7 @@ exec urxvt -name scratchpad &
 exec urxvt -title mutt -name mutt -e bash -l -c "mutt" &
 # monitoring tools
 exec urxvt -title htop -name htop -e bash -l -c "htop" &
-exec urxvt -title iftop -name iftop -e bash -l -c "iftop" &
+exec urxvt -title iptraf -name iptraf -e bash -l &
 # Start dunst
 exec /usr/bin/dunst &
 # Start udiksie
@@ -24,4 +24,4 @@ exec /usr/bin/unclutter -root &
 # Start xautolock
 exec /usr/bin/xautolock -time 5 -locker "/usr/bin/i3lock" &
 # Set background image
-exec feh --bg-center ~/Pictures/background &
+#exec feh --bg-center ~/Pictures/background &
