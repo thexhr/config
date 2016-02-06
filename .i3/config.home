@@ -154,7 +154,7 @@ bindsym XF86TouchpadToggle exec "~/Documents/bin/toogle_touchpad.sh"
 bindsym XF86Display exec "~/Documents/bin/dtoggle -t"
 
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 10
+bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
 
 ##############################################################################
 # Resize window mode
