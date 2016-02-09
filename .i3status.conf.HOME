@@ -20,6 +20,7 @@ order += "run_watch D"
 order += "ethernet tun0"
 order += "wireless wlan0"
 order += "ethernet eth0"
+order += "battery 1"
 order += "battery 0"
 #order += "load"
 order += "cpu_usage"
@@ -62,6 +63,19 @@ battery 0 {
 		status_full = "FULL"
 		threshold_type = time
 		low_threshold = 20
+		path = "/sys/class/power_supply/BAT%d/uevent"
+}
+
+battery 1 {
+        format = "%status %percentage %remaining"
+		format_down = "No battery"
+		integer_battery_capacity = true
+		status_chr = "CHR"
+		status_bat = "BAT"
+		status_full = "FULL"
+		threshold_type = time
+		low_threshold = 20
+		path = "/sys/class/power_supply/BAT%d/uevent"
 }
 
 run_watch D {
