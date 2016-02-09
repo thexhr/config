@@ -2,13 +2,24 @@
 	name = the xhr
 	email = xhr@giessen.ccc.de
 
+[merge]
+	summary=true
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
+
 [alias]
 	ci = commit
 	di = diff
 	co = checkout
 	st = status
 	an = annotate
-	br = branch
+	br = branch -v
+	re = remote -v
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [diff]
