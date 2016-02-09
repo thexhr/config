@@ -137,7 +137,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Start programs
-bindsym $mod+Ctrl+l exec "/usr/bin/i3lock -f -i ~/Pictures/background -t -d"
+bindsym $mod+Ctrl+l exec "/usr/bin/i3lock -f -c 1f222d -d"
 
 # Multimedia keys
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume $(pactl list short sinks | awk '{ printf $1 }') -5%
@@ -226,7 +226,33 @@ bindsym $mod+n mode "focused"
 ##############################################################################
 
 # Colors for urgent workspaces
-client.urgent #2f343a #900000 #ffffff #900000
+#client.urgent #2f343a #900000 #ffffff #900000
+
+# Colors from https://github.com/alexbooker/dotfiles/blob/master/.i3/config
+
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+# Window Colours
+#                       border  background text    indicator
+client.focused          $base01 $base01    $base07 $base0F
+client.focused_inactive $base02 $base02    $base03 $base0F
+client.unfocused        $base02 $base02    $base03 $base0F
+client.urgent           $base02 $base08    $base00 $base0F
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -240,12 +266,20 @@ bar {
     #status_command ~/.i3/conky.sh
 	#font -misc-fixed-medium-r-normal--10-120-75-75-C-70-iso10646-1
 	font -misc-fixed-medium-r-normal--10-*-*-*-*-*-iso10646-1
+	#font pango:DejaVu Sans Mono 8, Awesome 8
 	colors {
 		background $bg
 		urgent_workspace   #2f343a #900000 #ffffff
 		inactive_workspace  $bg        $bg        $ia
 	}
 }
+
+##############################################################################
+# Misc settings
+##############################################################################
+
+# Hide vertical borders adjacent to the screen edges
+hide_edge_borders both
 
 ##############################################################################
 # Windows settings
