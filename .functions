@@ -1,5 +1,5 @@
 # collection of shell functions found in dot_files, wikis, etc
-# around the world and written by me, of course.
+# around the world.  Some are written by me, of course.
 
 # Trivial conversion of a hex number to decimal
 function hex2dec()
@@ -112,6 +112,15 @@ function cget()
 	curl -OL --compressed "$@"
 }
 
+# Show infos about my external IP address
+function showmyipaddress
+{
+	echo "My external IPv4 : $(curl -s -4 icanhazip.com)"
+	echo "My external IPv6 : $(curl -s -6 icanhazip.com)"
+	echo "My external PTR  : $(curl -s icanhazptr.com)"
+} 
+
+# Show info about hostname or IP address
 function ipif()
 {
 		if grep -P "(([1-9]\d{0,2})\.){3}(?2)" <<< "$1"
