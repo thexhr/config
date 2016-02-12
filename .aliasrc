@@ -31,7 +31,7 @@ then
        alias	rm='rm -I'
 elif [ `uname` = Linux ]
 then
-	alias 	ls='ls --color=auto -h -F -s'
+	alias 	ls='ls --color=auto -h --file-type -s'
 	alias 	ll='ls -l'
 	export PAGER=less
 fi
@@ -70,3 +70,5 @@ alias cal='cal --color=auto -w'
 alias mpv='mpv --no-audio-display'
 alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
+alias lsblk='lsblk -o NAME,FSTYPE,RO,SIZE,TYPE,VENDOR,MOUNTPOINT'
+alias findmnt='findmnt -t noautofs,nocgroup,nodebugfs,notracefs,nofusectl,nomqeue,nohugetlbfs,noconfigfs,nopstore,nosecurityfs,nodevtmpfs,nodevpts,nomqeue -o TARGET,SOURCE,FSTYPE,SIZE,OPTIONS'
