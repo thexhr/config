@@ -16,8 +16,8 @@ order += "ipv6"
 order += "disk /"
 #order += "run_watch DHCP"
 #order += "run_watch VPN"
-order += "wireless wlan0"
-order += "ethernet em1"
+order += "wireless wlp2s0"
+order += "ethernet eno1"
 order += "ethernet vpn0"
 order += "ethernet tun0"
 order += "battery 0"
@@ -36,12 +36,12 @@ ipv6 {
 		format_down = ""
 }
 
-wireless wlan0 {
+wireless wlp2s0 {
         format_up = "W: (%quality at %essid, %bitrate) %ip"
         format_down = "W: down"
 }
 
-ethernet em1 {
+ethernet eno1 {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip (%speed)"
         #format_up = "E: %ip"
@@ -85,7 +85,9 @@ load {
 }
 
 disk "/" {
-        format = "r: %free"
+        format = "r: %avail"
+		low_threshold = 5
+		threshold_type = gbytes_avail
 }
 
 volume master {
