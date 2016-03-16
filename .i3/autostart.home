@@ -5,8 +5,8 @@ exec urxvt -name scratchpad &
 # mutt terminal
 exec urxvt -title mutt -name mutt -e bash -l -c "mutt" &
 # monitoring tools
-exec urxvt -title htop -name htop -e bash -l -c "htop" &
-exec urxvt -title iptraf -name iptraf -e bash -l &
+#exec urxvt -title htop -name htop -e bash -l -c "htop" &
+#exec urxvt -title iptraf -name iptraf -e bash -l &
 # Start dunst
 exec /usr/bin/dunst &
 # Start udiksie
@@ -22,6 +22,8 @@ exec /usr/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
 exec /usr/bin/unclutter -root &
 # Start xautolock
-exec /usr/bin/xautolock -time 5 -locker "/usr/bin/i3lock" &
+exec /usr/bin/xautolock -time 5 -locker "/usr/bin/i3lock -c ffffff" &
 # Set background image
-#exec feh --bg-center ~/Pictures/background &
+exec feh --bg-center ~/Pictures/background &
+# Redshift
+exec /usr/bin/redshift -l 49.1:8.24 -t 5700:3600 -g 0.8 -m randr &
