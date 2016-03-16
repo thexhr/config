@@ -24,6 +24,9 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec $defterm
 
+# Start a xterm with large fonts
+bindsym $mod+Shift+Return exec "xterm -fa Monospace -fs 14"
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -42,6 +45,10 @@ bindsym $mod+Tab workspace back_and_forth
 
 # border changing
 bindsym $mod+b border toggle
+
+# Border style
+new_window pixel 1
+new_float pixel 1
 
 # scratchpad
 bindsym $mod+m move scratchpad
