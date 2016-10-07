@@ -20,8 +20,10 @@ order += "run_watch D"
 order += "ethernet tun0"
 order += "ethernet eth0"
 order += "wireless wlan0"
-order += "battery 1"
-order += "battery 0"
+#order += "battery 1"
+#order += "battery 0"
+#order += "battery 2"
+order += "battery all"
 #order += "load"
 order += "cpu_usage"
 order += "volume master"
@@ -52,6 +54,30 @@ ethernet eth0 {
         format_up = "E: %ip (%speed)"
         #format_up = "E: %ip"
         format_down = "E: no"
+}
+
+battery 2 {
+		integer_battery_capacity = true
+		last_full_capacity = true
+		path = "/home/xhr/.uevent"
+		format = "%status %percentage %remaining"
+		status_chr = "CHR"
+		status_bat = "BAT"
+		status_full = "FULL"
+		threshold_type = percentage
+		low_threshold = 20
+}
+
+battery all {
+        format = "%status %percentage %remaining"
+		format_down = "No battery"
+		integer_battery_capacity = true
+		status_chr = "CHR"
+		status_bat = "BAT"
+		status_full = "FULL"
+		threshold_type = percentage
+		low_threshold = 20
+		path = "/sys/class/power_supply/BAT%d/uevent"
 }
 
 battery 0 {
