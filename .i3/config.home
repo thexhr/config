@@ -21,8 +21,8 @@ font -misc-fixed-medium-r-normal--10-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec $defterm
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
 
 # Start a xterm with large fonts
 bindsym $mod+Shift+Return exec "xterm -fa Monospace -fs 14"
