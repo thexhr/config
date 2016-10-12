@@ -1,9 +1,9 @@
 # urxvt daemon
-exec /usr/bin/urxvtd &
+#exec /usr/bin/urxvtd &
 # start scratchpad
-exec urxvt -name scratchpad &
+exec st -n scratchpad &
 # mutt terminal
-exec urxvt -title mutt -name mutt -e bash -l -c "mutt" &
+exec st -t mutt -n mutt -e bash -l -c "mutt" &
 # monitoring tools
 #exec urxvt -title htop -name htop -e bash -l -c "htop" &
 #exec urxvt -title iptraf -name iptraf -e bash -l &
@@ -20,7 +20,7 @@ exec /usr/bin/xset dpms 0 0 120 &
 # Set keyboard layout
 exec /usr/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
-exec /usr/bin/unclutter -root &
+#exec /usr/bin/unclutter -root &
 # Start xautolock
 exec /usr/bin/xautolock -time 5 -locker "/usr/bin/i3lock -c ffffff" &
 # Set background image
