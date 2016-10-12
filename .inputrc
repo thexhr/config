@@ -4,9 +4,13 @@ $include /etc/inputrc
 set bell-style visible
 set prefer-visible-bell
 
-# Bash history search
+# Bash history search using Arrow keys
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+# Bash history search using C-p and C-n
+"\C-p": history-search-backward
+"\C-n": history-search-forward
 
 # mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
 "\e[1;5C": forward-word
@@ -28,7 +32,6 @@ set mark-symlinked-directories on
 
 # Do not autocomplete hidden files unless the pattern explicitly begins with a dot
 set match-hidden-files off
-
 
 # Be more intelligent when autocompleting by also looking at the text after
 # the cursor. For example, when the current line is "cd ~/src/mozil", and
