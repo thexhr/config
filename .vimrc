@@ -1,6 +1,25 @@
-"autocmd BufRead ~/mail/mutt*      :source ~/.vimrc_mail
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle config
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" My collection of vim plugins
+Plugin 'junegunn/goyo.vim'
+Plugin 'bling/vim-airline'
+Plugin 'rking/ag.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " taglist plugin
 "Toggle Tag list
 nnoremap <silent> <F4> :TlistToggle<CR>
@@ -107,6 +126,11 @@ set nospell
 
 nmap <Esc>o	:set bg=dark<CR>
 nmap <Esc>p	:set bg=light<CR>
+
+" Use silver_searcher with Ack
+if executable('ag')
+	let g:ackprg = 'ag --vimgrep'
+endif
 
 syntax on
 set ruler
