@@ -16,7 +16,6 @@ order += "disk /"
 order += "disk /home"
 order += "run_watch S"
 order += "run_watch D"
-#order += "run_watch V"
 order += "ethernet tun0"
 order += "ethernet eth0"
 order += "wireless wlan0"
@@ -24,15 +23,20 @@ order += "wireless wlan0"
 #order += "battery 0"
 #order += "battery 2"
 order += "battery all"
-#order += "load"
 order += "cpu_usage"
 order += "volume master"
 order += "tztime local"
+order += "run_watch DB"
 
 run_watch S {
         pidfile = "/home/xhr/.screensaver-enabled.lock"
+		format_down = ""
 }
 
+run_watch DB {
+		pidfile = "/home/dropbox/.dropbox/dropbox.pid"
+		format_down = ""
+}
 
 ipv6 {
 		format_up = "%ip"
@@ -41,19 +45,19 @@ ipv6 {
 
 ethernet tun0 {
         format_up = "V: %ip"
-        format_down = "V: no"
+        format_down = ""
 }
 
 wireless wlan0 {
         format_up = "W: (%quality at %essid, %bitrate) %ip"
-        format_down = "W: no"
+        format_down = ""
 }
 
 ethernet eth0 {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip (%speed)"
         #format_up = "E: %ip"
-        format_down = "E: no"
+        format_down = ""
 }
 
 battery 2 {
@@ -76,7 +80,7 @@ battery all {
 		status_bat = "BAT"
 		status_full = "FULL"
 		threshold_type = percentage
-		low_threshold = 20
+		low_threshold = 10
 		path = "/sys/class/power_supply/BAT%d/uevent"
 }
 
@@ -88,7 +92,7 @@ battery 0 {
 		status_bat = "BAT"
 		status_full = "FULL"
 		threshold_type = percentage
-		low_threshold = 20
+		low_threshold = 10
 		path = "/sys/class/power_supply/BAT%d/uevent"
 }
 
@@ -106,19 +110,11 @@ battery 1 {
 
 run_watch D {
         pidfile = "/run/dhcpcd*.pid"
-        #pidfile = "/run/dhclient*.pid"
-}
-
-run_watch V {
-        pidfile = "/run/openvpn*.pid"
+		format_down = ""
 }
 
 tztime local {
         format = "%Y-%m-%d %H:%M"
-}
-
-load {
-        format = "%1min"
 }
 
 disk "/" {
@@ -140,4 +136,3 @@ volume master {
 		mixer = "Master"
 		mixer_idx = 0
 }
-
