@@ -29,6 +29,7 @@ order += "tztime local"
 path_exists screensaver-toggle {
         path = "/home/matthias/.screensaver-enabled.lock"
         format = "Autolock: %status"
+		format_down = ""
 }
 
 ipv6 {
@@ -38,24 +39,24 @@ ipv6 {
 
 wireless wlp2s0 {
         format_up = "W: (%quality at %essid, %bitrate) %ip"
-        format_down = "W: down"
+		format_down = ""
 }
 
 ethernet eno1 {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip (%speed)"
         #format_up = "E: %ip"
-        format_down = "E: down"
+		format_down = ""
 }
 
 ethernet vpn0 {
         format_up = "V: %ip"
-        format_down = "V: down"
+		format_down = ""
 }
 
 ethernet tun0 {
         format_up = "O: %ip"
-        format_down = "O: down"
+		format_down = ""
 }
 
 battery 0 {
@@ -70,10 +71,12 @@ battery 0 {
 
 run_watch DHCP {
         pidfile = "/run/sendsigs.omit.d/network-manager.dhclient*.pid"
+		format_down = ""
 }
 
 run_watch VPN {
         pidfile = "/run/openvpn*.pid"
+		format_down = ""
 }
 
 tztime local {
