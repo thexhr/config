@@ -258,12 +258,11 @@ if exists("+showtabline")
 endif
 
 " Jump to the previous/next tab.
-noremap <C-h> gT
-noremap <C-l> gt
+noremap J gT
+noremap K gt
 " Close tabs with Ctrl + w
-noremap <C-w> <Esc>:tabclose<CR>
+noremap <leader>w :tabclose<cr>
 " Open new tab
-noremap <C-t> <Esc>:tabnew<CR>
-
-" Open all files in tabs
-:au BufAdd,BufNewFile * nested tab sball
+noremap <leader>t :tabnew<cr>
+" Quitall short
+noremap <leader>q :quitall<cr>
