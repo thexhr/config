@@ -1,6 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lot of stuff is from the Internetz, especially from
 " https://github.com/s3rvac/dotfiles/blob/master/vim/.vimrc
+" and
+" https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle config
 set nocompatible              " be iMproved, required
@@ -16,12 +18,27 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'bling/vim-airline'
 Plugin 'rking/ag.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"NERD tree stuff
+
+" open a NERDTree automatically when vim starts up and no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Bash like keys for the command line
+cnoremap <C-A>		<Home>
+cnoremap <C-E>		<End>
+cnoremap <C-K>		<C-U>
+cnoremap <C-P> 		<Up>
+cnoremap <C-N> 		<Down>
 
 " Use j/k to move virtual lines instead of physical ones
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -141,7 +158,7 @@ map <C-X> <ESC>:!exctags -R<CR><CR>:!cscope -kcbqR<CR><CR>
 map <C-Y> <ESC>:!exctags -R<CR><CR>
 map <C-A> <ESC>:cs add ./cscope.out
 
-set showmatch
+set showmatch				" Show matching brackets
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 filetype plugin on
 filetype indent on
@@ -149,15 +166,24 @@ set laststatus=2
 
 " set dark background
 set bg=dark
-syntax on
-set ruler
+syntax on					" Enable syntax highlighting
+set spellfile=~/.vim/spellfile.add
+set wildmenu				" Enable wildmenu
+							" Ignore compiled files
+set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set filetype=gitcommit
+
+" Spell checking
 map <F6> <Esc>:setlocal spell spelllang=en<CR>
 map <F7> <Esc>:setlocal nospell<CR>
 setlocal spell spelllang=en
-set spellfile=~/.vim/spellfile.add
-set bg=dark
-set wildmenu
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
 
 " Absatz auf textwidth runterbrechen
 map <Esc>a gqap
@@ -204,21 +230,19 @@ hi mailSignature   ctermfg=DarkRed
 hi mailQuoted1     ctermfg=Darkyellow
 hi mailQuoted2     ctermfg=Green
 
+" Toggle NerdTree
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show line numbers
 set number
 " Show relative number
 set relativenumber
 
-function! NumberToggle()
-	if(&relativenumber == 1)
-		set number
-	else
-		set relativenumber
-	endif
-endfunc
+" Underline the current line
+set cursorline
+hi CursorLine cterm=underline ctermbg=NONE
 
-nnoremap <C-n> :call NumberToggle()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
