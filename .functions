@@ -144,6 +144,16 @@ function cds()
 	cd "$1" && ls -la
 }
 
+function netmnt()
+{
+	ndcli show ip $(dig +short $1) | grep "^pool:" | cut -d':' -f2 | xargs ndcli show pool
+}
+
+function whonet()
+{
+	ndcli show ip $1 | grep "^pool:" | cut -d':' -f2 | xargs ndcli show pool
+}
+
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 
 export MARKPATH=$HOME/.marks
