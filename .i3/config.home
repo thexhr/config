@@ -164,7 +164,7 @@ bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
 
 # Start special apps
-bindsym $mod+Ctrl+c exec --no-startup-id ~/Documents/bin/chromium-sandbox
+bindsym $mod+Ctrl+c exec --no-startup-id ~/Documents/bin/firefox-incognito
 bindsym $mod+Ctrl+f exec --no-startup-id ~/Documents/bin/firefox-default
 
 ##############################################################################
