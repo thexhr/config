@@ -18,18 +18,14 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'bling/vim-airline'
 Plugin 'rking/ag.vim'
 Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"NERD tree stuff
-
-" open a NERDTree automatically when vim starts up and no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g:netrw_banner = 0		" disable banner
+let g:netrw_liststyle = 3 	" tree view
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -110,7 +106,7 @@ set tabstop=4           " Number of spaces a tab counts for.
 set shiftwidth=4        " Number of spaces to use for each step of indent.
 set shiftround          " Round indent to multiple of shiftwidth.
 set noexpandtab         " Do not expand tab with spaces.
-
+set path+=**			" Enable recursive path
 set wrapscan			" Wrap search around
 
 set go-=T				 " Hide the toolbar:
@@ -229,9 +225,6 @@ hi mailEmail       ctermfg=Blue
 hi mailSignature   ctermfg=DarkRed
 hi mailQuoted1     ctermfg=Darkyellow
 hi mailQuoted2     ctermfg=Green
-
-" Toggle NerdTree
-nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show line numbers
