@@ -1,3 +1,4 @@
+# color scheme 2017
 color index			color245	default	"~A"
 color index_author  white		default	".*"
 color index_date    color245	default
@@ -9,7 +10,7 @@ color index_subject	color196	default	~F	# Flagged
 
 color index_flags   cyan		default	".*"
 
-color index_author	brightcyan	default	~P	# From me
+#color index_author	brightcyan	default	~P	# From me
 
 color index_author	color214	default	~N	# New
 color index_subject	color214	default	~N	# New
@@ -27,14 +28,11 @@ color status 		color196	default	'Flag:[0-9]+'
 color status 		color214	default	'New:[0-9]+'
 color status 		color33		default	'Del:[0-9]+'
 color status 		color190	default	'Tag:[0-9]+'
+color status 		color118	default	' =[0-9a-zA-Z\/\.\-]+ '
 
-#color normal		color253	default # mod
 color normal		color253	default # mod
-# color normal		color253	color233 # mod
-#  color normal		color253	default # mod
-color indicator    	color230     	color238
-#  color tree         	color113      	default 
-#  color tree         	color173      	default 
+#color indicator    	color230     	color238
+color indicator    	brightcyan	default
 color tree         	color250      	default 
 color signature    	color102      	default 
 color message      	color253      	default 
@@ -69,10 +67,10 @@ color quoted9       color138     default
 #color body	black cyan	'[[:alpha:]][[:alnum:]-]+:'
 
 color hdrdefault 	color30    	color233 
-color header		color132    	color233    '^date:'
-color header		color153    	color233    '^(to|cc|bcc):'
-color header		color120    	color233    '^from:'
-color header		color178    	color233    '^subject:'
-color header    	color31     	color233    '^user-agent:'
-color header		color29     	color233    '^reply-to:'
+color header		color245	default	'^date:'
+color header		color214	default	'^(to|cc|bcc):'
+color header		white		default	'^from:'
+color header		cyan		default	'^subject:'
+color header    	color245	default	'^(user-agent|x-mailer):'
+color header		color245	default	'^reply-to:'
 
