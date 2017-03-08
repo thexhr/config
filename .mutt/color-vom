@@ -1,30 +1,39 @@
-# Mutt color file
-# Maintainer: Jon Häggblad <jon@haeggblad.com>
-# URL: http://www.haeggblad.com
-# Last Change: 2013 May 17
-# Changed by xhr
-# Version: 0.1
-#
-# Mutt colorscheme loosely inspired by vim colorscheme wombat.vim.
-#
-# Changelog: 
-#   0.1 - Initial version
+# color scheme 2017
+color index			color245	default	"~A"
+color index_author  white		default	".*"
+color index_date    color245	default
+color index_size    color245	default
+color index_subject	cyan		default	".*"
 
+color index_author	color196	default	~F	# Flagged
+color index_subject	color196	default	~F	# Flagged
 
-# --- vombatidae text colors ---
-#  color normal		color230      default
-#  color message      	color230      default 
+color index_flags   cyan		default	".*"
 
-# --- slightly less yellow text colors ---
-#color normal		color253	default # mod
+#color index_author	brightcyan	default	~P	# From me
+
+color index_author	color214	default	~N	# New
+color index_subject	color214	default	~N	# New
+
+color index_author	color190	default	~T	# Tagged
+color index_subject	color190	default	~T	# Tagged
+
+color index_author 	color33		default ~D	# Deleted
+color index_subject	color33		default	~D	# Deleted
+
+color index_number	cyan		default
+
+color status		white		default
+color status 		color196	default	'Flag:[0-9]+'
+color status 		color214	default	'New:[0-9]+'
+color status 		color33		default	'Del:[0-9]+'
+color status 		color190	default	'Tag:[0-9]+'
+color status 		color118	default	' =[0-9a-zA-Z\/\.\-]+ '
+
 color normal		color253	default # mod
-# color normal		color253	color233 # mod
-#  color normal		color253	default # mod
-color indicator    	color230     	color238
-color status       	color101     	color16
-#  color tree         	color113      	default 
-#  color tree         	color173      	default 
-color tree         	color208      	default 
+#color indicator    	color230     	color238
+color indicator    	brightcyan	default
+color tree         	color250      	default 
 color signature    	color102      	default 
 color message      	color253      	default 
 color attachment	color117      	default 
@@ -34,12 +43,7 @@ color tilde        	color130     	default
 color search       color100     default 
 color markers      color138     default 
 
-#  mono bold          reverse
-#  color bold         color173 color191
-#  mono underline     reverse
-#  color underline    color48  color191
-
-color quoted        color107     default             # quoted text
+color quoted        cyan		default             # quoted text
 color quoted1       color66      default
 color quoted2       color32      default
 color quoted3       color30      default
@@ -56,59 +60,17 @@ color quoted9       color138     default
 # color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[\n]"
 # color body          red   default  "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
 # color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
-color index		color202	default  ~F         # Flagged
-color index         	color39     	default  ~N          # New
-color index         	color39     	default  ~O         
-color index         	color229     	color22  ~T         # Tagged
-color index         	color240     	default  ~D         # Deleted
-color index				green			default  ~Q			# replied to
-# ---
 
 #mono body	reverse		'^(subject):.*'
 #color body	brightwhite magenta	'^(subject):.*'
 #mono body	reverse		'[[:alpha:]][[:alnum:]-]+:'
 #color body	black cyan	'[[:alpha:]][[:alnum:]-]+:'
 
-# --- header ---
-
 color hdrdefault 	color30    	color233 
-color header		color132    	color233    '^date:'
-color header		color153    	color233    '^(to|cc|bcc):'
-color header		color120    	color233    '^from:'
-color header		color178    	color233    '^subject:'
-color header    	color31     	color233    '^user-agent:'
-color header		color29     	color233    '^reply-to:'
+color header		color245	default	'^date:'
+color header		color214	default	'^(to|cc|bcc):'
+color header		white		default	'^from:'
+color header		cyan		default	'^subject:'
+color header    	color245	default	'^(user-agent|x-mailer):'
+color header		color245	default	'^reply-to:'
 
-#color header	magenta default '^(status|lines|date|received|sender|references):'
-#color header	magenta default '^(pr|mime|x-|user|return|content-)[^:]*:'
-#color header	brightyellow default '^content-type:'
-#color header	magenta default '^content-type: *text/plain'
-# color header	brightgreen default '^list-[^:]*:'
-#mono  header    bold	            '^(subject):.*$'
-#color header	brightcyan default	'^(disposition)'
-#color header	green default	'^(mail-)?followup'
-#color header	white default	'^reply'
-#color header	brightwhite default	'^(resent)'
-# color header	brightwhite default	'^from:'
-
-## -- spam ---
-# --- html ---
-#color index blue default '~b "<(img|a |html|body)"'
-
-# --- china spam ---
-#color index brightred black '~h "^(content-type:| +).*charset=\"?(big5|gb2312|SHIFT.JIS|euc.kr|windows.125[^2]|iso.[0-9]+.jp|koi[^       ;"])"'
-
-# --- sex ---
-#color index brightyellow black "~b '(p$E+n$I+$S|sex|er$E+ct$I+$O+n|p$O+rn$O+|v$I+$A+gr|c$I+$A+$L+$I+$S)'"
-
-# --- misc ---
-#color index cyan black '~b "(w$A+tch|r$E+p$L+$I+c$A|d$I+p$L+$O+m|d$E+gr$E+e|pr$I+ce|s$A+les|\\\$[0-9]+)"'
-
-### drug
-#color index white black "~b '(ph$A+rm$A+cy|m$E+d$I+c$A+t$I+$O+n|pr$E+scr$I+pt$I+$O+n|d$I+$S+c$O+$U+nt|p$I+$L+$S|v$A+$L+$I+$U+m|v$I+c$O+d$I+n)'"
-
-
-#mono index	bold '~h "^content-type: *(multipart/(mixed|signed|encrypted)|application/)"'
-#color index	green black '~h "^content-type: *multipart/(signed|encrypted)"'
-
-#color sidebar_new color39 default 

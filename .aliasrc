@@ -25,14 +25,16 @@ then
 	alias	fetch='wget'
 elif [ `uname` = OpenBSD ]
 then
-       export LSCOLORS=Dxfxcxdxbxegedabagacad
-	   alias	ls='colorls -FGs'
-       alias	ll='ls -lo'
-       alias	rm='rm -I'
+	export LSCOLORS=Dxfxcxdxbxegedabagacad
+	alias	ls='colorls -FGs'
+	alias	ll='ls -lo'
 elif [ `uname` = Linux ]
 then
-	alias 	ls='ls --color=auto -h --file-type -s'
-	alias 	ll='ls -l'
+	alias ls='ls --color=auto -h --file-type -s'
+	alias ll='ls -l'
+	alias rm='rm --preserve-root --one-file-system -I'
+	alias dmesg='dmesg -THL'
+	alias grep="grep --color=auto"
 	export PAGER=less
 fi
 
@@ -46,7 +48,6 @@ alias xlock="xlock -mode blank +usefirst -timeout 5 -icongeometry 1x1 -bg black 
 alias oi='offlineimap -q'
 alias aterm="aterm +sb +tr -fg white -bg black -fn 6x13 -name 'xterm' -fade 40"
 alias mult="aterm -geometry 118x61+20+0 &; aterm -geometry 105x49+745+0 &; aterm -geometry 105x24+745+678 &"
-alias grep="grep --color=auto"
 alias open="xdg-open"
 alias i3lock='i3lock -c 073642'
 alias chromium='chromium --disk-cache-dir=/tmp'
@@ -55,7 +56,6 @@ alias ipls='iptables -L -n -v --line-numbers'
 alias ip6ls='ip6tables -L -n -v --line-numbers'
 alias pdfpc='pdfpc --disable-cache -u 40'
 alias pdfpc-large='pdfpc --disable-cache -u 20'
-alias dmesg='dmesg -THL'
 alias ssu='sudo -H su'
 alias cps='rsync --progress'
 alias pwgen='pwgen -s'
@@ -71,5 +71,4 @@ alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
 alias lsblk='lsblk -o NAME,FSTYPE,RO,SIZE,TYPE,VENDOR,MOUNTPOINT'
 alias findmnt='findmnt -t noautofs,nocgroup,nodebugfs,notracefs,nofusectl,nomqeue,nohugetlbfs,noconfigfs,nopstore,nosecurityfs,nodevtmpfs,nodevpts,nomqeue -o TARGET,SOURCE,FSTYPE,SIZE,OPTIONS'
-alias rm='rm --preserve-root --one-file-system -I'
 alias t='task'

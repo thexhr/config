@@ -1,5 +1,5 @@
 
-set realname "Matthias Schmidt"
+set realname "Real name"
 set username "usenet"
 set hostname "example.org"
 set editor_command "vim '+set tw=78' +%d '%s'

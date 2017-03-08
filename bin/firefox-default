@@ -1,5 +1,10 @@
 #!/bin/sh
 
-scp ~/.Xauthority firefox@localhost:
-ssh firefox@localhost -n "export DISPLAY=:0.0; firefox"
+AS=$HOME/.ssh/$HOSTNAME.agent
 
+if [ -f "$AS" ]; then
+	source $AS
+fi
+
+scp ~/.Xauthority firefox@127.0.0.1:
+exec ssh firefox@127.0.0.1 -n "export DISPLAY=:0.0; TZ=UTC firefox"

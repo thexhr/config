@@ -23,9 +23,9 @@ exec /usr/bin/setxkbmap -layout us -variant intl &
 #exec /usr/bin/unclutter -root &
 # Start xautolock
 exec /usr/bin/xautolock -time 5 -locker "/usr/bin/i3lock -c 000000" &
-# Set background image
-# exec feh --bg-center ~/Pictures/background &
 # Set black background
 exec xsetroot -bg black &
+# Set background image
+exec feh --bg-center ~/Pictures/background &
 # Redshift
 exec /usr/bin/redshift -l 49.1:8.24 -t 5700:3600 -g 0.8 -m randr &

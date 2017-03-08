@@ -144,7 +144,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Start programs
-bindsym $mod+Ctrl+l exec "/usr/bin/i3lock -f -c 1f222d -d"
+bindsym $mod+Ctrl+l exec "/usr/bin/i3lock -f -c 1f222d -d -i ~/Pictures/default"
 
 # Multimedia keys
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume $(pactl list short sinks | awk '{ printf $1 }') -5%
@@ -162,6 +162,10 @@ bindsym XF86Display exec "~/Documents/bin/dtoggle -t"
 
 bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
+
+# Start special apps
+bindsym $mod+Ctrl+c exec --no-startup-id ~/Documents/bin/firefox-incognito
+bindsym $mod+Ctrl+f exec --no-startup-id ~/Documents/bin/firefox-default
 
 ##############################################################################
 # Resize window mode

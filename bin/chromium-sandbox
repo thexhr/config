@@ -1,0 +1,10 @@
+#!/bin/sh
+
+AS=$HOME/.ssh/$HOSTNAME.agent
+
+if [ -f "$AS" ]; then
+	source $AS
+fi
+
+scp ~/.Xauthority chromium@127.0.0.1:
+exec ssh chromium@127.0.0.1 -n "export DISPLAY=:0.0; TZ=UTC chromium --incognito $@"
