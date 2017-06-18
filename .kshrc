@@ -6,12 +6,69 @@
 # ALIASE
 #############################################################################
 
-alias   ls='colorls -FG'
-alias   ll='ls -lo'
+alias ls='colorls -FG'
+alias ll='ls -lo'
+alias j='jump'
+alias p='pushd'
+alias d='popd'
+alias g='git'
+alias sudo='sudo -H'
+alias mc='mc --color'
+alias pwgen='pwgen -s'
+alias mpv='mpv --no-audio-display'
+alias dt='dtoggle'
+alias tty-clock='tty-clock -s -c'
 
 #############################################################################
 # FUNCTIONS
 #############################################################################
+
+calc()
+{
+	echo "scale=3;$@" | bc -l
+}
+
+
+sshopen()
+{
+	local AGPATH="$HOME"/.ssh/$(hostname).agent
+
+	rm -f $AGPATH
+	command ssh-agent -t 345600 | grep -v echo > $AGPATH
+	. $AGPATH
+
+	# Find all public keys...
+	for i in `find $HOME/.ssh/ -maxdepth 1 -name "*.pub"`; do
+		# ... and strip the .pub suffix
+		_key=`echo $i | sed -e 's/\.pub//'`
+		command ssh-add $_key
+	done
+}
+
+ssh()
+{
+	source_ssh_agent
+	/usr/bin/ssh "$@"
+}
+
+scp()
+{
+	source_ssh_agent
+	/usr/bin/scp "$@"
+}
+
+sshfs()
+{
+	source_ssh_agent
+	/usr/bin/sshfs "$@"
+}
+
+source_ssh_agent()
+{
+	local AGPATH="$HOME"/.ssh/$(hostname).agent
+
+	[[ -f $AGPATH ]] && . $AGPATH
+}
 
 psg()
 {
@@ -27,6 +84,35 @@ pkg_search()
 {
 	pkg_info -Q "$1"
 }
+
+mkcd()
+{
+	[[ -n $1 ]] || return 0
+	[[ -d $1 ]] || mkdir -p "$1"
+	[[ -d $1 ]] && builtin cd "$1"
+}
+
+cget()
+{
+	curl -OL --compressed "$@"
+}
+
+# Show infos about my external IP address
+showmyipaddress()
+{
+	echo "My external IPv4 : $(curl -s -4 icanhazip.com)"
+	echo "My external IPv6 : $(curl -s -6 icanhazip.com)"
+	echo "My external PTR  : $(curl -s icanhazptr.com)"
+}
+
+calc()
+{
+	echo "scale=3;$@" | bc -l
+}
+
+
+# Bind CTRL+l to clear screen
+bind -m '^L'=clear'^J'
 
 #############################################################################
 # COMPLETIONS
@@ -46,6 +132,9 @@ set -A complete_rcctl_2 -- $(ls /etc/rc.d)
 set -A complete_signify_1 -- -C -G -S -V
 set -A complete_signify_2 -- -q -p -x -c -m -t -z
 set -A complete_signify_3 -- -p -x -c -m -t -z
+
+MAN_LIST=$(find /usr/share/man/ -type f | sed -e 's/.*\///' -e 's/\.[0-9]//' | sort -u)
+set -A complete_man -- $MAN_LIST
 
 #############################################################################
 # PROMPT
