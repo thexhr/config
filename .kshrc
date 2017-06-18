@@ -23,14 +23,12 @@ alias tty-clock='tty-clock -s -c'
 # FUNCTIONS
 #############################################################################
 
-calc()
-{
+calc() {
 	echo "scale=3;$@" | bc -l
 }
 
 
-sshopen()
-{
+sshopen() {
 	local AGPATH="$HOME"/.ssh/$(hostname).agent
 
 	rm -f $AGPATH
@@ -45,68 +43,57 @@ sshopen()
 	done
 }
 
-ssh()
-{
+ssh() {
 	source_ssh_agent
 	/usr/bin/ssh "$@"
 }
 
-scp()
-{
+scp() {
 	source_ssh_agent
 	/usr/bin/scp "$@"
 }
 
-sshfs()
-{
+sshfs() {
 	source_ssh_agent
 	/usr/bin/sshfs "$@"
 }
 
-source_ssh_agent()
-{
+source_ssh_agent() {
 	local AGPATH="$HOME"/.ssh/$(hostname).agent
 
 	[[ -f $AGPATH ]] && . $AGPATH
 }
 
-psg()
-{
+psg() {
 	ps aux | grep "$@"
 }
 
-cds()
-{
+cds() {
 	cd "$1" && ls -la
 }
 
-pkg_search()
-{
+pkg_search() {
 	pkg_info -Q "$1"
 }
 
-mkcd()
-{
+mkcd() {
 	[[ -n $1 ]] || return 0
 	[[ -d $1 ]] || mkdir -p "$1"
 	[[ -d $1 ]] && builtin cd "$1"
 }
 
-cget()
-{
+cget() {
 	curl -OL --compressed "$@"
 }
 
 # Show infos about my external IP address
-showmyipaddress()
-{
+showmyipaddress() {
 	echo "My external IPv4 : $(curl -s -4 icanhazip.com)"
 	echo "My external IPv6 : $(curl -s -6 icanhazip.com)"
 	echo "My external PTR  : $(curl -s icanhazptr.com)"
 }
 
-calc()
-{
+calc() {
 	echo "scale=3;$@" | bc -l
 }
 
