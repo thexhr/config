@@ -1,2 +1,2 @@
 #!/bin/sh
-exec java -jar $HOME/Downloads/Web/burp/burp.jar
+exec java -Djsse.enableSNIExtension=false -jar $HOME/Downloads/Web/burp/burp.jar
