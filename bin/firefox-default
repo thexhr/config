@@ -1,9 +1,9 @@
 #!/bin/sh
 
-AS=$HOME/.ssh/$HOSTNAME.agent
+AS=$HOME/.ssh/$(hostname).agent
 
 if [ -f "$AS" ]; then
-	source $AS
+	. $AS
 fi
 
 scp ~/.Xauthority firefox@127.0.0.1:
