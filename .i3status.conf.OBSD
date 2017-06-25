@@ -8,12 +8,14 @@
 
 general {
         colors = true
-        interval = 3
+        interval = 5
+        output_format="i3bar"
 }
 
 order += "ipv6"
-order += "disk /"
 order += "disk /home"
+order += "disk /usr"
+order += "disk /usr/local"
 order += "run_watch D"
 order += "ethernet tun0"
 order += "ethernet trunk0"
@@ -64,11 +66,17 @@ run_watch D {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M"
+        format = "%Y-%m-%d %H:%M "
 }
 
-disk "/" {
-        format = "r: %avail"
+disk "/usr" {
+        format = "u: %avail"
+		low_threshold = 2
+		threshold_type = gbytes_avail
+}
+
+disk "/usr/local" {
+        format = "l: %avail"
 		low_threshold = 2
 		threshold_type = gbytes_avail
 }
