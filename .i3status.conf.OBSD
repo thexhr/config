@@ -19,7 +19,7 @@ order += "disk /usr/local"
 order += "run_watch D"
 order += "ethernet tun0"
 order += "ethernet trunk0"
-order += "wireless iwn0"
+order += "wireless iwm0"
 order += "battery all"
 order += "cpu_usage"
 order += "volume master"
@@ -32,10 +32,10 @@ ipv6 {
 
 ethernet tun0 {
         format_up = "V: %ip"
-        format_down = "V:"
+        format_down = ""
 }
 
-wireless iwn0 {
+wireless iwm0 {
         #format_up = "W: (%quality at %essid, %bitrate)"
         format_up = "W: %essid"
         format_down = ""
