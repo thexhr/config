@@ -18,15 +18,15 @@ alias pwgen='pwgen -s'
 alias mpv='mpv --no-audio-display'
 alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
+alias netd4='ssh -p 2222 -4 matthias@217.115.13.100'
+alias netd='ssh -p 2222 matthias@alpha.xosc.org'
+alias netd6='ssh -6 alpha.xosc.org'
+alias chromium='chromium --disk-cache-dir=/tmp'
+alias open="xdg-open"
 
 #############################################################################
 # FUNCTIONS
 #############################################################################
-
-calc() {
-	echo "scale=3;$@" | bc -l
-}
-
 
 sshopen() {
 	local AGPATH="$HOME"/.ssh/$(hostname).agent
@@ -88,13 +88,29 @@ cget() {
 
 # Show infos about my external IP address
 showmyipaddress() {
-	echo "My external IPv4 : $(curl -s -4 icanhazip.com)"
-	echo "My external IPv6 : $(curl -s -6 icanhazip.com)"
-	echo "My external PTR  : $(curl -s icanhazptr.com)"
+	echo "My external IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
+	echo "My external IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
+	echo "My external PTR  : $(ftp -M -o - http://icanhazptr.com 2> /dev/null)"
 }
 
 calc() {
 	echo "scale=3;$@" | bc -l
+}
+
+# http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
+
+export MARKPATH=$HOME/.marks
+jump() {
+    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+mark() {
+    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+}
+unmark() {
+    rm -i "$MARKPATH/$1"
+}
+marks() {
+    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 
 
@@ -123,6 +139,8 @@ set -A complete_signify_3 -- -p -x -c -m -t -z
 MAN_LIST=$(find /usr/share/man/ -type f | sed -e 's/.*\///' -e 's/\.[0-9]//' | sort -u)
 set -A complete_man -- $MAN_LIST
 
+set -A complete_j -- $(/bin/ls $HOME/.marks)
+
 #############################################################################
 # PROMPT
 #############################################################################
@@ -147,5 +165,5 @@ LSCOLORS=Dxfxcxdxbxegedabagacad
 TERM=xterm-256color
 HISTSIZE=3000
 HISTFILE=$HOME/.sh_history
-PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
+PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
 export PATH HOME TERM LSCOLORS HISTSIZE
