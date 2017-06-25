@@ -1,5 +1,5 @@
 # urxvt daemon
-#exec /usr/bin/urxvtd &
+#exec /usr/local/bin/urxvtd &
 # start scratchpad
 exec st -n scratchpad &
 # mutt terminal
@@ -8,20 +8,22 @@ exec st -t mutt -n mutt -e bash -l -c "mutt" &
 #exec urxvt -title htop -name htop -e bash -l -c "htop" &
 #exec urxvt -title iptraf -name iptraf -e bash -l &
 # Start dunst
-exec /usr/bin/dunst &
+exec /usr/local/bin/dunst &
 # No beep
-exec /usr/bin/xset -b &
+exec /usr/X11R6/bin/xset -b &
 # Enable screen powermanagement
-exec /usr/bin/xset +dpms &
+exec /usr/X11R6/bin/xset +dpms &
 # No suspend, no standy, turn off screen after 120 secs
-exec /usr/bin/xset dpms 0 0 120 &
+exec /usr/X11R6/bin/xset dpms 0 0 120 &
 # Set keyboard layout
-exec /usr/bin/setxkbmap -layout us -variant intl &
+exec /usr/X11R6/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
-#exec /usr/bin/unclutter -root &
+#exec /usr/local/bin/unclutter -root &
 # Start xautolock
-exec /usr/bin/xautolock -time 5 -locker "/usr/bin/i3lock -c 000000" &
+exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/i3lock -c 000000" -timeout 300 &
 # Set black background
-exec xsetroot -solid black &
+exec /usr/X11R6/bin/xsetroot -solid black &
+# Set background image
+exec feh --bg-center ~/Pictures/background &
 # Redshift
-exec /usr/bin/redshift -l 49.1:8.24 -t 5700:3600 -g 0.8 -m randr &
+exec /usr/local/bin/redshift -l 49.1:8.24 -t 5700:3600 -g 0.8 -m randr &
