@@ -6,8 +6,8 @@
 # ALIASE
 #############################################################################
 
-alias ls='colorls -FG'
-alias ll='ls -lo'
+alias ls='colorls -G'
+alias ll='colorls -FGlh'
 alias j='jump'
 alias p='pushd'
 alias d='popd'
