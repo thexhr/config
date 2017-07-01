@@ -20,7 +20,7 @@ exec /usr/X11R6/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
 #exec /usr/local/bin/unclutter -root &
 # Start xautolock
-exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/i3lock -c 000000" -timeout 300 &
+exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/i3lock -c 000000" -timeout 600 &
 # Set black background
 exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
