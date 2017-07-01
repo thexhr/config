@@ -25,5 +25,6 @@ exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/i3lock -c 000000
 exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
 exec feh --bg-center ~/Pictures/background &
-# Redshift
-exec /usr/local/bin/redshift -l 49.1:8.24 -t 5700:3600 -g 0.8 -m randr &
+# sct - Redshift clone
+# http://www.tedunangst.com/flak/post/sct-set-color-temperature
+exec /home/xhr/Documents/bin/sct 5700 &
