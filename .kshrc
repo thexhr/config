@@ -137,7 +137,7 @@ if [ -d ~/.password-store ]; then
 
 fi
 
-set -A complete_ssh -- $(awk '{split($1,a,","); print a[1]}' ~/.ssh/known_hosts)
+set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
 set -A complete_make_1 -- install clean repackage reinstall
 set -A complete_git_1 -- pull push mpull mpush clone checkout status commit
 
