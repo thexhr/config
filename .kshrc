@@ -126,6 +126,24 @@ bind -m '^L'=clear'^J'
 
 PKG_LIST=$(/bin/ls -1 /var/db/pkg)
 
+if [ -d ~/.password-store ]; then
+	PASS_LIST=$(
+		cd ~/.password-store
+		find . -type f -name \*.gpg | sed 's/^\.\///' | sed 's/\.gpg$//g'
+	)
+
+	set -A complete_pass -- $PASS_LIST -c generate edit insert git
+	set -A complete_pass_2 -- $PASS_LIST push
+
+fi
+
+set -A complete_ssh -- $(awk '{split($1,a,","); print a[1]}' ~/.ssh/known_hosts)
+set -A complete_make_1 -- install clean repackage reinstall
+set -A complete_git_1 -- pull push mpull mpush clone checkout status commit
+
+set -A complete_gpg_1 -- --refresh --receive-keys --armor --clearsign --sign --list-key --decrypt --verify --detach-sig
+set -A complete_gpg_2 -- --list-secret-keys --list-keys --fingerprint
+
 set -A complete_pkg_delete -- $PKG_LIST
 set -A complete_pkg_info -- $PKG_LIST
 
