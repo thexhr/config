@@ -23,6 +23,7 @@ alias netd='ssh -p 2222 matthias@alpha.xosc.org'
 alias netd6='ssh -6 alpha.xosc.org'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
+alias tarsnap='tarsnap --humanize-numbers -v'
 
 #############################################################################
 # FUNCTIONS
