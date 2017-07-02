@@ -20,11 +20,11 @@ exec /usr/X11R6/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
 #exec /usr/local/bin/unclutter -root &
 # Start xautolock
-exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/i3lock -c 000000" -timeout 600 &
+exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/slock" -timeout 600 &
 # Set black background
 exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
-exec feh --bg-center ~/Pictures/background &
+exec xwallpaper --bg-center ~/Pictures/background &
 # sct - Redshift clone
 # http://www.tedunangst.com/flak/post/sct-set-color-temperature
-exec /home/xhr/Documents/bin/sct 5700 &
+exec /home/xhr/Documents/bin/sct 5300 &
