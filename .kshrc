@@ -24,6 +24,7 @@ alias netd6='ssh -6 alpha.xosc.org'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
+alias !!='fc -s'
 
 #############################################################################
 # FUNCTIONS
@@ -138,7 +139,7 @@ if [ -d ~/.password-store ]; then
 
 fi
 
-set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
+[[ -f $HOME/.ssh/config ]] && set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
 set -A complete_make_1 -- install clean repackage reinstall
 set -A complete_git_1 -- pull push mpull mpush clone checkout status commit
 
@@ -158,7 +159,7 @@ set -A complete_signify_3 -- -p -x -c -m -t -z
 MAN_LIST=$(find /usr/share/man/ -type f | sed -e 's/.*\///' -e 's/\.[0-9]//' | sort -u)
 set -A complete_man -- $MAN_LIST
 
-set -A complete_j -- $(/bin/ls $HOME/.marks)
+[[ -d $HOME/.marks ]] && set -A complete_j -- $(/bin/ls $HOME/.marks)
 
 #############################################################################
 # PROMPT
