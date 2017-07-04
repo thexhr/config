@@ -30,19 +30,28 @@ alias !!='fc -s'
 # FUNCTIONS
 #############################################################################
 
+psearch() {
+        local pt="/usr/ports"
+
+        [[ -z ${1} ]] && echo "Need a keyword to search for" && return
+        [[ ! -d ${pt} ]] && echo "Cannot find ports tree" && return
+
+        cd ${pt} && make search name=${1}
+}
+
 sshopen() {
-	local AGPATH="$HOME"/.ssh/$(hostname).agent
+        local AGPATH="$HOME/.ssh/$(hostname).agent"
 
-	rm -f $AGPATH
-	command ssh-agent -t 345600 | grep -v echo > $AGPATH
-	. $AGPATH
+        [[ -f ${AGPATH} ]] && rm -f $AGPATH
+        command ssh-agent -t 345600 | grep -v echo > $AGPATH
+        . $AGPATH
 
-	# Find all public keys...
-	for i in `find $HOME/.ssh/ -maxdepth 1 -name "*.pub"`; do
-		# ... and strip the .pub suffix
-		_key=`echo $i | sed -e 's/\.pub//'`
-		command ssh-add $_key
-	done
+        # Find all public keys...
+        for i in $(find $HOME/.ssh/ -maxdepth 1 -name "*.pub"); do
+                # ... and strip the .pub suffix
+                _key=`echo $i | sed -e 's/\.pub//'`
+                command ssh-add $_key
+        done
 }
 
 ssh() {
