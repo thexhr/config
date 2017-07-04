@@ -70,7 +70,7 @@ sshfs() {
 }
 
 source_ssh_agent() {
-	local AGPATH="$HOME"/.ssh/$(hostname).agent
+	local AGPATH="$HOME/.ssh/$(hostname).agent"
 
 	[[ -f $AGPATH ]] && . $AGPATH
 }
@@ -94,7 +94,7 @@ mkcd() {
 }
 
 cget() {
-	curl -OL --compressed "$@"
+	ftp "$@"
 }
 
 # Show infos about my external IP address
@@ -143,8 +143,7 @@ if [ -d ~/.password-store ]; then
 		find . -type f -name \*.gpg | sed 's/^\.\///' | sed 's/\.gpg$//g'
 	)
 
-	set -A complete_pass -- $PASS_LIST -c generate edit insert git
-	set -A complete_pass_2 -- $PASS_LIST push
+	set -A complete_tpm -- $PASS_LIST edit insert show rm usage
 
 fi
 
