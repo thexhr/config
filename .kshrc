@@ -59,6 +59,11 @@ ssh() {
 	/usr/bin/ssh "$@"
 }
 
+ssh-add() {
+	source_ssh_agent
+	/usr/bin/ssh-add "$@"
+}
+
 scp() {
 	source_ssh_agent
 	/usr/bin/scp "$@"
@@ -67,6 +72,11 @@ scp() {
 sshfs() {
 	source_ssh_agent
 	/usr/bin/sshfs "$@"
+}
+
+git() {
+	source_ssh_agent
+	/usr/local/bin/git "$@"
 }
 
 source_ssh_agent() {
