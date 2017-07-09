@@ -7,7 +7,7 @@
 #############################################################################
 
 alias ls='colorls -G'
-alias ll='colorls -FGlh'
+alias ll='colorls -FGlho'
 alias j='jump'
 alias p='pushd'
 alias d='popd'
