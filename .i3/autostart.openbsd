@@ -24,7 +24,7 @@ exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/slock" -timeout 
 # Set black background
 exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
-exec xwallpaper --bg-center ~/Pictures/background &
+exec xwallpaper --center ~/Pictures/background &
 # sct - Redshift clone
 # http://www.tedunangst.com/flak/post/sct-set-color-temperature
 exec /home/xhr/Documents/bin/sct 5300 &
