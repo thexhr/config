@@ -201,7 +201,8 @@ fi
 
 LSCOLORS=Dxfxcxdxbxegedabagacad
 TERM=xterm-256color
-HISTSIZE=3000
+HISTSIZE=5000
 HISTFILE=$HOME/.sh_history
+BLOCKSIZE=M
 PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
-export PATH HOME TERM LSCOLORS HISTSIZE
+export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE
