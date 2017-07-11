@@ -63,20 +63,16 @@ fi
 txtrst='\e[0m'    # Text Reset
 
 if [ `id -u` -eq 0 ]; then
-	#PS1="\[\e[0;36m\][\A]\[${txtrst}\] \[\e[38;5;202m\]\[\e[38;5;5m\]\h\[${txtrst}\]${PS1_TRENNER}\[\e[0;101m\]\u\[${txtrst}\]: \[\e[38;5;172m\]\w\[${txtrst}\] [\j] # "
 	PS1_USER="\[\e[0;101m\]\u\[${txtrst}\]"
 else
-	#PS1="\[\e[0;36m\][\A]\[${txtrst}\] \[\e[38;5;202m\]\[\e[38;5;5m\]\h\[${txtrst}\]${PS1_TRENNER}\[\e[38;5;245m\]\u\[${txtrst}\]: \[\e[38;5;172m\]\w\[${txtrst}\] [\j] \$ "
 	PS1_USER="\[\e[38;5;245m\]\u\[${txtrst}\]"
 
 fi
 
-PS1_DATE="\[\e[0;36m\][\A]\[${txtrst}\] "
-PS1=${PS1_DATE}
-PS1+="\[\e[38;5;202m\]\[\e[38;5;5m\]\h\[${txtrst}\]${PS1_TRENNER}"
+PS1="\[\e[38;5;202m\]\[\e[38;5;5m\]\h\[${txtrst}\]${PS1_TRENNER}"
 PS1+="${PS1_USER}"
 PS1+="${PS1_VCS}"
-PS1+=": \[\e[38;5;172m\]\w\[${txtrst}\] [\j] \$ "
+PS1+=" \[\e[38;5;172m\]\w\[${txtrst}\] [\j] \$ "
 
 export GREP_COLORS="ms=01;38;5;202:mc=01;31:sl=:cx=:fn=01;38;5;132:ln=32:bn=32:se=00;38;5;242"
 
