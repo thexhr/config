@@ -118,6 +118,11 @@ calc() {
 	echo "scale=3;$@" | bc -l
 }
 
+lpf() {
+	local _pf=${1:-/etc/pf.conf}
+	doas pfctl -n -f ${_pf} && doas pfctl -F rules && doas pfctl -f ${_pf} 
+}
+
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 
 export MARKPATH=$HOME/.marks
@@ -173,6 +178,8 @@ set -A complete_rcctl_2 -- $(ls /etc/rc.d)
 set -A complete_signify_1 -- -C -G -S -V
 set -A complete_signify_2 -- -q -p -x -c -m -t -z
 set -A complete_signify_3 -- -p -x -c -m -t -z
+
+set -A complete_tarsnap_1 -- --list-archives --print-stats --fsck --fsck-prune --nuke --verify-config --version --checkpoint-bytes --configfile --dry-run --exclude --humanize-numbers --keyfile --totals
 
 MAN_LIST=$(find /usr/share/man/ -type f | sed -e 's/.*\///' -e 's/\.[0-9]//' | sort -u)
 set -A complete_man -- $MAN_LIST
