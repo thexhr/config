@@ -1,14 +1,9 @@
-# urxvt daemon
-#exec /usr/local/bin/urxvtd &
 # start scratchpad
 exec st -n scratchpad &
 # mutt terminal
-exec st -t mutt -n mutt -e bash -l -c "mutt" &
-# monitoring tools
-#exec urxvt -title htop -name htop -e bash -l -c "htop" &
-#exec urxvt -title iptraf -name iptraf -e bash -l &
+exec tmux new-session -s mutt -d 'st -t mutt -n mutt -e ksh -l -c "mutt"' &
 # Start dunst
-exec /usr/local/bin/dunst &
+exec tmux new-session -s dunst -d '/usr/local/bin/dunst' &
 # No beep
 exec /usr/X11R6/bin/xset -b &
 # Enable screen powermanagement
@@ -20,11 +15,13 @@ exec /usr/X11R6/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
 #exec /usr/local/bin/unclutter -root &
 # Start xautolock
-exec /usr/X11R6/bin/xidle -delay 5 -sw -program "/usr/local/bin/slock" -timeout 600 &
+exec tmux new-session -s xidle -d '/usr/X11R6/bin/xidle -program "/usr/local/bin/slock" -timeout 600' &
+# Start xbacklight from tedu@
+exec tmux new-session -s xbacklight -d '/home/xhr/Documents/bin/xbacklight' &
 # Set black background
 exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
 exec xwallpaper --center ~/Pictures/background &
 # sct - Redshift clone
 # http://www.tedunangst.com/flak/post/sct-set-color-temperature
-exec /home/xhr/Documents/bin/sct 5300 &
+exec /home/xhr/Documents/bin/sct 5000 &
