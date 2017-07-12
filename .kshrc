@@ -12,6 +12,7 @@ alias j='jump'
 alias p='pushd'
 alias d='popd'
 alias g='git'
+alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
 alias sudo='sudo -H'
 alias mc='mc --color'
 alias pwgen='pwgen -s'
@@ -24,6 +25,7 @@ alias netd6='ssh -6 alpha.xosc.org'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
+alias openports='netstat -na -f inet |grep LISTEN'
 alias !!='fc -s'
 
 #############################################################################
@@ -212,4 +214,5 @@ HISTSIZE=5000
 HISTFILE=$HOME/.sh_history
 BLOCKSIZE=M
 PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
-export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE
+PAGER='less -JW'
+export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER
