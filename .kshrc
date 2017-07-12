@@ -214,5 +214,5 @@ HISTSIZE=5000
 HISTFILE=$HOME/.sh_history
 BLOCKSIZE=M
 PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
-PAGER='less -JW'
+PAGER='less -JWAce'
 export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER
