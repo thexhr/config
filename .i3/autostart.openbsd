@@ -1,9 +1,9 @@
 # start scratchpad
 exec st -n scratchpad &
 # mutt terminal
-exec tmux new-session -s mutt -d 'st -t mutt -n mutt -e ksh -l -c "mutt"' &
+exec tmux new-session -s mutt -d 'exec st -t mutt -n mutt -e ksh -l -c "mutt"' &
 # Start dunst
-exec tmux new-session -s dunst -d '/usr/local/bin/dunst' &
+exec tmux new-session -s dunst -d 'exec /usr/local/bin/dunst' &
 # No beep
 exec /usr/X11R6/bin/xset -b &
 # Enable screen powermanagement
@@ -15,13 +15,11 @@ exec /usr/X11R6/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
 #exec /usr/local/bin/unclutter -root &
 # Start xautolock
-exec tmux new-session -s xidle -d '/usr/X11R6/bin/xidle -program "/usr/local/bin/slock" -timeout 600' &
-# Start xbacklight from tedu@
-exec tmux new-session -s xbacklight -d '/home/xhr/Documents/bin/xbacklight' &
+exec tmux new-session -s xidle -d 'exec /usr/X11R6/bin/xidle -program "/usr/local/bin/slock" -timeout 600' &
 # Set black background
 exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
 exec xwallpaper --center ~/Pictures/background &
 # sct - Redshift clone
 # http://www.tedunangst.com/flak/post/sct-set-color-temperature
-exec /home/xhr/Documents/bin/sct 5000 &
+exec /home/xhr/Documents/bin/sct 4800 &
