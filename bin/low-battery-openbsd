@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# From https://faq.i3wm.org/question/1730/warning-popup-when-battery-very-low/
+
+if [ $(apm -a) -ne 0 ]; then
+	exit
+fi	
+
+BATTINFO=$(apm -m)
+if [ $BATTINFO -le 20 ] ; then
+    DISPLAY=:0.0 /usr/local/bin/notify-send -u critical "Low Battery" "$BATTINFO"
+fi
