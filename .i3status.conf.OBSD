@@ -88,8 +88,8 @@ disk "/home" {
 }
 
 volume master {
-		format = "♪: %volume"
-		format_muted = "♪: muted (%volume)"
+		format = "M: %volume"
+		format_muted = "M: muted (%volume)"
 		device = "default"
 		mixer = "Master"
 		mixer_idx = 0
