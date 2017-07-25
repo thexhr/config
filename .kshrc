@@ -25,8 +25,13 @@ alias netd6='ssh -6 alpha.xosc.org'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
-alias openports='netstat -na -f inet |grep LISTEN'
+alias openports='netstat -na | grep LISTEN'
 alias !!='fc -s'
+alias ffplay='ffplay -hide_banner'
+
+if [[ -z $(which vim) ]]; then
+	alias vim=vi
+fi
 
 #############################################################################
 # FUNCTIONS
