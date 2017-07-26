@@ -29,7 +29,7 @@ alias openports='netstat -na | grep LISTEN'
 alias !!='fc -s'
 alias ffplay='ffplay -hide_banner'
 
-if [[ -z $(which vim 2> /dev/null) ]]; then
+if [[ $(which vim 2> /dev/null) -eq 2 ]]; then
 	alias vim=vi
 fi
 
