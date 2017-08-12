@@ -29,10 +29,6 @@ alias openports='netstat -na | grep LISTEN'
 alias !!='fc -s'
 alias ffplay='ffplay -hide_banner'
 
-if [[ $(which vim 2> /dev/null) -eq 2 ]]; then
-	alias vim=vi
-fi
-
 #############################################################################
 # FUNCTIONS
 #############################################################################
@@ -165,16 +161,16 @@ if [ -d ~/.password-store ]; then
 		find . -type f -name \*.gpg | sed 's/^\.\///' | sed 's/\.gpg$//g'
 	)
 
-	set -A complete_tpm -- $PASS_LIST edit insert show rm usage
+	set -A complete_tpm_1 -- $PASS_LIST usage
+	set -A complete_tpm_2 -- $PASS_LIST edit insert show rm
 
 fi
 
 [[ -f $HOME/.ssh/config ]] && set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
-set -A complete_make_1 -- install clean repackage reinstall
+set -A complete_make_1 -- install clean repackage reinstall update fetch extract
 set -A complete_git_1 -- pull push mpull mpush clone checkout status commit
 
-set -A complete_gpg_1 -- --refresh --receive-keys --armor --clearsign --sign --list-key --decrypt --verify --detach-sig
-set -A complete_gpg_2 -- --list-secret-keys --list-keys --fingerprint
+set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 
 set -A complete_pkg_delete -- $PKG_LIST
 set -A complete_pkg_info -- $PKG_LIST
