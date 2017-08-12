@@ -25,13 +25,39 @@ alias netd6='ssh -6 alpha.xosc.org'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
-alias openports='netstat -na | grep LISTEN'
+#alias openports='netstat -na | grep LISTEN'
 alias !!='fc -s'
 alias ffplay='ffplay -hide_banner'
 
 #############################################################################
 # FUNCTIONS
 #############################################################################
+
+openports() {
+	TMP=$(mktemp '/tmp/openports.XXXXXXXX')
+	TMP2=$(mktemp '/tmp/openports.XXXXXXXX')
+	TMP3=$(mktemp '/tmp/openports.XXXXXXXX')
+
+	netstat -na | grep LISTEN > $TMP
+	fstat | grep internet > $TMP3
+
+	while read i; do
+			_proto=$(echo $i | awk {'printf "%s\n", $1'})
+			_port=$(echo $i | awk {'printf "%s\n", $4'})
+			if [[ $_proto = "tcp6" ]]; then
+					_6port=$(echo $_port | cut -d '.' -f 2)
+					_6ip=$(echo $_port | cut -d '.' -f 1)
+					_proc=$(cat $TMP3 | grep "[${_6ip}]:${_6port}" | awk {'printf "%s\n", $2'} | uniq)
+			else
+					_proc=$(cat $TMP3 | grep ${_port} | awk {'printf "%s\n", $2'} | uniq)
+			fi
+			printf "%10s %20s %10s\n" $_proc $_port $_proto >> $TMP2
+	done < $TMP
+
+	cat $TMP2 | sort
+	rm $TMP; rm $TMP2; rm $TMP3
+
+}
 
 psearch() {
         local pt="/usr/ports"
