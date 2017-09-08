@@ -22,4 +22,4 @@ exec /usr/X11R6/bin/xsetroot -solid black &
 exec xwallpaper --center ~/Pictures/background &
 # sct - Redshift clone
 # http://www.tedunangst.com/flak/post/sct-set-color-temperature
-exec /home/xhr/Documents/bin/sct 4800 &
+exec /home/xhr/Documents/bin/sct 4400 &
