@@ -19,9 +19,7 @@ alias pwgen='pwgen -s'
 alias mpv='mpv --no-audio-display --audio-channels=stereo'
 alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
-alias netd4='ssh -p 2222 -4 matthias@217.115.13.100'
-alias netd='ssh -p 2222 matthias@alpha.xosc.org'
-alias netd6='ssh -6 alpha.xosc.org'
+alias netd='ssh theta.xosc.org'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
@@ -133,7 +131,7 @@ mkcd() {
 }
 
 cget() {
-	ftp "$@"
+	curl -OL --compressed "$@"
 }
 
 # Show infos about my external IP address
