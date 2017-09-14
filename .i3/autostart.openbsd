@@ -15,11 +15,11 @@ exec /usr/X11R6/bin/setxkbmap -layout us -variant intl &
 # Start unclutter
 #exec /usr/local/bin/unclutter -root &
 # Start xautolock
-exec tmux new-session -s xidle -d 'exec /usr/X11R6/bin/xidle -program /usr/local/bin/i3lock -timeout 600' &
+exec tmux new-session -s xidle -d 'exec /usr/X11R6/bin/xidle -program /usr/local/bin/i3lock' &
 # Set black background
 exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
 exec xwallpaper --center ~/Pictures/background &
 # sct - Redshift clone
 # http://www.tedunangst.com/flak/post/sct-set-color-temperature
-exec /home/xhr/Documents/bin/sct 4800 &
+exec /home/xhr/Documents/bin/sct 4400 &

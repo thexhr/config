@@ -1,0 +1,9 @@
+#!/bin/sh
+
+AS=$HOME/.ssh/$(hostname).agent
+
+if [ -f "$AS" ]; then
+	. $AS
+fi
+
+exec ssh firefox@127.0.0.1 -n "export DISPLAY=:0.0; TZ=UTC firefox $@"

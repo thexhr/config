@@ -16,12 +16,10 @@ alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
 alias sudo='sudo -H'
 alias mc='mc --color'
 alias pwgen='pwgen -s'
-alias mpv='mpv --no-audio-display'
+alias mpv='mpv --no-audio-display --audio-channels=stereo'
 alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
-alias netd4='ssh -p 2222 -4 matthias@217.115.13.100'
-alias netd='ssh -p 2222 matthias@alpha.xosc.org'
-alias netd6='ssh -6 alpha.xosc.org'
+alias netd='ssh theta.xosc.org'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
@@ -133,7 +131,7 @@ mkcd() {
 }
 
 cget() {
-	ftp "$@"
+	curl -OL --compressed "$@"
 }
 
 # Show infos about my external IP address
@@ -187,16 +185,16 @@ if [ -d ~/.password-store ]; then
 		find . -type f -name \*.gpg | sed 's/^\.\///' | sed 's/\.gpg$//g'
 	)
 
-	set -A complete_tpm -- $PASS_LIST edit insert show rm usage
+	set -A complete_tpm_1 -- $PASS_LIST usage
+	set -A complete_tpm_2 -- $PASS_LIST edit insert show rm
 
 fi
 
 [[ -f $HOME/.ssh/config ]] && set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
-set -A complete_make_1 -- install clean repackage reinstall
+set -A complete_make_1 -- install clean repackage reinstall update fetch extract
 set -A complete_git_1 -- pull push mpull mpush clone checkout status commit
 
-set -A complete_gpg_1 -- --refresh --receive-keys --armor --clearsign --sign --list-key --decrypt --verify --detach-sig
-set -A complete_gpg_2 -- --list-secret-keys --list-keys --fingerprint
+set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 
 set -A complete_pkg_delete -- $PKG_LIST
 set -A complete_pkg_info -- $PKG_LIST
