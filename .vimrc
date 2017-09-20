@@ -279,6 +279,8 @@ noremap J gT
 noremap K gt
 " Close tabs with Ctrl + w
 noremap <leader>w :tabclose<cr>
+" Save all 
+noremap <leader>s :w<cr>
 " Open new tab
 noremap <leader>t :tabnew<cr>
 " Quitall short
