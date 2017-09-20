@@ -14,11 +14,11 @@ general {
 
 order += "ipv6"
 order += "disk /home"
-order += "disk /usr"
-order += "disk /usr/local"
+#order += "disk /usr"
+#order += "disk /usr/local"
 order += "run_watch D"
 order += "ethernet tun0"
-order += "ethernet trunk0"
+order += "ethernet em0"
 order += "wireless iwm0"
 order += "battery all"
 order += "cpu_usage"
@@ -37,15 +37,15 @@ ethernet tun0 {
 
 wireless iwm0 {
         #format_up = "W: (%quality at %essid, %bitrate)"
-        format_up = "W: %essid"
+        format_up = "W: %essid (%ip) [%quality]"
         format_down = ""
 }
 
-ethernet trunk0 {
+ethernet em0 {
         # if you use %speed, i3status requires root privileges
-        format_up = "T: %ip"
+        format_up = "E: %ip"
         #format_up = "E: %ip"
-        format_down = "T:"
+        format_down = ""
 }
 
 battery all {
