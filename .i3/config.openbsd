@@ -267,9 +267,8 @@ set $ia #8f8f8f
 bar {
     status_command i3status
     #status_command ~/.i3/conky.sh
-	#font -misc-fixed-medium-r-normal--10-120-75-75-C-70-iso10646-1
-	#font -misc-fixed-medium-r-normal--10-*-*-*-*-*-iso10646-1
-	font -*-fixed-*-*-*--10-*-*-*-*-*-*-*
+	#font -*-fixed-*-*-*--10-*-*-*-*-*-*-*
+	font -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-*
 	#font pango:DejaVu Sans Mono 8, Awesome 8
 	colors {
 		background $bg
