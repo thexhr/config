@@ -26,6 +26,7 @@ alias tarsnap='tarsnap --humanize-numbers -v'
 #alias openports='netstat -na | grep LISTEN'
 alias !!='fc -s'
 alias ffplay='ffplay -hide_banner'
+alias gps='sync && git pull && sync && sync'
 
 #############################################################################
 # FUNCTIONS
