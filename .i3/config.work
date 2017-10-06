@@ -275,8 +275,7 @@ set	$bg	#000000
 set $ia #8f8f8f
 
 bar {
-    #status_command i3status
-	status_command i3status | ~/Documents/bin/fancytime.py
+    status_command i3status
 	#font -misc-fixed-medium-r-normal--10-120-75-75-C-70-iso10646-1
 	font -misc-fixed-medium-r-normal--10-*-*-*-*-*-iso10646-1
 	colors {
