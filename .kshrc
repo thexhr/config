@@ -26,11 +26,21 @@ alias tarsnap='tarsnap --humanize-numbers -v'
 #alias openports='netstat -na | grep LISTEN'
 alias !!='fc -s'
 alias ffplay='ffplay -hide_banner'
-alias gps='sync && git pull && sync && sync'
+alias gps='sync ; git pull ; sync && sync'
 
 #############################################################################
 # FUNCTIONS
 #############################################################################
+
+getbsdrd() {
+	local _mirror="$(cat /etc/installurl)/snapshots/$(uname -m)"
+
+	ftp -o /tmp/bsd.rd "$_mirror/bsd.rd" > /dev/null
+	ftp -o /tmp/SHA256 "$_mirror/SHA256" > /dev/null
+	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null
+
+	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd.rd
+}
 
 openports() {
 	TMP=$(mktemp '/tmp/openports.XXXXXXXX')
@@ -122,7 +132,7 @@ cds() {
 }
 
 pkg_search() {
-	pkg_info -Q "$1"
+	pkglocate "$1" | cut -d ':' -f 1 | sort -u
 }
 
 mkcd() {
