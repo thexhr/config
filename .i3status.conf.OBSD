@@ -37,7 +37,7 @@ ethernet tun0 {
 
 wireless iwm0 {
         #format_up = "W: (%quality at %essid, %bitrate)"
-        format_up = "W: %essid (%ip) [%quality]"
+        format_up = "W: %essid (%ip,%signal)"
         format_down = ""
 }
 
