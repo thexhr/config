@@ -21,4 +21,4 @@ exec /usr/X11R6/bin/xsetroot -solid black &
 # Set background image
 exec xwallpaper --center ~/Pictures/background &
 # sct - Redshift clone
-exec sct 4400 &
+exec sct 3400 &
