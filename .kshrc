@@ -32,6 +32,15 @@ alias gps='sync ; git pull ; sync && sync'
 # FUNCTIONS
 #############################################################################
 
+updatesrc() {
+	cd /usr/src && {
+		sync && git pull && sync
+	}
+	cd /usr/ports && {
+		sync && git pull && sync
+	}
+}
+
 getbsdrd() {
 	local _mirror="$(cat /etc/installurl)/snapshots/$(uname -m)"
 
