@@ -33,12 +33,14 @@ alias gps='sync ; git pull ; sync && sync'
 #############################################################################
 
 updatesrc() {
+	local _oldpwd=$PWD
 	cd /usr/src && {
 		sync && git pull && sync
 	}
 	cd /usr/ports && {
 		sync && git pull && sync
 	}
+	cd $_oldpwd
 }
 
 getbsdrd() {
