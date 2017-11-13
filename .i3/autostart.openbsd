@@ -22,3 +22,5 @@ exec /usr/X11R6/bin/xsetroot -solid black &
 exec xwallpaper --center ~/Pictures/background &
 # sct - Redshift clone
 exec sct 3400 &
+# xbattmon on the right
+exec xbattmon -p right -t 1 &
