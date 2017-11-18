@@ -47,7 +47,6 @@ getbsdrd() {
 	local _mirror="$(cat /etc/installurl)/snapshots/$(uname -m)"
 
 	ftp -o /tmp/bsd.rd "$_mirror/bsd.rd" > /dev/null
-	ftp -o /tmp/SHA256 "$_mirror/SHA256" > /dev/null
 	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null
 
 	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd.rd
