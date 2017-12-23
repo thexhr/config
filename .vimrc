@@ -118,6 +118,10 @@ set incsearch           " Incremental search.
 " is a capital letter in the search expression).
 set ignorecase
 set smartcase
+
+" Show trailing whitespace
+match ErrorMsg '\s\+$'
+
 " When editing a file, always jump to the last cursor position
 au BufReadPost *
 	\ if ! exists("g:leave_my_cursor_position_alone") |
