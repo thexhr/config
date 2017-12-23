@@ -1,28 +1,23 @@
 # $OpenBSD: unbound.conf,v 1.7 2016/03/30 01:41:25 sthen Exp $
-
 server:
-	interface: 127.0.0.1
-	do-ip6: no
+        interface: 127.0.0.1
+        do-not-query-localhost: no
+        hide-identity: yes
+        hide-version: yes
+		do-ip6: no
 
-	access-control: 0.0.0.0/0 refuse
-	access-control: 127.0.0.0/8 allow
-	access-control: ::0/0 refuse
-	access-control: ::1 allow
-
-	do-not-query-localhost: no
-
-	hide-identity: yes
-	hide-version: yes
-
-	private-address: 10.0.0.0/8
-	private-address: 172.16.0.0/12
-	private-address: 192.168.0.0/16
+		access-control: 0.0.0.0/0 refuse
+		access-control: 127.0.0.0/8 allow
+		access-control: ::0/0 refuse
+		access-control: ::1 allow
 
 remote-control:
-	control-enable: yes
-	control-use-cert: no
-	control-interface: /var/run/unbound.sock
+        control-enable: yes
+        control-use-cert: no
+        control-interface: /var/run/unbound.sock
 
 forward-zone:
-    name: "."
-    forward-addr: 127.0.0.1@5353
+        name: "."
+        forward-addr: 127.0.0.1@40
+        forward-addr: 127.0.0.1@41
+
