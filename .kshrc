@@ -173,6 +173,11 @@ lpf() {
 	doas pfctl -n -f ${_pf} && doas pfctl -F rules && doas pfctl -f ${_pf} 
 }
 
+# Disable history logging for this shell
+nohistory() {
+	HISTFILE=/dev/null
+}
+
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 
 export MARKPATH=$HOME/.marks
@@ -263,5 +268,6 @@ HISTSIZE=5000
 HISTFILE=$HOME/.sh_history
 BLOCKSIZE=M
 PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
+LESSSECURE=1
 PAGER='less -JWAce'
-export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER
+export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE
