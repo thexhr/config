@@ -46,7 +46,7 @@ updatesrc() {
 }
 
 getbsdrd() {
-	local _mirror="$(cat /etc/installurl)/snapshots/$(uname -m)"
+	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
 
 	ftp -o /tmp/bsd.rd "$_mirror/bsd.rd" > /dev/null
 	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null
