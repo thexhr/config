@@ -48,8 +48,8 @@ updatesrc() {
 getbsdrd() {
 	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
 
-	ftp -o /tmp/bsd.rd "$_mirror/bsd.rd" > /dev/null
-	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null
+	ftp -o /tmp/bsd.rd "$_mirror/bsd.rd" > /dev/null || return 1
+	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null || return 1
 
 	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd.rd
 }
