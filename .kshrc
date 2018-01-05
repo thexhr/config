@@ -72,7 +72,7 @@ openports() {
 			else
 					_proc=$(cat $TMP3 | grep ${_port} | awk {'printf "%s\n", $2'} | uniq)
 			fi
-			printf "%10s %20s %10s\n" $_proc $_port $_proto >> $TMP2
+			printf "%20s %30s %10s\n" $_proc $_port $_proto >> $TMP2
 	done < $TMP
 
 	cat $TMP2 | sort
