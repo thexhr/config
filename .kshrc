@@ -219,8 +219,6 @@ if [ -d ~/.password-store ]; then
 fi
 
 [[ -f $HOME/.ssh/config ]] && set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
-set -A complete_make_1 -- install clean repackage reinstall update fetch extract
-set -A complete_git_1 -- pull push mpull mpush clone checkout status commit
 
 set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 
@@ -229,10 +227,6 @@ set -A complete_pkg_info -- $PKG_LIST
 
 set -A complete_rcctl_1 -- disable enable get ls order set
 set -A complete_rcctl_2 -- $(ls /etc/rc.d)
-
-set -A complete_signify_1 -- -C -G -S -V
-set -A complete_signify_2 -- -q -p -x -c -m -t -z
-set -A complete_signify_3 -- -p -x -c -m -t -z
 
 set -A complete_tarsnap_1 -- --list-archives --print-stats --fsck --fsck-prune --nuke --verify-config --version --checkpoint-bytes --configfile --dry-run --exclude --humanize-numbers --keyfile --totals
 
