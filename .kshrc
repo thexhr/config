@@ -55,29 +55,30 @@ getbsdrd() {
 }
 
 openports() {
-	TMP=$(mktemp '/tmp/openports.XXXXXXXX')
-	TMP2=$(mktemp '/tmp/openports.XXXXXXXX')
-	TMP3=$(mktemp '/tmp/openports.XXXXXXXX')
+        local _proto _un1 _un2 _ip _un3 _un4 _netstat _fstat _allout
 
-	netstat -na | grep LISTEN > $TMP
-	fstat | grep internet > $TMP3
+        _netstat=$(mktemp '/tmp/openports.XXXXXXXX')
+        _fstat=$(mktemp '/tmp/openports.XXXXXXXX')
+        _allout=$(mktemp '/tmp/openports.XXXXXXXX')
 
-	while read i; do
-			_proto=$(echo $i | awk {'printf "%s\n", $1'})
-			_port=$(echo $i | awk {'printf "%s\n", $4'})
-			if [[ $_proto = "tcp6" ]]; then
-					_6port=$(echo $_port | cut -d '.' -f 2)
-					_6ip=$(echo $_port | cut -d '.' -f 1)
-					_proc=$(cat $TMP3 | grep "[${_6ip}]:${_6port}" | awk {'printf "%s\n", $2'} | uniq)
-			else
-					_proc=$(cat $TMP3 | grep ${_port} | awk {'printf "%s\n", $2'} | uniq)
-			fi
-			printf "%20s %30s %10s\n" $_proc $_port $_proto >> $TMP2
-	done < $TMP
+        netstat -na | grep LISTEN > $_netstat
+        fstat | grep "internet" > $_fstat
 
-	cat $TMP2 | sort
-	rm $TMP; rm $TMP2; rm $TMP3
+        while read _proto _un1 _un2 _ip _un3 _un4; do
+                _port="${_ip##*.}"
+                _ip="${_ip%.*}"
+                if [ "${_proto}" = "tcp" ]; then
+                        _proc=$(cat $_fstat | grep "${_ip}:${_port}$" | awk {'printf "%s\n", $2'} | uniq)
+                        printf "%-20s %-30s %5s %-10s\n" "$_proc" "$_ip" "$_port" "$_proto" >> ${_allout}
+                elif [ "${_proto}" = "tcp6" ]; then
+                        _proc=$(cat $_fstat | grep "${_port}$" | grep -v "\-\-" | awk {'printf "%s\n", $2'} | uniq)
+                        printf "%-20s %-30s %5s %-10s\n" "$_proc" "$_ip" "$_port" "$_proto" >> ${_allout}
+                fi
+        done < $_netstat
+        printf "%-20s %-30s %5s %-10s\n" "PROCESS" "IP" "PORT" "FAMILY"
+        cat ${_allout} | sort
 
+        rm $_netstat $_fstat $_allout
 }
 
 psearch() {
