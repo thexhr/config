@@ -170,7 +170,7 @@ calc() {
 
 lpf() {
 	local _pf=${1:-/etc/pf.conf}
-	doas pfctl -n -f ${_pf} && doas pfctl -F rules && doas pfctl -f ${_pf} 
+	doas pfctl -n -f ${_pf} && doas pfctl -F rules && doas pfctl -f ${_pf}
 }
 
 # Disable history logging for this shell
@@ -202,7 +202,7 @@ bind -m '^L'=clear'^J'
 # COMPLETIONS
 #############################################################################
 
-# Mostly copied from 
+# Mostly copied from
 # https://github.com/qbit/dotfiles/blob/master/common/dot_ksh_completions
 
 PKG_LIST=$(/bin/ls -1 /var/db/pkg)
