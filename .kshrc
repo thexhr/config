@@ -34,6 +34,31 @@ alias cal='cal -m'
 # FUNCTIONS
 #############################################################################
 
+# Idea from https://pestilenz.org/~ckeen/blog/posts/pushpop.txt.html
+pushd() {
+	# Stack is empty
+	if [[ -z $__DIRSTK  ]]; then
+		export __DIRSTK="$(pwd):"
+	fi
+
+	[[ -z $1 ]] && return 2
+	cd $1 || return 1
+	DIR=$(pwd)
+	export __DIRSTK="$DIR":$__DIRSTK
+	echo $__DIRSTK
+}
+
+popd() {
+	DIR=$(echo $__DIRSTK|cut -f 2 -d:)
+	if [[ $DIR != "" ]]; then
+		cd $DIR
+		export __DIRSTK=$(echo $__DIRSTK|cut -f 2- -d:)
+		echo $__DIRSTK
+	else
+		echo "popd: Directory stack empty."
+	fi
+}
+
 updatesrc() {
 	local _oldpwd=$PWD
 	cd /usr/src && {
@@ -222,6 +247,8 @@ fi
 [[ -f $HOME/.ssh/config ]] && set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
 
 set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
+
+set -A complete_ifconfig_1 -- $(ifconfig | grep ^[a-z] | cut -d: -f1)
 
 set -A complete_pkg_delete -- $PKG_LIST
 set -A complete_pkg_info -- $PKG_LIST
