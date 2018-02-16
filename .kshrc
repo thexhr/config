@@ -2,6 +2,8 @@
 #
 # sh/ksh initialization
 
+[ -f $HOME/.kshrc.private ] && . $HOME/.kshrc.private
+
 #############################################################################
 # ALIASE
 #############################################################################
@@ -19,9 +21,6 @@ alias pwgen='pwgen -s'
 alias mpv='mpv --no-audio-display --audio-channels=stereo'
 alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
-alias netd='ssh theta.xosc.pw'
-alias kappa='ssh kappa.xosc.pw'
-alias phi='ssh phi.xosc.pw'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
@@ -78,6 +77,15 @@ getbsdrd() {
 	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null || return 1
 
 	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd.rd
+}
+
+getbsdvm() {
+	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
+
+	ftp -o /tmp/bsd "$_mirror/bsd" > /dev/null || return 1
+	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null || return 1
+
+	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd && doas mv /tmp/bsd /bsd.vm
 }
 
 openports() {
@@ -287,7 +295,7 @@ fi
 
 LSCOLORS=Dxfxcxdxbxegedabagacad
 TERM=xterm-256color
-HISTSIZE=5000
+HISTSIZE=10000
 HISTFILE=$HOME/.sh_history
 BLOCKSIZE=M
 PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
