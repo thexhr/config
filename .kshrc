@@ -21,6 +21,7 @@ alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
 alias netd='ssh theta.xosc.pw'
 alias kappa='ssh kappa.xosc.pw'
+alias phi='ssh phi.xosc.pw'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
@@ -28,7 +29,7 @@ alias tarsnap='tarsnap --humanize-numbers -v'
 alias !!='fc -s'
 alias ffplay='ffplay -hide_banner'
 alias gps='sync ; git pull ; sync && sync'
-alias cal='cal -m'
+alias cal='cal -m -w'
 
 #############################################################################
 # FUNCTIONS
