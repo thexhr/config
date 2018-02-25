@@ -1,4 +1,4 @@
-# $OpenBSD: dot.profile,v 1.4 2005/02/16 06:56:57 matthieu Exp $
+# $Id: .kshrc,v 1.6 2018/02/25 10:48:49 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -14,6 +14,7 @@ alias j='jump'
 alias p='pushd'
 alias d='popd'
 alias g='git'
+alias c='opencvs'
 alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
 alias sudo='sudo -H'
 alias mc='mc --color'
@@ -24,10 +25,9 @@ alias tty-clock='tty-clock -s -c'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias tarsnap='tarsnap --humanize-numbers -v'
-#alias openports='netstat -na | grep LISTEN'
-alias !!='fc -s'
 alias ffplay='ffplay -hide_banner'
-alias gps='sync ; git pull ; sync && sync'
+alias gps='sync ; git pull ; sync'
+alias cps='sync ; opencvs up ; sync'
 alias cal='cal -m -w'
 
 #############################################################################
@@ -73,8 +73,8 @@ updatesrc() {
 getbsdrd() {
 	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
 
-	ftp -o /tmp/bsd.rd "$_mirror/bsd.rd" > /dev/null || return 1
-	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null || return 1
+	ftp -V -o /tmp/bsd.rd "$_mirror/bsd.rd" || return 1
+	ftp -V -o /tmp/SHA256.sig "$_mirror/SHA256.sig" || return 1
 
 	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd.rd
 }
@@ -82,8 +82,8 @@ getbsdrd() {
 getbsdvm() {
 	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
 
-	ftp -o /tmp/bsd "$_mirror/bsd" > /dev/null || return 1
-	ftp -o /tmp/SHA256.sig "$_mirror/SHA256.sig" > /dev/null || return 1
+	ftp -V -o /tmp/bsd "$_mirror/bsd" || return 1
+	ftp -V -o /tmp/SHA256.sig "$_mirror/SHA256.sig" || return 1
 
 	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd && doas mv /tmp/bsd /bsd.vm
 }
@@ -137,6 +137,16 @@ sshopen() {
                 _key=`echo $i | sed -e 's/\.pub//'`
                 command ssh-add $_key
         done
+}
+
+cvs() {
+	source_ssh_agent
+	/usr/bin/cvs "$@"
+}
+
+opencvs() {
+	source_ssh_agent
+	/usr/bin/opencvs "$@"
 }
 
 ssh() {
