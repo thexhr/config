@@ -57,8 +57,14 @@ function kimportcert()
 function updatecvs()
 {
 	local _cvsdir=/home/matthias/cvs
-	rsync -az --delete rsync://ftp.hostserver.de/cvsync/src $_cvsdir/cvs || exit 1
+	rsync -az --delete rsync://ftp.hostserver.de/cvsync/src $_cvsdir/cvs || return 1
 	cd $_cvsdir/src && cvs -q up -P
+}
+
+function cvspsdiff()
+{
+	[ -z "$1" ] && return
+	cvsps -q -s "$1" -g | cdiff
 }
 
 function sshopen()
