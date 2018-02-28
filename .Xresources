@@ -19,8 +19,11 @@ xterm*jumpScroll:         true
 xterm*multiScroll:        true
 xterm*utf8:               1
 xterm*eightBitInput:      true
-xterm*background:	black
-xterm*foreground:	white
+!xterm*background:	black
+!xterm*foreground:	white
+xterm*background: #100010000000
+xterm*foreground: #7FFFDFFFDFFF
+xterm*cursorColor: white
 xterm*termName:		xterm-256color
 xterm*locale: 		true
 XTerm*visualbell: true
