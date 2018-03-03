@@ -1,4 +1,4 @@
-# $Id: .kshrc,v 1.6 2018/02/25 10:48:49 cvs Exp $
+# $Id: .kshrc,v 1.8 2018/03/01 18:41:13 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -14,7 +14,7 @@ alias j='jump'
 alias p='pushd'
 alias d='popd'
 alias g='git'
-alias c='opencvs'
+alias c='cvs'
 alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
 alias sudo='sudo -H'
 alias mc='mc --color'
@@ -24,7 +24,6 @@ alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
 alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
-alias tarsnap='tarsnap --humanize-numbers -v'
 alias ffplay='ffplay -hide_banner'
 alias gps='sync ; git pull ; sync'
 alias cps='sync ; opencvs up ; sync'
