@@ -1,4 +1,4 @@
-# $Id: .kshrc,v 1.8 2018/03/01 18:41:13 cvs Exp $
+# $Id: .kshrc,v 1.11 2018/03/05 18:31:47 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -136,6 +136,10 @@ sshopen() {
                 _key=`echo $i | sed -e 's/\.pub//'`
                 command ssh-add $_key
         done
+}
+cvspsdiff() {
+	[ -z "$1" ] && return
+	cvsps -q -s "$1" -g | cdiff
 }
 
 cvs() {
