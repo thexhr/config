@@ -14,10 +14,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " My collection of vim plugins
-Plugin 'junegunn/goyo.vim'
 Plugin 'bling/vim-airline'
-Plugin 'rking/ag.vim'
-Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
