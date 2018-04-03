@@ -1,4 +1,4 @@
-# $Id: .kshrc,v 1.11 2018/03/05 18:31:47 cvs Exp $
+# $Id: .kshrc,v 1.17 2018/03/21 14:02:52 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -8,8 +8,20 @@
 # ALIASE
 #############################################################################
 
-alias ls='colorls -G'
-alias ll='colorls -FGlho'
+if [[ $(uname -s) == "Linux" ]]; then
+	alias ls='ls --color=auto -h --file-type -s'
+	alias ll='ls -l'
+	alias rm='rm --preserve-root --one-file-system -I'
+	alias cps='sync ; cvs up ; sync'
+	if [ -x /usr/bin/dircolors ]; then
+		test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	fi
+elif [[ $(uname -s) == "OpenBSD" ]]; then
+	alias ls='colorls -G'
+	alias ll='colorls -FGlho'
+	alias cps='sync ; opencvs up ; sync'
+fi
+
 alias j='jump'
 alias p='pushd'
 alias d='popd'
@@ -26,7 +38,6 @@ alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias ffplay='ffplay -hide_banner'
 alias gps='sync ; git pull ; sync'
-alias cps='sync ; opencvs up ; sync'
 alias cal='cal -m -w'
 
 #############################################################################
@@ -174,7 +185,7 @@ sshfs() {
 
 git() {
 	source_ssh_agent
-	/usr/local/bin/git "$@"
+	command git "$@"
 }
 
 source_ssh_agent() {
@@ -253,7 +264,6 @@ bind -m '^L'=clear'^J'
 # Mostly copied from
 # https://github.com/qbit/dotfiles/blob/master/common/dot_ksh_completions
 
-PKG_LIST=$(/bin/ls -1 /var/db/pkg)
 
 if [ -d ~/.password-store ]; then
 	PASS_LIST=$(
@@ -272,11 +282,16 @@ set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 
 set -A complete_ifconfig_1 -- $(ifconfig | grep ^[a-z] | cut -d: -f1)
 
-set -A complete_pkg_delete -- $PKG_LIST
-set -A complete_pkg_info -- $PKG_LIST
+if [ -d /var/db/pkg ]; then
+	PKG_LIST=$(/bin/ls -1 /var/db/pkg)
+	set -A complete_pkg_delete -- $PKG_LIST
+	set -A complete_pkg_info -- $PKG_LIST
+fi
 
-set -A complete_rcctl_1 -- disable enable get ls order set
-set -A complete_rcctl_2 -- $(ls /etc/rc.d)
+if [ -d /etc/rc.d ]; then
+	set -A complete_rcctl_1 -- disable enable get ls order set
+	set -A complete_rcctl_2 -- $(ls /etc/rc.d)
+fi
 
 set -A complete_tarsnap_1 -- --list-archives --print-stats --fsck --fsck-prune --nuke --verify-config --version --checkpoint-bytes --configfile --dry-run --exclude --humanize-numbers --keyfile --totals
 
