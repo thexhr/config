@@ -166,7 +166,7 @@ set laststatus=2
 
 " set dark background
 set bg=dark
-syntax on					" Enable syntax highlighting
+syntax off					" Enable syntax highlighting
 set spellfile=~/.vim/spellfile.add
 set wildmenu				" Enable wildmenu
 							" Ignore compiled files
@@ -217,7 +217,6 @@ if executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
 
-syntax on
 set ruler
 
 autocmd BufNewFile,BufRead ferm.conf setf ferm
