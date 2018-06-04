@@ -1,4 +1,4 @@
-# $Id: .kshrc,v 1.17 2018/03/21 14:02:52 cvs Exp $
+# $Id: .kshrc,v 1.19 2018/06/01 07:29:31 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -39,6 +39,7 @@ alias open="xdg-open"
 alias ffplay='ffplay -hide_banner'
 alias gps='sync ; git pull ; sync'
 alias cal='cal -m -w'
+alias ed='ed -p*'
 
 #############################################################################
 # FUNCTIONS
@@ -313,8 +314,8 @@ fi
 if [[ $(id -u) -eq 0 ]]; then
 	PS1='\\033[38;5;5m\h\\033[0m$PS1_TRENNER\\033[0;101m\u\\033[0m \\033[38;5;172m\w\\033[0m \$ '
 else
-	PS1="\033[38;5;245m\h\033[0m$PS1_TRENNER\033[38;5;253m\u\033[0m \033[38;5;14m\w\033[0m \$ "
-	#PS1='\\033[38;5;5m\h\\033[0m$PS1_TRENNER\\033[38;5;245m\u\\033[0m \\033[38;5;172m\w\\033[0m [$?] \$ '
+	#PS1="\033[38;5;245m\h\033[0m$PS1_TRENNER\033[38;5;253m\u\033[0m \033[38;5;14m\w\033[0m \$ "
+	PS1='\h$PS1_TRENNER\u \w \$ '
 fi
 
 #############################################################################
