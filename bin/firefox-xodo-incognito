@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec /usr/local/bin/xodo firefox --as firefoxi --no-remote $@
+exec /usr/local/bin/xodo ffdbus --as firefoxi --no-remote $@
