@@ -1,9 +1,7 @@
+# Restore i3 Window Layout
+exec ~/.i3/ws/restore-ws &
 # start scratchpad
 exec st -n scratchpad &
-# mutt terminal
-exec tmux new-session -s mutt -d 'exec st -t mutt -n mutt -e ksh -l -c "neomutt"' &
-# Start dunst
-#exec tmux new-session -s dunst -d 'exec /usr/local/bin/dunst' &
 # No beep
 exec /usr/X11R6/bin/xset -b &
 # Enable screen powermanagement

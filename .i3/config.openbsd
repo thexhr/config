@@ -159,6 +159,8 @@ bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
 bindsym $mod+Ctrl+c exec --no-startup-id ~/Documents/bin/firefox-incognito
 bindsym $mod+Ctrl+f exec --no-startup-id ~/Documents/bin/firefox-default
 
+bindsym $mod+Shift+x exec --no-startup-id ~/Documents/bin/restore-windows
+
 ##############################################################################
 # Resize window mode
 ##############################################################################

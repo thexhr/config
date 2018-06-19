@@ -1,0 +1,22 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "none",
+    "current_border_width": 0,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 388,
+       "width": 644,
+       "x": 0,
+       "y": 0
+    },
+    "name": "neomutt",
+    "percent": 1,
+    "swallows": [
+       {
+       "instance": "^neomutt$",
+       "title": "^neomutt$"
+       }
+    ],
+    "type": "con"
+}
+

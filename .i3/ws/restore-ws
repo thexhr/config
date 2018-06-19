@@ -1,0 +1,5 @@
+i3-msg 'workspace 1; append_layout ~/.i3/ws/i3-layout-ws-1'
+i3-msg 'workspace 2; append_layout ~/.i3/ws/i3-layout-ws-2'
+i3-msg 'workspace 3; append_layout ~/.i3/ws/i3-layout-ws-3'
+i3-msg 'workspace 4; append_layout ~/.i3/ws/i3-layout-ws-4'
+i3-msg 'workspace 5; append_layout ~/.i3/ws/i3-layout-ws-5'
