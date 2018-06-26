@@ -1,4 +1,4 @@
-# $Id: .kshrc,v 1.19 2018/06/01 07:29:31 cvs Exp $
+# $Id: .kshrc,v 1.23 2018/06/26 09:31:18 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -16,10 +16,17 @@ if [[ $(uname -s) == "Linux" ]]; then
 	if [ -x /usr/bin/dircolors ]; then
 		test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 	fi
+	bind -m '^L'=clear'^J'
 elif [[ $(uname -s) == "OpenBSD" ]]; then
 	alias ls='colorls -G'
 	alias ll='colorls -FGlho'
 	alias cps='sync ; opencvs up ; sync'
+
+	# Started working with 6.4
+	bind '^L'=clear-screen
+
+	# Enable SIGINFO with ^T
+	stty status ^T
 fi
 
 alias j='jump'
@@ -40,6 +47,7 @@ alias ffplay='ffplay -hide_banner'
 alias gps='sync ; git pull ; sync'
 alias cal='cal -m -w'
 alias ed='ed -p*'
+alias qw='pkill -9 xidle'
 
 #############################################################################
 # FUNCTIONS
@@ -254,10 +262,6 @@ marks() {
     ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 
-
-# Bind CTRL+l to clear screen
-bind -m '^L'=clear'^J'
-
 #############################################################################
 # COMPLETIONS
 #############################################################################
@@ -312,9 +316,8 @@ else
 fi
 
 if [[ $(id -u) -eq 0 ]]; then
-	PS1='\\033[38;5;5m\h\\033[0m$PS1_TRENNER\\033[0;101m\u\\033[0m \\033[38;5;172m\w\\033[0m \$ '
+	PS1='\h$PS1_TRENNER\\033[0;101m\u\\033[0m \w \$ '
 else
-	#PS1="\033[38;5;245m\h\033[0m$PS1_TRENNER\033[38;5;253m\u\033[0m \033[38;5;14m\w\033[0m \$ "
 	PS1='\h$PS1_TRENNER\u \w \$ '
 fi
 
