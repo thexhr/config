@@ -72,7 +72,7 @@ run_watch D {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M "
+        format = "%Y-%m-%d %H:%M (CW %V) "
 }
 
 disk "/usr" {
