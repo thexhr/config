@@ -22,3 +22,11 @@ exec xwallpaper --center ~/Pictures/background &
 exec sct 3400 &
 # xbattmon on the right
 exec xbattmon -p right -t 1 &
+# Speed up trackpint
+exec xinput set-prop 8 'Device Accel Constant Deceleration' 0.7 &
+# Enabled trackpoint scrolling
+exec xinput set-prop 8 'WS Pointer Wheel Emulation' 1 &
+# Scroll with middle button and trackpad
+exec xinput set-prop 8 'WS Pointer Wheel Emulation Button' 2 &
+# Natural scrolling with Trackpoint
+exec xinput set-button-map 8 1 2 3 5 4 7 6 &
