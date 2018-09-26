@@ -163,7 +163,10 @@ set laststatus=2
 
 " set dark background
 set bg=dark
-syntax off					" Enable syntax highlighting
+syntax on " Enable syntax highlighting
+let sh_minlines=100
+let sh_maxlines=600
+set synmaxcol=300
 set spellfile=~/.vim/spellfile.add
 set wildmenu				" Enable wildmenu
 							" Ignore compiled files
@@ -232,9 +235,8 @@ set number
 " Show relative number
 set relativenumber
 
-" Underline the current line
+" Show the current line
 set cursorline
-hi CursorLine cterm=underline ctermbg=NONE
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
