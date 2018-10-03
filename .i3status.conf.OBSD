@@ -9,7 +9,7 @@
 general {
         colors = true
         interval = 5
-        output_format="i3bar"
+        output_format="lemonbar"
 }
 
 order += "ipv6"
@@ -28,30 +28,30 @@ order += "tztime local"
 
 ipv6 {
 	format_up = "%ip"
-	format_down = ""
+	format_down = "No IPv6"
 }
 
 ethernet tun0 {
         format_up = "V: %ip"
-        format_down = ""
+        format_down = "V"
 }
 
 ethernet trunk0 {
         format_up = "T: %ip"
-        format_down = ""
+        format_down = "T"
 }
 
 wireless iwm0 {
         #format_up = "W: (%quality at %essid, %bitrate)"
         format_up = "W: %essid,%signal"
-        format_down = ""
+        format_down = "W"
 }
 
 ethernet em0 {
         # if you use %speed, i3status requires root privileges
         format_up = "E: up"
         #format_up = "E: %ip"
-        format_down = ""
+        format_down = "E:"
 }
 
 battery all {
@@ -67,7 +67,7 @@ battery all {
 }
 
 run_watch D {
-        pidfile = "/var/db/dhclient.leases.*" 
+        pidfile = "/var/db/dhclient.leases.*"
 	format_down = ""
 }
 
