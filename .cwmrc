@@ -1,4 +1,4 @@
-# $Id: .cwmrc,v 1.10 2018/10/03 16:27:18 cvs Exp $
+# $Id: .cwmrc,v 1.12 2018/10/03 17:36:19 cvs Exp $
 #
 # Mostly copied from https://hub.darcs.net/raichoo/rcfiles/browse/cwm/cwmrc
 # Thanks!
@@ -121,7 +121,7 @@ bind-key 4M-h window-hmaximize
 
 # Move or resize window with mouse
 bind-mouse 4-1 window-move
-bind-mouse 4-2 window-resize
+bind-mouse 4-3 window-resize
 
 # Launch window search menu
 bind-mouse 4M-1 menu-window
@@ -150,6 +150,9 @@ fontname "fixed-10"
 # Ignore, and do not warp to, windows with these names
 ignore bar
 ignore lemonbar
+
+# Define a gap for status bar at bottom
+gap 0 15 0 0
 
 #############################################################################
 # COLORS
