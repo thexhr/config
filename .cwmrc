@@ -1,0 +1,186 @@
+# $Id: .cwmrc,v 1.8 2018/10/03 08:25:30 cvs Exp $
+#
+# Mostly copied from https://hub.darcs.net/raichoo/rcfiles/browse/cwm/cwmrc
+# Thanks!
+
+#############################################################################
+# KEY BINDINGS
+#############################################################################
+
+# disable default mappings
+unbind-key all
+unbind-mouse all
+
+# configuration
+bind-key 4-Return terminal
+bind-key 4S-Return "st -f terminus-10"
+bind-key 4S-q window-delete
+bind-key 4-l window-menu-label
+bind-key 4-m window-maximize
+bind-key 4S-l lock
+bind-key 4S-e quit
+bind-key 4-d menu-cmd
+bind-key 4S-s menu-ssh
+bind-key 4S-d menu-exec #dmenu_run
+bind-key 4-f window-fullscreen
+bind-key 4S-f window-freeze
+bind-key 4-p window-hide
+bind-key 4-0 group-toggle-all
+
+# Show only group n, hiding other groups
+bind-key 4-1 group-only-1
+bind-key 4-2 group-only-2
+bind-key 4-3 group-only-3
+bind-key 4-4 group-only-4
+bind-key 4-5 group-only-5
+bind-key 4-6 group-only-6
+bind-key 4-7 group-only-7
+bind-key 4-8 group-only-8
+bind-key 4-9 group-only-9
+
+# Hide current window from display and move to n
+bind-key 4S-1 window-movetogroup-1
+bind-key 4S-2 window-movetogroup-2
+bind-key 4S-3 window-movetogroup-3
+bind-key 4S-4 window-movetogroup-4
+bind-key 4S-5 window-movetogroup-5
+bind-key 4S-6 window-movetogroup-6
+bind-key 4S-7 window-movetogroup-7
+bind-key 4S-8 window-movetogroup-8
+bind-key 4S-9 window-movetogroup-9
+
+# Toggle visibility of group n
+bind-key 4M-1 group-toggle-1
+bind-key 4M-2 group-toggle-2
+bind-key 4M-3 group-toggle-3
+bind-key 4M-4 group-toggle-4
+bind-key 4M-5 group-toggle-5
+bind-key 4M-6 group-toggle-6
+bind-key 4M-7 group-toggle-7
+bind-key 4M-8 group-toggle-8
+bind-key 4M-9 group-toggle-9
+
+# Toggle group membership of current window.
+bind-key 4-g window-group
+
+# Stick current window to all groups
+bind-key 4S-g window-stick
+
+# Raise, lower current window
+bind-key 4-Up window-raise
+bind-key 4-Down window-lower
+
+# Forward and reverse cycle through windows
+bind-key M-Tab window-cycle
+bind-key M-q window-rcycle
+
+# Forward and reverse cycle through groups
+bind-key 4-Tab group-cycle
+bind-key 4-q group-rcycle
+
+# Forward and reverse cycle through windows in current group
+bind-key 4-bracketright window-cycle-ingroup
+bind-key 4-bracketleft window-cycle-ingroup
+
+# Launch window search menu.
+bind-key 4-s menu-window
+
+# Current window is placed at the top/left of the screen,
+# maximized horizontally/vertically and resized to
+# half of the vertical/horizontal screen space.
+bind-key 4S-h window-htile
+bind-key 4S-v window-vtile
+
+# Resize window in the respective direction
+bind-key 4S-k window-resize-up-big
+bind-key 4S-j window-resize-down-big
+bind-key 4S-h window-resize-left-big
+bind-key 4S-l window-resize-right-big
+
+# Move window in the respective direction
+bind-key 4-k window-move-up-big
+bind-key 4-j window-move-down-big
+bind-key 4-h window-move-left-big
+bind-key 4-l window-move-right-big
+
+# Snap window to screen edge
+bind-key 4M-k window-snap-up
+bind-key 4M-j window-snap-down
+bind-key 4M-h window-snap-left
+bind-key 4M-l window-snap-right
+
+# Restart CWM
+bind-key 4S-r restart
+
+# Lock screen with xlock
+bind-key CM-l lock
+
+#  Vertically/Horizontally maximize current window
+bind-key 4M-v window-vmaximize
+bind-key 4M-h window-hmaximize
+
+# Move or resize window with mouse
+bind-mouse 4-1 window-move
+bind-mouse 4-2 window-resize
+
+# Launch window search menu
+bind-mouse 4M-1 menu-window
+
+#############################################################################
+# SETTINGS
+#############################################################################
+
+# Minimum distance to snap-to adjacent edge, in pixels.
+snapdist 10
+
+# Toggle sticky group mode.  The default behavior for new windows
+# is to not assign any group.  By enabling sticky group mode,
+# cwm(1) will assign new windows to the currently selected group.
+sticky yes
+
+# Move windows by the following amount
+moveamount 10
+
+# Set the window border width
+borderwidth 1
+
+# Default font
+fontname "terminus-12"
+
+# Ignore, and do not warp to, windows with these names
+ignore dmenu
+ignore dzen2
+
+#############################################################################
+# COLORS
+#############################################################################
+
+color activeborder "#3a4a54"
+color inactiveborder "#2f343a"
+color menubg "#282C34"
+color menufg "#66D9EF"
+color font "#FFFFFF"
+color selfont "#282C34"
+color urgencyborder "#e32929"
+color ungroupborder "#EF5939"
+color groupborder "#B8E673"
+
+#############################################################################
+# COMMANDS
+#############################################################################
+
+command lock "xlock -mode blank -timeout 5 -icongeometry 10x10 -info ' '" \
+	"-bg black -fg darkgray -validate ' ' -username ' ' -password ' '" \
+	"-font fixed +description -planfont fixed"
+command term "st -f terminus-12 -e tmux"
+command mutt "st -f terminus-12 -c neomutt -e neomutt"
+command log "st -f terminus-12 -c log -e tail -f /var/log/messages /var/log/daemon"
+command ff-default "/usr/local/bin/xodo ffdbus --as firefox"
+command ff-incognito "/usr/local/bin/xodo ffdbus --as firefoxi --no-remote"
+command iridium-in "/usr/local/bin/xodo iridium --as iridium --enable-unveil --site-per-process --incognito --disk-cache-dir=/tmp/"
+
+autogroup 0 "monitor"
+autogroup 1 "log"
+autogroup 1 "neomutt"
+autogroup 3 "firefox"
+
