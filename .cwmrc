@@ -1,4 +1,4 @@
-# $Id: .cwmrc,v 1.12 2018/10/03 17:36:19 cvs Exp $
+# $Id: .cwmrc,v 1.16 2018/10/05 18:08:32 cvs Exp $
 #
 # Mostly copied from https://hub.darcs.net/raichoo/rcfiles/browse/cwm/cwmrc
 # Thanks!
@@ -24,7 +24,7 @@ bind-key 4S-s menu-ssh
 bind-key 4S-d menu-exec #dmenu_run
 bind-key 4-f window-fullscreen
 bind-key 4S-f window-freeze
-bind-key 4-h window-hide
+bind-key 4-p window-hide
 bind-key 4-0 group-toggle-all
 
 # Show only group n, hiding other groups
@@ -92,16 +92,16 @@ bind-key 4S-h window-htile
 bind-key 4S-v window-vtile
 
 # Resize window in the respective direction
-bind-key 4S-k window-resize-up-big
-bind-key 4S-j window-resize-down-big
-bind-key 4S-h window-resize-left-big
-bind-key 4S-l window-resize-right-big
+bind-key 4-k window-resize-up-big
+bind-key 4-j window-resize-down-big
+bind-key 4-h window-resize-left-big
+bind-key 4-l window-resize-right-big
 
 # Move window in the respective direction
-bind-key 4-k window-move-up-big
-bind-key 4-j window-move-down-big
-bind-key 4-h window-move-left-big
-bind-key 4-l window-move-right-big
+bind-key 4S-k window-move-up-big
+bind-key 4S-j window-move-down-big
+bind-key 4S-h window-move-left-big
+bind-key 4S-l window-move-right-big
 
 # Snap window to screen edge
 bind-key 4M-k window-snap-up
@@ -139,7 +139,7 @@ snapdist 10
 sticky yes
 
 # Move windows by the following amount
-moveamount 10
+moveamount 5
 
 # Set the window border width
 borderwidth 1
@@ -150,6 +150,7 @@ fontname "fixed-10"
 # Ignore, and do not warp to, windows with these names
 ignore bar
 ignore lemonbar
+ignore log
 
 # Define a gap for status bar at bottom
 gap 0 15 0 0
@@ -159,7 +160,7 @@ gap 0 15 0 0
 #############################################################################
 
 #color activeborder "#3a4a54"
-color activeborder "#2f343a"
+color activeborder "#700707"
 color inactiveborder "#000000"
 color menubg "#282C34"
 color menufg "#66D9EF"
