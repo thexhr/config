@@ -1,4 +1,4 @@
-# $Id: .cwmrc,v 1.16 2018/10/05 18:08:32 cvs Exp $
+# $Id: .cwmrc,v 1.18 2018/10/06 17:17:22 cvs Exp $
 #
 # Mostly copied from https://hub.darcs.net/raichoo/rcfiles/browse/cwm/cwmrc
 # Thanks!
@@ -9,7 +9,6 @@
 
 # disable default mappings
 unbind-key all
-unbind-mouse all
 
 # configuration
 bind-key 4-Return terminal
@@ -116,8 +115,8 @@ bind-key 4S-r restart
 bind-key CM-l lock
 
 #  Vertically/Horizontally maximize current window
-bind-key 4M-v window-vmaximize
-bind-key 4M-h window-hmaximize
+bind-key 4-semicolon window-vmaximize
+bind-key 4-dead_acute window-hmaximize
 
 # Move or resize window with mouse
 bind-mouse 4-1 window-move
@@ -159,8 +158,9 @@ gap 0 15 0 0
 # COLORS
 #############################################################################
 
-#color activeborder "#3a4a54"
-color activeborder "#700707"
+#color activeborder "#700707"
+#color activeborder "#E4F263"
+color activeborder "#00C8FF"
 color inactiveborder "#000000"
 color menubg "#282C34"
 color menufg "#66D9EF"
@@ -178,8 +178,8 @@ command lock "xlock -mode blank -timeout 5 -icongeometry 10x10 -info ' '" \
 	"-bg black -fg darkgray -validate ' ' -username ' ' -password ' '" \
 	"-font fixed +description -planfont fixed"
 command term "st -f fixed-10 -g 100x35+100+100 -e tmux"
-command mutt "st -f fixed-10 -c neomutt -g 125x50+100+100 -e neomutt"
-command log "st -f fixed-10 -g 130x30+990+660 -c log -e tail -f /var/log/messages /var/log/daemon"
+command mutt "st -t neomutt -f fixed-10 -c neomutt -g 125x50+100+100 -e neomutt"
+command log "st -t log -f fixed-10 -g 130x30+990+660 -c log -e tail -f /var/log/messages /var/log/daemon"
 command ff-default "/usr/local/bin/xodo ffdbus --as firefox"
 command ff-incognito "/usr/local/bin/xodo ffdbus --as firefoxi --no-remote"
 command iridium-in "/usr/local/bin/xodo iridium --as iridium --enable-unveil --site-per-process --incognito --disk-cache-dir=/tmp/"
