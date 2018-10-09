@@ -1,4 +1,4 @@
-# $Id: .cwmrc,v 1.18 2018/10/06 17:17:22 cvs Exp $
+# $Id: .cwmrc,v 1.6 2018/10/09 10:05:14 cvs Exp $
 #
 # Mostly copied from https://hub.darcs.net/raichoo/rcfiles/browse/cwm/cwmrc
 # Thanks!
@@ -12,14 +12,14 @@ unbind-key all
 
 # configuration
 bind-key 4-Return terminal
-bind-key 4S-Return "st -f fixed-10 -g 100x35+100+100"
+bind-key 4S-Return "st -g 100x35 -e tmux"
 bind-key 4S-q window-delete
-bind-key 4-l window-menu-label
+bind-key 4-i window-menu-label
 bind-key 4-m window-maximize
 bind-key 4S-l lock
 bind-key 4S-e quit
 bind-key 4-d menu-cmd
-bind-key 4S-s menu-ssh
+bind-key 4-o menu-ssh
 bind-key 4S-d menu-exec #dmenu_run
 bind-key 4-f window-fullscreen
 bind-key 4S-f window-freeze
@@ -87,8 +87,8 @@ bind-key 4-s menu-window
 # Current window is placed at the top/left of the screen,
 # maximized horizontally/vertically and resized to
 # half of the vertical/horizontal screen space.
-bind-key 4S-h window-htile
-bind-key 4S-v window-vtile
+bind-key 4S-bracketright window-htile
+bind-key 4S-bracketleft window-vtile
 
 # Resize window in the respective direction
 bind-key 4-k window-resize-up-big
@@ -159,13 +159,13 @@ gap 0 15 0 0
 #############################################################################
 
 #color activeborder "#700707"
-#color activeborder "#E4F263"
-color activeborder "#00C8FF"
+color activeborder "#838485"
+#color activeborder "#00C8FF"
 color inactiveborder "#000000"
 color menubg "#282C34"
-color menufg "#66D9EF"
+color menufg "#e32929"
 color font "#FFFFFF"
-color selfont "#282C34"
+color selfont "#000000"
 color urgencyborder "#e32929"
 color ungroupborder "#EF5939"
 color groupborder "#B8E673"
@@ -177,12 +177,15 @@ color groupborder "#B8E673"
 command lock "xlock -mode blank -timeout 5 -icongeometry 10x10 -info ' '" \
 	"-bg black -fg darkgray -validate ' ' -username ' ' -password ' '" \
 	"-font fixed +description -planfont fixed"
-command term "st -f fixed-10 -g 100x35+100+100 -e tmux"
-command mutt "st -t neomutt -f fixed-10 -c neomutt -g 125x50+100+100 -e neomutt"
-command log "st -t log -f fixed-10 -g 130x30+990+660 -c log -e tail -f /var/log/messages /var/log/daemon"
+command term "st -g 100x35"
+command mutt "st -t neomutt -c neomutt -g 125x50+100+100 -e neomutt"
+command log "st -t log -g 130x16+990+660 -c log -e tail -f /var/log/messages /var/log/daemon"
 command ff-default "/usr/local/bin/xodo ffdbus --as firefox"
 command ff-incognito "/usr/local/bin/xodo ffdbus --as firefoxi --no-remote"
 command iridium-in "/usr/local/bin/xodo iridium --as iridium --enable-unveil --site-per-process --incognito --disk-cache-dir=/tmp/"
+command torbrowser "/usr/local/bin/xodo tor-browser --as torbrowser"
+command cmus "st -t cmus -c cmus -e cmus"
+command clock "xclock -hd red -hl white"
 
 autogroup 0 "monitor"
 autogroup 1 "log"
