@@ -1,4 +1,4 @@
-# $Id: .kshrc,v 1.23 2018/06/26 09:31:18 cvs Exp $
+# $Id: .kshrc,v 1.8 2019/02/28 18:55:06 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -22,7 +22,6 @@ elif [[ $(uname -s) == "OpenBSD" ]]; then
 	alias ll='colorls -FGlho'
 	alias cps='sync ; opencvs up ; sync'
 
-	# Started working with 6.4
 	bind '^L'=clear-screen
 
 	# Enable SIGINFO with ^T
@@ -30,15 +29,13 @@ elif [[ $(uname -s) == "OpenBSD" ]]; then
 fi
 
 alias j='jump'
-alias p='pushd'
-alias d='popd'
 alias g='git'
 alias c='cvs'
 alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
 alias sudo='sudo -H'
 alias mc='mc --color'
 alias pwgen='pwgen -s'
-alias mpv='mpv --no-audio-display --audio-channels=stereo'
+alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry 50%+200+200'
 alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
 alias chromium='chromium --disk-cache-dir=/tmp'
@@ -48,10 +45,16 @@ alias gps='sync ; git pull ; sync'
 alias cal='cal -m -w'
 alias ed='ed -p*'
 alias qw='pkill -9 xidle'
+alias cc='cc -fdiagnostics-color'
 
 #############################################################################
 # FUNCTIONS
 #############################################################################
+
+# Neat trick from https://github.com/lf94/peek-for-tmux/blob/master/README.md
+p() {
+	tmux split-window -p 33 more $@ || exit;
+}
 
 # Idea from https://pestilenz.org/~ckeen/blog/posts/pushpop.txt.html
 pushd() {
@@ -87,6 +90,53 @@ updatesrc() {
 		sync && git pull && sync
 	}
 	cd $_oldpwd
+}
+
+updatepkgs() {
+	local _option=""
+	if [[ -n $(sysctl -n kern.version | cut -d ' ' -f2 | grep beta) ]]; then
+		_option="-D snap"
+	fi
+
+	sync && doas pkg_add -ui $_option
+	sync
+}
+
+prepare_upgrade() {
+	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
+	if [ "$1" = "snap" ]; then
+		local REL=$(uname -r | sed 's/\.//')
+		REL=$(($REL+1))
+	else
+		local REL=$(uname -r | sed 's/\.//')
+	fi
+
+	if [ ! -d ${HOME}/64 ]; then
+		mkdir ${HOME}/64
+	fi
+
+	cd ${HOME}/64 || return 1
+
+	# Fetch files not in SHA256.sig which cannot be verfied
+	ftp -V "${_mirror}/SHA256.sig"
+	ftp -V "${_mirror}/SHA256"
+	ftp -V "${_mirror}/index.txt"
+
+	local SETS="INSTALL.amd64 bsd bsd.mp comp${REL}.tgz man${REL}.tgz
+		game${REL}.tgz xbase${REL}.tgz xshare${REL}.tgz xserv${REL}.tgz
+		xfont${REL}.tgz base${REL}.tgz"
+	for f in $SETS; do
+		ftp -V "${_mirror}/${f}"
+		signify -C -q -x SHA256.sig ${f} || return 23
+	done
+
+	sync
+
+	if [ "$1" = "snap" ]; then
+		doas upobsd -u $HOME/Documents/cvs/config.private/sigma/upgrade-sigma-disk
+	else
+		doas upobsd -u $HOME/Documents/cvs/config.private/sigma/upgrade-sigma-disk
+	fi
 }
 
 getbsdrd() {
@@ -316,9 +366,9 @@ else
 fi
 
 if [[ $(id -u) -eq 0 ]]; then
-	PS1='\h$PS1_TRENNER\\033[0;101m\u\\033[0m \w \$ '
+	PS1='\h$PS1_TRENNER\\033[0;101m\u\\033[0m \w [$?] \$ '
 else
-	PS1='\h$PS1_TRENNER\u \w \$ '
+	PS1='\h$PS1_TRENNER\u \w [$?] \$ '
 fi
 
 #############################################################################
@@ -326,11 +376,10 @@ fi
 #############################################################################
 
 LSCOLORS=Dxfxcxdxbxegedabagacad
-TERM=xterm-256color
 HISTSIZE=10000
 HISTFILE=$HOME/.sh_history
 BLOCKSIZE=M
 PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
 LESSSECURE=1
 PAGER='less -JWAce'
-export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE
+export PATH HOME LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE
