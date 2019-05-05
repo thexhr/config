@@ -1,4 +1,4 @@
-# $Id: .kshrc,v 1.8 2019/02/28 18:55:06 cvs Exp $
+# $Id: .kshrc,v 1.9 2019/04/21 08:51:01 cvs Exp $
 #
 # sh/ksh initialization
 
@@ -51,6 +51,11 @@ alias cc='cc -fdiagnostics-color'
 # FUNCTIONS
 #############################################################################
 
+# Following three functions from "shell FU by Isaac Levy" presentation
+yell() { echo "$0: $*" >&2; }
+die()  { yell "$*"; exit 111; }
+try()  { "$@" || die "cannot $*"; }
+
 # Neat trick from https://github.com/lf94/peek-for-tmux/blob/master/README.md
 p() {
 	tmux split-window -p 33 more $@ || exit;
@@ -84,10 +89,10 @@ popd() {
 updatesrc() {
 	local _oldpwd=$PWD
 	cd /usr/src && {
-		sync && git pull && sync
+		sync && git pull ; sync
 	}
 	cd /usr/ports && {
-		sync && git pull && sync
+		sync && git pull ; sync
 	}
 	cd $_oldpwd
 }
@@ -194,11 +199,11 @@ psearch() {
 }
 
 sshopen() {
-        local AGPATH="$HOME/.ssh/$(hostname).agent"
+        #local AGPATH="$HOME/.ssh/$(hostname).agent"
 
-        [[ -f ${AGPATH} ]] && rm -f $AGPATH
-        command ssh-agent -t 345600 | grep -v echo > $AGPATH
-        . $AGPATH
+        #[[ -f ${AGPATH} ]] && rm -f $AGPATH
+        #command ssh-agent -t 345600 | grep -v echo > $AGPATH
+        #. $AGPATH
 
         # Find all public keys...
         for i in $(find $HOME/.ssh/ -maxdepth 1 -name "*.pub"); do
@@ -248,6 +253,10 @@ git() {
 }
 
 source_ssh_agent() {
+	# Do nothing
+}
+
+source_ssh_agent_old() {
 	local AGPATH="$HOME/.ssh/$(hostname).agent"
 
 	[[ -f $AGPATH ]] && . $AGPATH
