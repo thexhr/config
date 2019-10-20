@@ -137,8 +137,7 @@ nnoremap <F2> :set invpaste paste?<CR>
 imap <F2> <C-O><F2>
 set pastetoggle=<F2>
 
-"colorscheme vombatidae
-colorscheme srcery
+colorscheme vombatidae
 " set color scheme for GUI mode
 if has("gui_running")
 		set guifont=Monospace\ 10  " use this font
