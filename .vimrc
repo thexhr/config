@@ -7,18 +7,6 @@
 " Vundle config
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" My collection of vim plugins
-Plugin 'bling/vim-airline'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:netrw_banner = 0		" disable banner
@@ -163,7 +151,7 @@ set laststatus=2
 
 " set dark background
 set bg=dark
-syntax on " Enable syntax highlighting
+syntax off " Enable syntax highlighting
 let sh_minlines=100
 let sh_maxlines=600
 set synmaxcol=300
