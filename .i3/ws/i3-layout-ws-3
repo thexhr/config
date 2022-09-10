@@ -4,18 +4,19 @@
     "current_border_width": 0,
     "floating": "auto_off",
     "geometry": {
-       "height": 962,
-       "width": 1000,
+       "height": 525,
+       "width": 1918,
        "x": 0,
        "y": 0
     },
-    "name": "Mozilla Firefox",
+    "name": ".* — Mozilla Firefox",
     "percent": 1,
     "swallows": [
        {
-       "class": "^Firefox$",
-       "instance": "^Navigator$",
-       "title": "^Mozilla\\ Firefox$"
+        "class": "^firefox-default$",
+        "instance": "^Navigator$",
+        "title": ".*Mozilla\\ Firefox$",
+        "window_role": "^browser$"
        }
     ],
     "type": "con"
