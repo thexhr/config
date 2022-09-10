@@ -1,0 +1,33 @@
+" $Id: .nexrc,v 1.2 2019/02/09 18:23:56 cvs Exp $
+
+" Autoindent on
+set ai
+" Display the current editor mode and a modified flag.
+set showmode
+" Note mathing braces
+set showmatch
+" Show ruler
+set ruler
+" Set the autoindent and shift command indentation width.
+set shiftwidth=4
+set tabstop=4
+" Secure mode
+set secure
+" Display error messages
+set verbose
+" Left right scrolling
+set leftright
+" Use extended REs
+set extended
+" Make RE case insensitive
+set iclower
+" Flash instead of bell
+set flash
+" Make search incremental
+set searchincr
+" Show line numbers
+set nu
+" 78-N chars wrapmargin
+set wm=2
+
+set report=1
