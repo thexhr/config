@@ -1,5 +1,7 @@
+# $Id: .cvsrc,v 1.1.1.1 2018/10/07 09:13:41 cvs Exp $
 cvs -q
 diff -uNp
 update -Pd
 checkout -P
 rdiff -u
+status -v
