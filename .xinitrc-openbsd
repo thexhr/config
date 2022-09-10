@@ -1,14 +1,85 @@
+# $Id: .xinitrc,v 1.5 2020/12/22 08:19:27 cvs Exp $
 
 # Suck in global xinitrc files
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
+	for f in /etc/X11/xinit/xinitrc.d/*; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
 fi
 
-# merge Xresources file
-[[ -e ~/.Xresources ]] && xrdb -merge ~/.Xresources &
+[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
+
+## add some nice fonts
+for m in /usr/local/share/fonts/*; do
+	if [ -d "$m" ]; then
+		xset +fp "$m"
+	fi
+done
+
+HIGHDPI=0
+xrandr | grep -w connected | grep 2880 > /dev/null
+if [ $? -eq 0 ]; then
+	# We have a high DPI monitor connected
+	HIGHDPI=1
+fi
+
+export HIGHDPI
+
+
+# HiDPI case
+if [ $HIGHDPI -eq 1 ]; then
+	_xpath=~/.Xresources
+	if [[ -h ${_xpath} ]]; then
+		rm ${_xpath}
+		ln -s ~/Documents/git/config/.Xresources-high ${_xpath}
+		xrdb -merge ${_xpath}
+	elif [[ ! -e ${_xpath} ]]; then
+		ln -s ~/Documents/git/config/.Xresources-high ${_xpath}
+		xrdb -merge ${_xpath}
+	fi
+
+	_cpath=~/.i3/config
+	if [[ -h ${_cpath} ]]; then
+		rm ${_cpath}
+		ln -s ${_cpath}.high ${_cpath}
+	fi
+
+	_apath=~/.i3/autostart
+	if [[ -h ${_apath} ]]; then
+		rm ${_apath}
+		ln -s ${_apath}.high ${_apath}
+	fi
+else
+	_xpath=~/.Xresources
+	if [[ -h ${_xpath} ]]; then
+		rm ${_xpath}
+		ln -s ~/Documents/git/config/.Xresources ${_xpath}
+		xrdb -merge ${_xpath}
+	elif [[ ! -e ${_xpath} ]]; then
+		ln -s ~/Documents/git/config/.Xresources ${_xpath}
+		xrdb -merge ${_xpath}
+	fi
+
+	_cpath=~/.i3/config
+	if [[ -h ${_cpath} ]]; then
+		rm ${_cpath}
+		ln -s ${_cpath}.low ${_cpath}
+	fi
+
+	_apath=~/.i3/autostart
+	if [[ -h ${_apath} ]]; then
+		rm ${_apath}
+		ln -s ${_apath}.low ${_apath}
+	fi
+fi
+
+# Link host specific i3status config
+_apath=~/.i3status.conf
+if [[ -h ${_apath} ]]; then
+	rm ${_apath}
+	ln -s ~/Documents/git/config/.i3status.conf.$(hostname -s) ${_apath}
+fi
 
 [[ -e ~/.profile ]] && . ~/.profile &
 
@@ -17,4 +88,6 @@ export GTK_IM_MODULE=xim # without this GTK apps will use their own compose key 
 export LESSCHARSET=utf-8 # not strictly necessary, but for when you view Unicode files in less
 export ENV=$HOME/.kshrc
 
-exec i3
+#exec dbus-launch --exit-with-session ssh-agent /home/xhr/Documents/bin/cwm-session
+exec dbus-launch --exit-with-session ssh-agent i3
+#exec /usr/local/bin/dbus-launch --exit-with-session /usr/local/bin/i3
