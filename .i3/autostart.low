@@ -1,0 +1,54 @@
+
+# Suck in Xmodmap
+xmodmap ~/.Xmodmap 2> /dev/null
+# Set black background
+xsetroot -solid Grey15
+# Set background image
+#exec xwallpaper --zoom ~/Pictures/background &
+# No beep
+xset -b
+# Enable screen powermanagement
+xset +dpms
+# No suspend, no standy, turn off screen after 120 secs
+xset dpms 0 0 120
+# Set keyboard layout
+setxkbmap -layout us -variant altgr-intl -model nodeadkeys
+# sct - Redshift clone
+sct 3400
+# xbattmon on the bottom
+exec xbattmon -p bottom -t 2 &
+# Start xautolock
+exec xidle -program "/usr/X11R6/bin/xlock +description -bg Gray19" &
+# Speed up trackpint
+xinput set-prop 8 'Device Accel Constant Deceleration' 0.4
+# Enabled trackpoint scrolling
+xinput set-prop 8 'WS Pointer Wheel Emulation' 1
+# Scroll with middle button and trackpad
+xinput set-prop 8 'WS Pointer Wheel Emulation Button' 2
+# Natural scrolling with Trackpoint
+xinput set-button-map 8 1 2 3 5 4 7 6
+# dunst
+exec dunst &
+# Start batterymoitor
+exec ~/Documents/bin/batterymonitor &
+# Start mute headphone script
+#exec ~/Documents/bin/mute_headphone &
+# Start wifiwatcher script
+#exec ~/Documents/bin/wifiwatcher &
+# Color profile
+exec xcalib ~/Documents/$(hostname -s).icm &
+# Sync X clipboard buffers
+exec autocutsel -fork &
+
+exec i3-msg "workspace 1; append_layout /home/xhr/.i3/ws/i3-layout-ws-1" &
+exec i3-msg "workspace 2; append_layout /home/xhr/.i3/ws/i3-layout-ws-2" &
+exec i3-msg "workspace 3; append_layout /home/xhr/.i3/ws/i3-layout-ws-3" &
+
+exec xterm -e tmux &
+exec firefox &
+exec xterm -n log -T log -e tail -f /var/log/messages &
+exec xterm -n top -T top -e top -I -1 &
+exec xterm -n profanity -T profanity -e profanity &
+exec xterm -n mutt -T mutt -e screen -S 23 mutt &
+exec xterm -T scratchpad &
+
