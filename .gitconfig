@@ -1,6 +1,11 @@
 [user]
 	name = the xhr
 	email = xhr@giessen.ccc.de
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHB+4++HOuOW9SVonVAxNMRcwnpGknQgYNKFWUFaGmtb
+
+[sendemail]
+	smtpserver = 127.0.0.1
+	smtpserverport = 25
 
 [merge]
 	summary=true
@@ -11,6 +16,9 @@
 	branch = auto
 	interactive = auto
 	ui = auto
+
+[commit]
+	verbose = true
 
 [alias]
 	ci = commit
@@ -25,6 +33,8 @@
 [diff]
 	color = auto
 	rename = copy
+	compaction-heuristic = true
+	noprefix = true
 
 [pager]
 	color = true
@@ -33,3 +43,7 @@
 	color = auto
 [push]
 	default = simple
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/xhr/.ssh/allowed_signers
