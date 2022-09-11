@@ -14,6 +14,62 @@ let g:netrw_liststyle = 3 	" tree view
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+call plug#begin('~/.vim/plugged')
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ajh17/vimcompletesme'
+Plug 'itchyny/lightline.vim'
+Plug 'Townk/vim-autoclose'
+
+" Initialize plugin system
+call plug#end()
+
+if executable('clangd')
+    augroup lsp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd']},
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    \ })
+        autocmd FileType c setlocal omnifunc=lsp#complete
+        autocmd FileType cpp setlocal omnifunc=lsp#complete
+        autocmd FileType objc setlocal omnifunc=lsp#complete
+        autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    augroup end
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+	nnoremap <Esc>d :LspDefinition<cr>
+	nnoremap <Esc>h :LspHover<cr>
+	nnoremap <Esc>rn :LspRename<cr>
+	nnoremap <Esc>rf :LspReference<cr>
+	nnoremap <Esc>ne :LspNextError<cr>
+	nnoremap <Esc>e :LspNextError<cr>
+	nnoremap <Esc>pe :LspPreviousError<cr>
+	nnoremap <Esc>ne :LspNextError<cr>    " refer to doc to add more commands
+endfunction
+
 " Bash like keys for the command line
 cnoremap <C-A>		<Home>
 cnoremap <C-E>		<End>
