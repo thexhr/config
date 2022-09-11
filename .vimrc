@@ -207,7 +207,7 @@ set laststatus=2
 
 " set dark background
 set bg=dark
-syntax off " Enable syntax highlighting
+syntax on " Enable syntax highlighting
 let sh_minlines=100
 let sh_maxlines=600
 set synmaxcol=300
