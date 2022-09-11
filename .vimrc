@@ -234,6 +234,8 @@ map <Esc>a gqap
 " Ganzes Dokument auf textwidth runterbrechen
 map <Esc>q gggqG
 
+map <leader>j gJ
+
 hi SpellBad term=reverse ctermfg=white ctermbg=darkred guifg=#ffffff guibg=#7f0000 gui=underline
 "hi SpellCap guifg=#ffffff guibg=#7f007f
 "hi SpellRare guifg=#ffffff guibg=#00007f gui=underline
