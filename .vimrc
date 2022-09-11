@@ -195,8 +195,8 @@ endif
 nmap <silent> <C-n> :noh<CR>
 
 " rebuild cscope and tags db in current directory
-map <C-X> <ESC>:!exctags -R<CR><CR>:!cscope -kcbqR<CR><CR>
-map <C-Y> <ESC>:!exctags -R<CR><CR>
+map <C-X> <ESC>:!ectags -R<CR><CR>:!cscope -kcbqR<CR><CR>
+map <C-Y> <ESC>:!ectags -R<CR><CR>
 map <C-A> <ESC>:cs add ./cscope.out
 
 set showmatch				" Show matching brackets
