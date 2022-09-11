@@ -1,0 +1,4 @@
+!clear control
+!add control = Control_L
+keycode 113 = Super_L
+add Mod5 = Print
