@@ -1,33 +1,6 @@
-# no copyright message
+term xterm-256color
 startup_message off
-# scrollback buffer in lines
-defscrollback 1000
-# Autodetach session on hangup instead of terminating screen completely
-autodetach on
-
-# Enable/disable multiuser mode. Standard screen operation is singleuser.
-# In multiuser mode the commands acladd, aclchg, aclgrp and acldel can be used
-# to enable (and disable) other user accessing this screen session.
-# Requires suid-root.
-multiuser off
-
-# Define the time that all windows monitored for silence should 
-# wait before displaying a message. Default 30 seconds.
-silencewait 15			# default: 30
-
-# Default shell
-shell -$SHELL
-
-shelltitle 'csh'
-
-# Start n screens automatically
-screen -t src	1
-screen -t root	2 
-screen -t vim	0
-
-termcap  vt100* ms:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC
-terminfo vt100* ms:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC
-
-caption always " "			# clear line before hardstatus
-hardstatus alwayslastline "%{= kb}%=%{w}%?%-Lw%?%{y}(%{c}%n*%f %t%?(%u)%?%{y})%{w}%?%+Lw%?%?%= %{b}%{m} %l %{B}"
-
+hardstatus off
+hardstatus alwayslastline
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
+hardstatus string '%{= gk} [%S] %w %= "%H.xosc.net" %c %d-%m-%y'
