@@ -172,30 +172,17 @@ getbsdvm() {
 }
 
 openports() {
-        local _proto _un1 _un2 _ip _un3 _un4 _netstat _fstat _allout
+	local _filter1='internet'
+	local _filter2='icmp|raw|<-|->'
 
-        _netstat=$(mktemp '/tmp/openports.XXXXXXXX')
-        _fstat=$(mktemp '/tmp/openports.XXXXXXXX')
-        _allout=$(mktemp '/tmp/openports.XXXXXXXX')
+	if [ "$1" = "-4" ]; then
+		_filter2="internet6|${_filter2}"
+	elif [ "$1" = "-6" ]; then
+		_filter1="internet6"
+	fi
 
-        netstat -na | grep LISTEN > $_netstat
-        fstat | grep "internet" > $_fstat
-
-        while read _proto _un1 _un2 _ip _un3 _un4; do
-                _port="${_ip##*.}"
-                _ip="${_ip%.*}"
-                if [ "${_proto}" = "tcp" ]; then
-                        _proc=$(cat $_fstat | grep "${_ip}:${_port}$" | awk {'printf "%s\n", $2'} | uniq)
-                        printf "%-20s %-30s %5s %-10s\n" "$_proc" "$_ip" "$_port" "$_proto" >> ${_allout}
-                elif [ "${_proto}" = "tcp6" ]; then
-                        _proc=$(cat $_fstat | grep "${_port}$" | grep -v "\-\-" | awk {'printf "%s\n", $2'} | uniq)
-                        printf "%-20s %-30s %5s %-10s\n" "$_proc" "$_ip" "$_port" "$_proto" >> ${_allout}
-                fi
-        done < $_netstat
-        printf "%-20s %-30s %5s %-10s\n" "PROCESS" "IP" "PORT" "FAMILY"
-        cat ${_allout} | sort
-
-        rm $_netstat $_fstat $_allout
+	printf "%-10s %-13s %-5s %-5s %-9s %s\n" "USER" "COMMAND" "PID" "PROTO" "FAMILY" "LOCAL ADDRESS"
+	fstat | grep "${_filter1}" | grep -vE "${_filter2}" | awk '{ printf("%-10s %-13s %5s %-5s %-9s %s\n", $1,$2,$3,$7,$5,$9); }' | sort -u
 }
 
 psearch() {
