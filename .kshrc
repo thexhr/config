@@ -51,6 +51,10 @@ alias cal='cal -m -w'
 alias ed='ed -p*'
 alias qw='pkill -9 xidle'
 alias cc='cc -fdiagnostics-color'
+alias weather='curl http://wttr.in/Karlsruhe'
+alias dig='dig +noall +answer +comment'
+alias gdb='gdb -q'
+alias egdb='egdb -q'
 
 #############################################################################
 # FUNCTIONS
