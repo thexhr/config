@@ -1,12 +1,17 @@
-# $Id: .kshrc,v 1.9 2019/04/21 08:51:01 cvs Exp $
-#
 # sh/ksh initialization
 
 [ -f $HOME/.kshrc.private ] && . $HOME/.kshrc.private
 
 #############################################################################
-# ALIASE
+# ALIASES
 #############################################################################
+
+if command -v colorls > /dev/null ; then
+    LS='colorls'
+    export CLICOLOR=1
+else
+    LS='ls'
+fi
 
 if [[ $(uname -s) == "Linux" ]]; then
 	alias ls='ls --color=auto -h --file-type -s'
