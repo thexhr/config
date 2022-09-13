@@ -1,0 +1,459 @@
+###############################################################################
+# mutt rc - xhr () giessen . ccc . de
+#
+# This file is a collection from various muttrc samples files.  Credits belong
+# to the original authors ;)
+###############################################################################
+
+###############################################################################
+# Paths
+###############################################################################
+
+set folder           = ~/.mail/posteo-isync	 # mailbox location
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set tmpdir           = ~/.mutt/temp          # where to keep temp files
+
+###############################################################################
+# Config Includes
+###############################################################################
+
+# S/MIME settings
+source ~/.mutt/smime.rc
+
+# Path to GPG include
+source /usr/local/share/examples/mutt/gpg.rc
+
+# Suck in alias file
+source ~/.mutt/alias
+
+# Color settings
+source ~/.mutt/color
+
+# SMTP server settings
+source ~/.mutt/smtp.rc
+
+# IMAP settings
+source ~/.mutt/imap.rc
+
+# Mailbox settings
+source ~/.mutt/mailbox.rc
+
+###############################################################################
+# Encryption settings
+###############################################################################
+
+# GPG passphrase timeout
+set pgp_timeout=600
+
+# use gpg-agent
+set pgp_use_gpg_agent = yes
+
+# Always encrypt GPG MINE and not inline
+unset pgp_autoinline
+
+# Reply to GPG msgs inline
+unset pgp_replyinline
+
+# Automatically send GPG as MIME if inline fails
+set pgp_mime_auto
+
+# Do not Automatically encrypt messages with GPG
+set pgp_autoencrypt = no
+
+#set pgp_encrypt_only_command
+#set pgp_encrypt_sign_command
+
+set autocrypt = yes
+
+###############################################################################
+# Charset settings
+###############################################################################
+
+charset-hook us-ascii ISO-8859-15
+set send_charset="us-ascii:iso-8859-15:utf-8"
+
+charset-hook x-unknown    ISO-8859-1
+
+alternative_order application/pgp text/plain text/html text/enriched
+
+###############################################################################
+# KEY Bindings
+###############################################################################
+
+macro pager "\e1"    "<enter-command>set pager_index_lines=1<enter>"      # Change PIL size
+macro pager "\e2"    "<enter-command>set pager_index_lines=2<enter>"      # Change PIL size
+macro pager "\e3"    "<enter-command>set pager_index_lines=3<enter>"      # Change PIL size
+macro pager "\e4"    "<enter-command>set pager_index_lines=4<enter>"      # Change PIL size
+macro pager "\e5"    "<enter-command>set pager_index_lines=5<enter>"      # Change PIL size
+macro pager "\e6"    "<enter-command>set pager_index_lines=6<enter>"      # Change PIL size
+macro pager "\e7"    "<enter-command>set pager_index_lines=7<enter>"      # Change PIL size
+macro pager "\e8"    "<enter-command>set pager_index_lines=8<enter>"      # Change PIL size
+macro pager "\e9"    "<enter-command>set pager_index_lines=9<enter>"      # Change PIL size
+macro pager "\e0"    "<enter-command>set pager_index_lines=0<enter>"      # Change PIL size
+
+# save a decoded copy in ~/Desktop/
+macro index P   "<pipe-message>cat > ~/Desktop/"    "save message as"
+
+macro index B   "<limit>~b "                "search message bodies"
+macro index I   "<change-folder>!<enter>"   "go to Inbox"
+
+# Show all folders
+macro index,pager y <change-folder>?<toggle-mailboxes>
+
+bind index,pager B background-compose-menu
+
+# Unmap arrow keys in index and pager
+bind index <up>		noop
+bind index <down>	noop
+bind index <right>	noop
+bind index <left>	noop
+bind pager <up>		noop
+bind pager <down>	noop
+bind pager <right>	noop
+bind pager <left>	noop
+
+# Sync mailbox
+bind index $    sync-mailbox
+
+# Sync email
+macro index O "<shell-escape>sync && mbsync -qa && sync&<enter>"           "run mbsync to sync all mail"
+
+# Collapse thread
+bind index <space>  collapse-thread
+
+# Recall postponed messages when pressing p in index mode
+bind index p recall-message
+
+# Bind a key to limit: all
+macro index a "<limit>all\n" "show all messages (undo limit)"
+
+# Go to the previous match when searching for stuf
+bind index N search-opposite
+bind pager N search-opposite
+
+# Compose e-mail to sender
+bind index,pager   @    compose-to-sender
+
+# Save messages/attachments to the following directory
+macro attach s <save-message><bol>~/
+
+color body      brightmagenta   default "^\\[---\=[|].*"
+
+# grepm search
+macro index "\eg"	"!$HOME/bin/grepm -q -m -R -h -Y 'X-Status:' 'F' $HOME/mail/" "Run grepm search"
+macro index "\eG"	"<change-folder-readonly>=grepm-search\n" "Switch to grepm search results"
+
+# Mairix search
+macro index,pager "\es" "<change-folder-readonly>/home/xhr/.mail/Search<enter><shell-escape>mairix " "search via mairix"
+
+# In compose mode, select one of my From: lines (see .alias)
+macro compose v "<edit-from>^Uidentity_<Tab>" "Select from"
+
+# use <tab> to complete email addresses instead of Ctrl-t add this:
+#bind editor <Tab> complete-query
+
+# Mark all new messages as read
+macro index \en "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<clear-flag>*" "Catchup all new messages"
+# Mark all duplicates first and delete them afterwards
+macro index \ed "<tag-pattern>~=<enter>d" "Delete duplicate messages"
+
+# Define extra keys (useless with crippled terminals and OSX)
+bind browser 	Home 	first-entry
+bind browser 	End 	last-entry
+bind generic 	End	last-entry
+bind pager 	End	bottom
+bind pager	Home	top
+
+# Go to last entry
+bind index G	last-entry
+bind browser G	last-entry
+
+# Open mailbox with next unread mail
+bind index \eo	next-unread-mailbox
+# Previous page
+bind pager	b previous-page
+
+# Collapse ALL threads
+#bind pager	"*"	collapse-all
+bind index	"*"	collapse-all
+
+# Esc-f: muttng forget the GnuPG-passphrase
+bind index \ef forget-passphrase
+bind pager \ef forget-passphrase
+
+# Show the Manual
+macro pager \e1 '!open /usr/local/share/doc/mutt/manual.html' 'Call Manual'
+macro index \e1 '!open /usr/local/share/doc/mutt/manual.html' 'Call Manual'
+
+# Reload the muttng rc
+macro index <f5> ":source ~/.muttrc" "Reload the muttrc"
+macro pager <f5> ":source ~/.muttrc\n" "Reload the muttrc"
+macro browser <f5> ":source ~/.muttrc\n" "Reload the muttrc"
+
+# Esc-a show only NEW messages in the folder/newsgroup
+#macro index \en "l~N\n" 'Show NEW messages'
+
+# Press p instead of y to postpone message
+#bind compose p postpone-message
+
+macro index \Co sort-mailbox
+
+# toggle urlview
+macro	index	\Cn	":set pipe_decode\n|urlview\n:unset pipe_decode\n" \
+			"call urlview to extract URLs out of a message"
+
+macro	pager	\Cn	":set pipe_decode\n|urlview\n:unset pipe_decode\n" \
+			"call urlview to extract URLs out of a message"
+
+###############################################################################
+# SETTINGS
+###############################################################################
+
+# When unset, Mutt will notify you if any new mail  exists
+# in the mailbox, regardless of whether you have visited it recently.
+unset mail_check_recent
+
+# Fix b0rken AW:AW:AW:Re lines automatically
+set reply_regexp="^((re([\[^-][0-9]+\]?)*|aw|AW|Aw|antwort|antw|wg|Re|RE):[ \t]*)+"
+
+# Reply with the email address in the From: line (NOTE: overwritten by a my_hdr line)
+set reverse_name
+# If unset, always set the real name in From: field to $realname
+unset reverse_realname
+
+set connect_timeout=30  # Causes Mutt to timeout a network connection (for IMAP
+			# or POP) after this many seconds if the connection
+			# is not able to be established.
+set timeout=3    # mutt 'presses' (like) a key for you (while you're idle)
+                  # each x sec to trigger the thing below
+set mail_check=0 # This variable configures how often (in seconds) mutt
+			# should look for new mail.
+
+#set dotlock_program = "/usr/local/bin/mutt_dotlock"
+
+# If set, all operations (eg delete) apply to all tagged messages
+set auto_tag
+
+# Stuff quotes
+#set stuff_quoted
+
+# Set aspell to new german
+set ispell = "/usr/bin/aspell -d de -e -c"
+#set ispell = "/usr/local/bin/ispell -d ndeutsch"
+
+# Dont sleep during folder changes
+set sleep_time = 0
+
+# Make trees narrower
+unset narrow_tree
+
+# When viewing next page of info, retain last line of previous page
+set pager_context = 1
+
+# ask before quitting
+set quit=ask-yes
+
+# mail's stay on "New" status
+set nomark_old
+
+# don't go to the next message after paging thru the current
+set pager_stop
+
+# I don't want to mark wrapped lines with +'es.
+set nomarkers
+
+# I want to wrap by words, not by a character at the screen edge
+set smart_wrap
+
+# Maximum line length, no matter how big the terminal width is
+#set max_line_length = 80
+
+# smileys
+set smileys="(>From )|(>?[;:][-^]?[][)(><}{|/DP][)}]*)"
+
+# Set envelope sender after From:
+set use_envelope_from
+
+# Speed up opening mail boxes for read
+set read_inc=0
+
+# ... and write
+set write_inc=0
+
+# Split screen
+set pager_index_lines=15
+
+# Dont wait for sendmail finish mail delivery
+set sendmail_wait="-1"
+
+# If an external pager is closed, muttng goes right away in the index.
+set noprompt_after
+
+# External shell for |, !, ...
+set shell="/bin/sh"
+
+# A regular expression used in the internal-pager to determine quoted 
+# sections of text in the mailbody.
+set quote_regexp="^( {0,4}[>|:%]| {0,4}[a-z0-9]+[>|]+)+"
+
+ignore *
+
+# Locale for date settings
+set abort_nosubject=no
+set abort_unmodified=no
+
+# Allow 8 Bits
+set allow_8bit
+
+# The attribution
+set attribution="* %n wrote:"
+
+# Skip the initial send menu
+set autoedit=yes
+
+# Dont Shut up
+#unset beep
+set beep=yes
+set beep_new=yes
+
+set confirmcreate
+
+# Save a copy from all outgoing mails in record
+set copy
+
+# Really delete mails marked for deletion
+set delete
+
+# Edit headers in VIM
+set edit_headers
+
+# My favourite editor
+set editor='/usr/local/share/examples/mutt/bgedit-screen-tmux.sh vim'
+
+# Enable BG editing
+set background_edit=yes
+
+# dont ask for to, cc, ...
+set fast_reply
+
+# no need to reply to myself, is there?
+unset reply_self
+
+# My mail folder
+#set folder=~/mail
+
+# I want to know when mail ends
+set tilde
+
+# Include msg when replying
+set include
+
+# Indent quotes wit this String
+set indent_string="> "
+
+set status_chars  = "UCRA"# *%A"
+
+# formats
+set status_format = "─── [ %f (%r) ] ─── [ Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l? ] ─── [ %s ] ───%>─%?p?( %p postponed )?───"
+set date_format     = "[%d/%m/%y] [%I:%M%P]"
+set alias_format    = "%4n %t %r"
+set folder_format = "%2C [%N] %-60.60f %-8.8u %d %s"
+set compose_format="─── Compose [ Approx. msg size: %l Atts: %a ] %>───"
+set pager_format="───[ %C/%m ] [ %-20.20n ] %s %>───(%P)───"
+
+#set index_format="%4.4C [%Z] [%[!%d.%m.%y %H:%M]] %-28.28F [%4.4c] │ %s"
+set index_format="%4.4C [%Z] [%14@date@] %-24.24F [%4.4c] │ %s"
+
+# Adaptive date formatting
+index-format-hook  date  "~d<1d"	"%[today %H:%M]"
+index-format-hook  date  "~d<1w"	"%[%a %H:%M]"
+index-format-hook  date  "~A"		"%[%d.%m.%y %H:%M]"
+
+# Dont forward MIME
+set mime_forward=ask-no
+
+# Do not ask to move read messages to mbox folder
+unset move
+
+# Remove my email address if I do a group reply
+unset metoo
+
+# Signature
+set sig_dashes
+
+# Set the User-Agent-Header.
+set user_agent
+
+# Do not wait for a keypress, if I use a commando like "pipe-message".
+unset wait_key
+
+# Use an -> (set) or a BAR (unset)
+unset arrow_cursor
+
+# Sort after ...
+set sort=threads
+
+# Browser sorting
+set sort_browser = alpha
+
+# Save attachments when sending
+set fcc_attach
+
+unset confirmappend
+unset read_only
+
+###############################################################################
+# MISC
+###############################################################################
+
+# Complain about missing attachment
+set abort_noattach = ask-yes
+set abort_noattach_regexp = "\\<(attach|attachment|anbei|anhängen|angehängt|anhang|anhänge|hängt an)\\>"
+
+# Set my print command
+#set print_command="muttprint"
+set print_command="a2ps -1 -q -o ~/mail/printmail.ps --portrait --columns=1 --pretty-print=mail --highlight-level=heavy && open ~/mail/printmail.ps"
+
+# Do not ask for confirmation
+set print="yes"
+
+# Pass all headers to muttprint. DO NOT enable this if you do not use muttprint!
+#macro index p "<display-toggle-weed> <print-message> <display-toggle-weed> <exit>" 
+#macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>" 
+
+# If printing multiple mails at once, print them piece by pice
+set print_split 
+
+# Mailbox type
+set mbox_type = Maildir
+
+# Auto view the following types
+auto_view text/html
+auto_view application/zip
+auto_view application/x-gzip
+auto_view application/x-gunzip
+auto_view application/pgp-signature
+auto_view application/pgp
+auto_view application/octet-stream
+auto_view application/x-zip-compressed
+auto_view application/x-arj-compressed
+auto_view application/x-tar-gz
+auto_view application/x-sh
+auto_view text/x-vcard
+auto_view text/x-diff
+auto_view image/tiff
+
+# I want to see the following headers
+unhdr_order *
+hdr_order Old-Return-Path date x-mailer x-editor x-agent user-agent mailer from to cc subject
+unignore date from: to cc subject x-mailer x-editor x-agent user-agent mailer Old-Return-Path
+
+# Handle GPG inline messages
+message-hook '!~g !~G ~b "^-----BEGIN PGP (SIGNED )?MESSAGE"' 'exec check-traditional-pgp
+
+# vim: ft=muttrc
+# EOF
