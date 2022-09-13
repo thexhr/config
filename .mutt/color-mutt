@@ -1,0 +1,71 @@
+# color scheme 2017
+#color index			color245	default	"~A"
+color index			color248	default	"~A"
+
+color index	color196	default	~F	# Flagged
+color index	color196	default	~F	# Flagged
+
+#color index	brightcyan	default	~P	# From me
+
+color index	color214	default	~N	# New
+color index	color214	default	~N	# New
+
+color index	color190	default	~T	# Tagged
+color index	color190	default	~T	# Tagged
+
+color index 	color33		default ~D	# Deleted
+color index	color33		default	~D	# Deleted
+
+
+color status		cyan	default
+#color status 		color196	default	'Flag:[0-9]+'
+#color status 		color214	default	'New:[0-9]+'
+#color status 		color33		default	'Del:[0-9]+'
+#color status 		color190	default	'Tag:[0-9]+'
+#color status 		color118	default	' =[0-9a-zA-Z\/\.\-]+ '
+
+color normal		color253	default # mod
+#color indicator    	color230     	color238
+color indicator    	brightcyan	default
+#color tree			color124	color233			# arrow in threads
+color tree			color124		default	# arrow in threads
+color signature    	color102      	default
+color message      	color253      	default
+color attachment	color117      	default
+color error        	color30      	default
+color tilde        	color130     	default
+
+color search       color100     default
+color markers      color138     default
+
+color quoted        cyan		default             # quoted text
+color quoted1       color66      default
+color quoted2       color32      default
+color quoted3       color30      default
+color quoted4       color99      default
+color quoted5       color36      default
+color quoted6       color114     default
+color quoted7       color109     default
+color quoted8       color41      default
+color quoted9       color138     default
+
+# color body          cyan  default  "((ftp|http|https)://|news:)[^ >)\"\t]+"
+# color body          cyan  default  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+# color body          red   default  "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+# color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[\n]"
+# color body          red   default  "(^| )\\*[-a-z0-9*]+\\*[,.?]?[ \n]"
+# color body          green default  "(^| )_[-a-z0-9_]+_[,.?]?[ \n]"
+
+#mono body	reverse		'^(subject):.*'
+#color body	brightwhite magenta	'^(subject):.*'
+#mono body	reverse		'[[:alpha:]][[:alnum:]-]+:'
+#color body	black cyan	'[[:alpha:]][[:alnum:]-]+:'
+
+color hdrdefault 	color30    	color233 
+color header		color245	default	'^date:'
+color header		color214	default	'^(to|cc|bcc):'
+color header		white		default	'^from:'
+color header		cyan		default	'^subject:'
+color header    	color245	default	'^(user-agent|x-mailer):'
+color header		color245	default	'^reply-to:'
+
