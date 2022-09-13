@@ -1,0 +1,6 @@
+configuration {
+ show: "combi";
+ font: "Fixed 14";
+ combi-modi: "drun,ssh";
+}
+@theme "Arc-Dark"
