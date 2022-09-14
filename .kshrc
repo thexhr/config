@@ -267,66 +267,28 @@ sshopen() {
                 command ssh-add $_key
         done
 }
+
 cvspsdiff() {
 	[ -z "$1" ] && return
 	cvsps -q -s "$1" -g | cdiff
 }
 
-cvs() {
-	source_ssh_agent
-	/usr/bin/cvs "$@"
-}
-
-opencvs() {
-	source_ssh_agent
-	/usr/bin/opencvs "$@"
-}
-
-ssh() {
-	source_ssh_agent
-	/usr/bin/ssh "$@"
-}
-
-ssh-add() {
-	source_ssh_agent
-	/usr/bin/ssh-add "$@"
-}
-
-scp() {
-	source_ssh_agent
-	/usr/bin/scp "$@"
-}
-
-sshfs() {
-	source_ssh_agent
-	/usr/bin/sshfs "$@"
-}
-
-git() {
-	source_ssh_agent
-	command git "$@"
-}
-
-source_ssh_agent() {
-	# Do nothing
-}
-
-source_ssh_agent_old() {
-	local AGPATH="$HOME/.ssh/$(hostname).agent"
-
-	[[ -f $AGPATH ]] && . $AGPATH
-}
-
 psg() {
-	ps aux | grep "$@"
+	ps aux | grep "$@" | grep -v "grep $@"
+}
+
+qrcodegen() {
+	# Idea from https://dataswamp.org/~solene/2021-03-25-computer-to-phone-text.html
+	xclip -o | qrencode -o - > ~/qrclip.png && sxiv -g 600x600 ~/qrclip.png && rm ~/qrclip.png
 }
 
 cds() {
-	cd "$1" && ls -la
+	test -z "$1" && cd $HOME && ls -lh && return
+	cd "$1" && ls -lah
 }
 
 pkg_search() {
-	pkglocate "$1" | cut -d ':' -f 1 | sort -u
+	pkglocate "$1" | cut -d ':' -f 1 | sort -u | fzf
 }
 
 mkcd() {
