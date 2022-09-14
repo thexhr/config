@@ -23,24 +23,48 @@ if [[ $(uname -s) == "Linux" ]]; then
 	fi
 	bind -m '^L'=clear'^J'
 elif [[ $(uname -s) == "OpenBSD" ]]; then
-	alias ls='colorls -G'
-	alias ll='colorls -FGlho'
+	alias ls='$LS'
+	alias ll='$LS -Flho'
 	alias cps='sync ; opencvs up ; sync'
 
 	bind '^L'=clear-screen
 
 	# Enable SIGINFO with ^T
 	stty status ^T
+elif [[ $(uname -s) == "Darwin" ]]; then
+	alias ls='$LS -G'
+	alias ll='$LS -GFlho'
+
+	bind '^L'=clear-screen
+	export MACPATH=/opt/homebrew/bin/:/opt/homebrew/sbin
+elif [[ $(uname -s) == "FreeBSD" ]]; then
+	alias ls='$LS -G'
+	alias ll='$LS -GFlho'
+
+	bind '^L'=clear-screen
+
+	# Enable SIGINFO with ^T
+	stty status ^T
+
+	export TERM=xterm-256color
 fi
 
+if [[ $HIGHDPI -eq 1 ]]; then
+	alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry=50%+1430+300 --sub-scale=0.5'
+else
+	alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry=50%+950+200 --sub-scale=0.7'
+fi
+
+alias .2='cds ../..'
+alias .3='cds ../../..'
+alias .4='cds ../../../..'
 alias j='jump'
-alias g='git'
 alias c='cvs'
 alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
 alias sudo='sudo -H'
 alias mc='mc --color'
 alias pwgen='pwgen -s'
-alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry 50%+200+200'
+alias pkg_add='pkg_add -V'
 alias dt='dtoggle'
 alias tty-clock='tty-clock -s -c'
 alias chromium='chromium --disk-cache-dir=/tmp'
