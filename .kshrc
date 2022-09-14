@@ -89,92 +89,126 @@ yell() { echo "$0: $*" >&2; }
 die()  { yell "$*"; exit 111; }
 try()  { "$@" || die "cannot $*"; }
 
+# Quick n dirty hack to generate a RSA key and a X509 cert
+gennewcert() {
+	[[ -z "$1" ]] && echo "No alias provided" && return
+
+	openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
+		-keyout $1.key.pem -new -subj /CN=$1 -out $1.cert.pem \
+		-addext subjectAltName=DNS:$1
+}
+
 # Neat trick from https://github.com/lf94/peek-for-tmux/blob/master/README.md
 p() {
 	tmux split-window -p 33 more $@ || exit;
 }
 
-# Idea from https://pestilenz.org/~ckeen/blog/posts/pushpop.txt.html
-pushd() {
-	# Stack is empty
-	if [[ -z $__DIRSTK  ]]; then
-		export __DIRSTK="$(pwd):"
+g() {
+	if [ -d ".got" ]; then
+		got "$@"
+	else
+		git "$@"
 	fi
-
-	[[ -z $1 ]] && return 2
-	cd $1 || return 1
-	DIR=$(pwd)
-	export __DIRSTK="$DIR":$__DIRSTK
-	echo $__DIRSTK
 }
 
-popd() {
-	DIR=$(echo $__DIRSTK|cut -f 2 -d:)
-	if [[ $DIR != "" ]]; then
-		cd $DIR
-		export __DIRSTK=$(echo $__DIRSTK|cut -f 2- -d:)
-		echo $__DIRSTK
-	else
-		echo "popd: Directory stack empty."
+enablevideoconf() {
+	echo "[+] Enable video recording"
+	doas sysctl kern.video.record=1
+	echo "[+] Enable audio recording"
+	doas sysctl kern.audio.record=1
+	echo "[+] Set mic to mic2"
+	doas mixerctl record.adc-0:1_source=mic2
+	echo "[+] Adjust input level"
+	sndioctl input.level=0.25
+}
+
+disablevideoconf() {
+	echo "[+] Disable video recording"
+	doas sysctl kern.video.record=0
+	echo "[+] Disable audio recording"
+	doas sysctl kern.audio.record=0
+}
+
+# Connect to a vmm(4) VM which uses the "local interface" networking scheme
+vmmssh() {
+	if [ -z "$1" ]; then
+		echo "Usage: vmmssh <name of the vmm VM> [user]"
+		echo ""
+		echo "If no user name is provided, root is used"
+		return
 	fi
+
+	local _user="${2:-root}"
+	local _id=$(vmctl show $1| tail -1 | awk '{ print $1}')
+
+	if [ "${_id}" = "ID" ]; then
+		echo "No VM named $1 found"
+		return
+	fi
+
+	ssh -o StrictHostKeyChecking=no -l ${_user} 100.64.${_id}.3
+}
+
+checklatestsnap() {
+	ftp -MVo- http://172.23.5.36/pub/OpenBSD/snapshots/$(uname -m)/BUILDINFO
+	ftp -MVo- "$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)/BUILDINFO"
+	ftp -MVo- http://ftp.openbsd.org/pub/OpenBSD/snapshots/$(uname -m)/BUILDINFO
+}
+
+lostandfoundcheck() {
+	for mp in $(mount -t ffs | cut -d ' ' -f 3); do
+		[[ -d ${mp}/lost+found ]] && echo "${mp}/lost+found exists"
+	done
+}
+
+kshrc() {
+	. $HOME/.kshrc
 }
 
 updatesrc() {
-	local _oldpwd=$PWD
-	cd /usr/src && {
-		sync && git pull ; sync
-	}
-	cd /usr/ports && {
-		sync && git pull ; sync
-	}
-	cd $_oldpwd
+	if [ ! -d "/var/git" ]; then
+		local _oldpwd="$PWD"
+		cd /usr/src && {
+			sync && git pull ; sync
+		}
+		cd /usr/ports && {
+			sync && git pull ; sync
+		}
+		cd "$_oldpwd"
+	else
+		local _oldpwd="$PWD"
+		cd /var/git/src.git && {
+			sync && got fetch; sync
+		}
+		cd /usr/src && {
+			sync && got up && sync
+		}
+		cd /var/git/ports.git && {
+			sync && got fetch; sync
+		}
+		cd /usr/ports && {
+			sync && got up && sync
+		}
+		cd "$_oldpwd"
+	fi
 }
 
 updatepkgs() {
-	local _option=""
+	local _option="" _args=$1
 	if [[ -n $(sysctl -n kern.version | cut -d ' ' -f2 | grep beta) ]]; then
 		_option="-D snap"
 	fi
 
-	sync && doas pkg_add -ui $_option
-	sync
-}
-
-prepare_upgrade() {
-	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
-	if [ "$1" = "snap" ]; then
-		local REL=$(uname -r | sed 's/\.//')
-		REL=$(($REL+1))
-	else
-		local REL=$(uname -r | sed 's/\.//')
-	fi
-
-	if [ ! -d ${HOME}/64 ]; then
-		mkdir ${HOME}/64
-	fi
-
-	cd ${HOME}/64 || return 1
-
-	# Fetch files not in SHA256.sig which cannot be verfied
-	ftp -V "${_mirror}/SHA256.sig"
-	ftp -V "${_mirror}/SHA256"
-	ftp -V "${_mirror}/index.txt"
-
-	local SETS="INSTALL.amd64 bsd bsd.mp comp${REL}.tgz man${REL}.tgz
-		game${REL}.tgz xbase${REL}.tgz xshare${REL}.tgz xserv${REL}.tgz
-		xfont${REL}.tgz base${REL}.tgz"
-	for f in $SETS; do
-		ftp -V "${_mirror}/${f}"
-		signify -C -q -x SHA256.sig ${f} || return 23
-	done
-
+	sync && doas pkg_add -ui $_option $_args
 	sync
 
-	if [ "$1" = "snap" ]; then
-		doas upobsd -u $HOME/Documents/cvs/config.private/sigma/upgrade-sigma-disk
-	else
-		doas upobsd -u $HOME/Documents/cvs/config.private/sigma/upgrade-sigma-disk
+	return
+
+	if [ ! -d /var/pkg_mirror ]; then
+		doas mkdir /var/pkg_mirror
 	fi
+	doas mount_nfs -s -a 4 -T -r 32768 -w 32768 -o noatime,ro,intr mx.xosc.net:/pkg /var/pkg_mirror
+	doas umount /var/pkg_mirror/
 }
 
 getbsdrd() {
