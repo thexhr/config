@@ -253,11 +253,12 @@ psearch() {
 }
 
 sshopen() {
-        #local AGPATH="$HOME/.ssh/$(hostname).agent"
-
-        #[[ -f ${AGPATH} ]] && rm -f $AGPATH
-        #command ssh-agent -t 345600 | grep -v echo > $AGPATH
-        #. $AGPATH
+		# The following is only needed on WSL not on other OSes
+		[ -f "/proc/version" ] && grep -qE "(Microsoft|WSL)" /proc/version 2> /dev/null
+		if [ $? -eq 0 ]; then
+			/usr/bin/keychain -q --nogui $HOME/.ssh/id_ed25519
+			return
+		fi
 
         # Find all public keys...
         for i in $(find $HOME/.ssh/ -maxdepth 1 -name "*.pub"); do
