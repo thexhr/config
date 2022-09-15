@@ -378,6 +378,10 @@ nohistory() {
 	HISTFILE=/dev/null
 }
 
+tog() {
+	TOG_COLORS=1 TERM=xterm /usr/local/bin/tog "$@"
+}
+
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 
 export MARKPATH=$HOME/.marks
