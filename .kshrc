@@ -301,6 +301,10 @@ cget() {
 	curl -OL --compressed "$@"
 }
 
+showwifi() {
+	ifconfig | grep ieee | awk {'print $3'}
+}
+
 # Show infos about my external IP address
 showmyipaddress() {
 	echo "My external IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
