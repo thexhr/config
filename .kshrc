@@ -405,7 +405,6 @@ marks() {
 # Mostly copied from
 # https://github.com/qbit/dotfiles/blob/master/common/dot_ksh_completions
 
-
 if [ -d ~/.password-store ]; then
 	PASS_LIST=$(
 		cd ~/.password-store
@@ -414,10 +413,7 @@ if [ -d ~/.password-store ]; then
 
 	set -A complete_tpm_1 -- $PASS_LIST usage
 	set -A complete_tpm_2 -- $PASS_LIST edit insert show rm
-
 fi
-
-[[ -f $HOME/.ssh/config ]] && set -A complete_ssh -- $(grep ^Host ~/.ssh/config | awk '{ print $2 }')
 
 set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 
@@ -425,19 +421,35 @@ set -A complete_ifconfig_1 -- $(ifconfig | grep ^[a-z] | cut -d: -f1)
 
 if [ -d /var/db/pkg ]; then
 	PKG_LIST=$(/bin/ls -1 /var/db/pkg)
-	set -A complete_pkg_delete -- $PKG_LIST
 	set -A complete_pkg_info -- $PKG_LIST
+
+	alias dpkgdel="doas pkg_delete"
+	set -A complete_dpkgdel_1 -- $PKG_LIST
 fi
 
+# relayctl completion.  Second level only for 'show'
+set -A complete_relayctl_1 -- monitor show load poll reload stop redirect table host log
+set -A complete_relayctl_2 -- summary hosts redirects relays routers sessions
+
+set -A complete_unwindctl_1 -- reload log status
+
 if [ -d /etc/rc.d ]; then
-	set -A complete_rcctl_1 -- disable enable get ls order set
-	set -A complete_rcctl_2 -- $(ls /etc/rc.d)
+	RCD_LIST=$(/bin/ls /etc/rc.d)
+	set -A complete_rcctl_1 -- get getdef set check reload restart stop start disable enable order ls
+	set -A complete_rcctl_2 -- $RCD_LIST
+
+	alias drcctl="doas rcctl"
+	set -A complete_drcctl_1 -- get getdef set check reload restart stop start disable enable order ls
+	set -A complete_drcctl_2 -- $RCD_LIST
 fi
 
 set -A complete_tarsnap_1 -- --list-archives --print-stats --fsck --fsck-prune --nuke --verify-config --version --checkpoint-bytes --configfile --dry-run --exclude --humanize-numbers --keyfile --totals
 
-MAN_LIST=$(find /usr/share/man/ -type f | sed -e 's/.*\///' -e 's/\.[0-9]//' | sort -u)
-set -A complete_man -- $MAN_LIST
+set -A complete_got_1 -- $(got -h 2>&1 | sed -n s/commands://p)
+
+# /tmp/.man-list is generated upon boot by /etc/rc.local with
+# find /usr/share/man/ -type f | sed -e 's/.*\///' -e 's/\.[0-9]//' | sort -u
+[[ -f /tmp/.man-list ]] && set -A complete_man -- $(cat /tmp/.man-list)
 
 [[ -d $HOME/.marks ]] && set -A complete_j -- $(/bin/ls $HOME/.marks)
 
