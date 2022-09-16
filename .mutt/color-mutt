@@ -1,3 +1,16 @@
+# Patch syntax highlighting
+#color   normal  white           default
+color   body    white     default         ^[[:space:]].*
+color   body    white     default         ^(diff).*
+#color   body    white           default         ^[\-\-\-].*
+color   body    white           default         ^[\+\+\+].*
+color   body    green           default         ^[\+].*
+color   body    red             default         ^[\-].*
+#color   body    brightblue      default         [@@].*
+#color   body    brightwhite     default         ^(\s).*
+color   body    white     default         ^(Signed-off-by).*
+color   body    white     default         ^(Cc)
+
 # color scheme 2017
 #color index			color245	default	"~A"
 color index			color248	default	"~A"
@@ -61,7 +74,7 @@ color quoted9       color138     default
 #mono body	reverse		'[[:alpha:]][[:alnum:]-]+:'
 #color body	black cyan	'[[:alpha:]][[:alnum:]-]+:'
 
-color hdrdefault 	color30    	color233 
+color hdrdefault 	color30    	default
 color header		color245	default	'^date:'
 color header		color214	default	'^(to|cc|bcc):'
 color header		white		default	'^from:'
