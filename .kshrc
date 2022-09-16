@@ -457,6 +457,13 @@ set -A complete_got_1 -- $(got -h 2>&1 | sed -n s/commands://p)
 # PROMPT
 #############################################################################
 
+_error_code() {
+	local _temp=$?
+	if [ $_temp -ne 0 ]; then
+		echo -n "\033[38;5;1m [$_temp]\033[m"
+	fi
+}
+
 if [ -z "$SSH_CLIENT" ]; then
 	PS1_TRENNER="!!"
 else
