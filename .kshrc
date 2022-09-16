@@ -471,20 +471,41 @@ else
 fi
 
 if [[ $(id -u) -eq 0 ]]; then
-	PS1='\h$PS1_TRENNER\\033[0;101m\u\\033[0m \w [$?] \$ '
+	PS1='\h$PS1_TRENNER\\033[0;101m\u\\033[0m \w [$?]\n\$ '
+elif [[ $(whoami) = "xhr" ]] || [[ $(whoami) = "matthiaschmidt" ]]; then
+	PS1='\h \w$(_polyglot_branch_status)$(_error_code) \033[38;5;11m\$\033[m '
 else
-	PS1='\h$PS1_TRENNER\u \w [$?] \$ '
+	PS1='\h$PS1_TRENNER\u \w$(_polyglot_branch_status) [$?]\n\$ '
 fi
+
+#############################################################################
+# MISC SETTINGS
+#############################################################################
+
+set bell-style none
 
 #############################################################################
 # VARIABLES
 #############################################################################
 
+[ -d $HOME/.keychain ] && . $HOME/.keychain/LWKA-6Q7VRN2-sh
+
 LSCOLORS=Dxfxcxdxbxegedabagacad
-HISTSIZE=10000
+HISTSIZE=30000
 HISTFILE=$HOME/.sh_history
+HISTCONTROL=ignoredups:ignorespace
 BLOCKSIZE=M
-PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
+PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:$MACPATH
 LESSSECURE=1
-PAGER='less -JWAce'
-export PATH HOME LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE
+PAGER='less -JWAceX'
+LESS='-Xa'
+PKG_PATH=http://172.23.5.36/pub/OpenBSD/%c/packages/%a:http://ftp.hostserver.de/pub/OpenBSD/%c/packages/%a
+
+# better two-finger touchpad scrolling
+export MOZ_USE_XINPUT2=1
+# opengl acceleration
+export MOZ_ACCELERATED=1
+# force webrender to enable
+export MOZ_WEBRENDER=1
+
+export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE PKG_PATH FETCH_CMD
