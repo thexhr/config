@@ -1,0 +1,13 @@
+#!/bin/sh
+
+P=${HOME}/.keyblayouttoggle
+
+if [ -f $P ]; then
+	setxkbmap -layout us -variant altgr-intl -model nodeadkeys
+	rm ${P}
+else
+	setxkbmap -layout us -variant intl
+	touch ${P}
+fi
+
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
