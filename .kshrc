@@ -111,6 +111,10 @@ g() {
 	fi
 }
 
+got() {
+	EDITOR=vi /usr/local/bin/got "$@"
+}
+
 enablevideoconf() {
 	echo "[+] Enable video recording"
 	doas sysctl kern.video.record=1
