@@ -500,6 +500,7 @@ PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local
 LESSSECURE=1
 PAGER='less -JWAceX'
 LESS='-Xa'
+VISUAL=vi
 PKG_PATH=http://172.23.5.36/pub/OpenBSD/%c/packages/%a:http://ftp.hostserver.de/pub/OpenBSD/%c/packages/%a
 
 # better two-finger touchpad scrolling
@@ -509,4 +510,4 @@ export MOZ_ACCELERATED=1
 # force webrender to enable
 export MOZ_WEBRENDER=1
 
-export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE PKG_PATH FETCH_CMD
+export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE PKG_PATH FETCH_CMD VISUAL
