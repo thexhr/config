@@ -112,7 +112,11 @@ g() {
 }
 
 got() {
-	EDITOR=vi /usr/local/bin/got "$@"
+	if [[ $(uname -s) == "Darwin" ]]; then
+		EDITOR=vi /opt/homebrew/bin/got "$@"
+	else
+		EDITOR=vi /usr/local/bin/got "$@"
+	fi
 }
 
 enablevideoconf() {
