@@ -104,7 +104,8 @@ p() {
 }
 
 g() {
-	if [ -d ".got" ]; then
+	gotadmin info $PWD 2> /dev/null > /dev/null
+	if [ $? -eq 0 ]; then
 		got "$@"
 	else
 		git "$@"
