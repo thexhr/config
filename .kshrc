@@ -112,14 +112,6 @@ g() {
 	fi
 }
 
-got() {
-	if [[ $(uname -s) == "Darwin" ]]; then
-		EDITOR=vi /opt/homebrew/bin/got "$@"
-	else
-		EDITOR=vi /usr/local/bin/got "$@"
-	fi
-}
-
 enablevideoconf() {
 	echo "[+] Enable video recording"
 	doas sysctl kern.video.record=1
