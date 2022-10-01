@@ -493,6 +493,7 @@ LESSSECURE=1
 PAGER='less -JWAceX'
 LESS='-Xa'
 PKG_PATH=http://172.23.5.36/pub/OpenBSD/%c/packages/%a:http://ftp.hostserver.de/pub/OpenBSD/%c/packages/%a
+GOT_LOG_DEFAULT_LIMIT=5
 
 # better two-finger touchpad scrolling
 export MOZ_USE_XINPUT2=1
@@ -502,3 +503,4 @@ export MOZ_ACCELERATED=1
 export MOZ_WEBRENDER=1
 
 export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE PKG_PATH FETCH_CMD
+export GOT_LOG_DEFAULT_LIMIT
