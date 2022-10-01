@@ -60,6 +60,7 @@ alias .3='cds ../../..'
 alias .4='cds ../../../..'
 alias j='jump'
 alias c='cvs'
+alias g='got'
 alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
 alias sudo='sudo -H'
 alias mc='mc --color'
@@ -101,15 +102,6 @@ gennewcert() {
 # Neat trick from https://github.com/lf94/peek-for-tmux/blob/master/README.md
 p() {
 	tmux split-window -p 33 more $@ || exit;
-}
-
-g() {
-	gotadmin info $PWD 2> /dev/null > /dev/null
-	if [ $? -eq 0 ]; then
-		got "$@"
-	else
-		git "$@"
-	fi
 }
 
 enablevideoconf() {
