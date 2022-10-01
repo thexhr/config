@@ -106,7 +106,7 @@ p() {
 g() {
 	gotadmin info $PWD 2> /dev/null > /dev/null
 	if [ $? -eq 0 ]; then
-		EDITOR=vi got "$@"
+		got "$@"
 	else
 		git "$@"
 	fi
