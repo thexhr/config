@@ -1,0 +1,192 @@
+! ===== fonts
+Xft.dpi:        120
+Xft.hintstyle : hintslight
+Xft.hinting   : true
+Xft.antialias : 1
+Xft.rgba      : rgb
+Xft.autohint: true
+Xft.lcdfilter: lcddefault
+
+! xterm ----------------------------------------------------------------------
+
+! Enable dynamic coloring
+xterm*dynamicColors: true
+xterm*saveLines: 4096
+! Go to bottom when scrolling and a key is pressed
+xterm*scrollKey: true
+! Go to bottom when scrolling and sth happens in the terminal
+xterm*scrollTtyOutput: false
+! No scrollbar
+xterm*scrollBar: false
+! Scroll multiple lines at once
+xterm*jumpScroll: true
+! Scrolling is done asynchronously
+xterm*multiScroll: true
+xterm*utf8: true
+xterm*locale: true
+xterm*eightBitInput: true
+xterm*background: black
+xterm*foreground: gray
+!xterm*background: #100010000000
+!xterm*foreground: #7FFFDFFFDFFF
+xterm*cursorColor: white
+xterm*termName:	screen-256color
+! Enable visual bells
+XTerm*visualbell: true
+xterm*bellIsUrgent: true
+! No borders
+xterm*borderWidth: 0
+! Disable enabling xterm fullscreen with Alt + Enter
+XTerm*fullscreen: never
+!xterm*font: xft:fixed-10
+!xterm*font: -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+XTerm*font : -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-1
+XTerm*font1: -*-terminus-medium-*-*-*-16-*-*-*-*-*-iso10646-1
+XTerm*font2: -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1
+XTerm*font3: -*-terminus-medium-*-*-*-16-*-*-*-*-*-iso10646-1
+XTerm*font4: -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-1
+XTerm*font5: -*-terminus-medium-*-*-*-24-*-*-*-*-*-iso10646-1
+XTerm*font6: -*-terminus-medium-*-*-*-32-*-*-*-*-*-iso10646-1
+! make alt key work normally
+!XTerm*vt100.metaSendsEscape  : true
+XTerm*metaSendsEscape  : true
+! and do not include a trailing newline in the selection!
+XTerm*cutNewline: false
+! select word on two clicks
+XTerm*on2Clicks: word
+xterm*on3Clicks:  regex [^ \n]+
+XTerm*on4Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+! select whole line
+XTerm*on5Clicks: line
+! font resize with Ctrl +/- and insert clipboard with Ctrl+Shift+v
+xterm*VT100.Translations: #override \
+	Ctrl <Key> minus: smaller-vt-font() \n\
+	Ctrl <Key> plus: larger-vt-font() \n\
+	Ctrl <Key> 0: set-vt-font(d) \n\
+	Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
+
+! urxvt ------------------------------------------------------------------------
+URxvt*saveLines: 12000
+URxvt*scrollBar: false
+URxvt*fading: 30
+! Set transparent background
+!URxvt*transparent: true
+!URxvt*shading:20
+
+URxvt*background: black
+URxvt*foreground: gray
+
+! general ----------------------------------------------------------------------
+!*font:	-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*
+!*font: -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+*font: -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-*
+*background:            black
+*foreground:            white
+
+XCalc*Cursor:	pencil
+
+XCalc*font:	-*-unifont-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*geometry:	420x280
+
+XCalc*shapeStyle:	RoundedRectangle
+
+XCalc*ti.background: rgb:2/2/3
+
+XCalc*ti.bevel.borderColor: rgb:2/2/2
+XCalc*ti.bevel.background: rgb:b/c/9
+XCalc*ti.bevel.screen*background: rgb:b/c/8
+XCalc*ti.bevel.screen.borderColor: rgb:b/c/d
+XCalc*ti.bevel.screen*.foreground: rgb:2/2/2
+
+XCalc*ti.bevel.horizDistance:	16
+XCalc*ti.bevel.vertDistance:	8
+
+XCalc*Command.borderColor: rgb:2/2/3
+
+! 7894561230
+XCalc*ti.button7.background:	rgb:7/3/2
+XCalc*ti.button8.background:	rgb:7/3/2
+XCalc*ti.button9.background:	rgb:7/3/2
+
+XCalc*ti.button17.background:	rgb:7/3/2
+XCalc*ti.button18.background:	rgb:7/3/2
+XCalc*ti.button19.background:	rgb:7/3/2
+
+XCalc*ti.button27.background:	rgb:7/3/2
+XCalc*ti.button28.background:	rgb:7/3/2
+XCalc*ti.button29.background:	rgb:7/3/2
+
+XCalc*ti.button36.background:	rgb:7/3/2
+
+! exponent
+XCalc*ti.button16.label:	E+
+XCalc*ti.button16.background:	rgb:7/3/2
+! ,
+XCalc*ti.button37.label:	,
+XCalc*ti.button37.background:	rgb:7/3/2
+
+! / - +
+XCalc*ti.button10.background:	rgb:2/4/2
+XCalc*ti.button30.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button30.background:	rgb:2/4/2
+XCalc*ti.button39.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button39.background:	rgb:2/4/2
+
+! *
+XCalc*ti.button20.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button20.label:	\264
+XCalc*ti.button20.background:	rgb:2/4/2
+! sum
+XCalc*ti.button38.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button38.label:	\345
+XCalc*ti.button38.background:	rgb:2/4/2
+! change sign
+XCalc*ti.button6.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button6.label:	\261
+XCalc*ti.button6.background:	rgb:2/4/2
+
+! power/root/factorial
+XCalc*ti.button1.background:	rgb:5/5/2
+XCalc*ti.button2.background:	rgb:5/5/2
+XCalc*ti.button3.background:	rgb:5/5/2
+XCalc*ti.button4.background:	rgb:5/5/2
+XCalc*ti.button5.background:	rgb:5/5/2
+XCalc*ti.button11.background:	rgb:5/5/2
+
+! trigonometric
+XCalc*ti.button12.background:	rgb:5/2/5
+XCalc*ti.button13.background:	rgb:5/2/5
+XCalc*ti.button14.background:	rgb:5/2/5
+XCalc*ti.button15.background:	rgb:5/2/5
+! degree
+XCalc*ti.button32.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button32.label:	\260
+XCalc*ti.button32.background:	rgb:5/2/5
+! inverse
+XCalc*ti.button33.label:	arc
+XCalc*ti.button33.background:	rgb:5/2/5
+
+! stack
+XCalc*ti.button23.label:	roll
+XCalc*ti.button23.background:	rgb:4/2/8
+XCalc*ti.button24.label:	swap
+XCalc*ti.button24.background:	rgb:4/2/8
+! history
+XCalc*ti.button25.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button25.label:	\254
+XCalc*ti.button25.background:	rgb:4/2/8
+! store/recall
+XCalc*ti.button34.label:	STO
+XCalc*ti.button34.background:	rgb:4/2/8
+XCalc*ti.button35.label:	RCL
+XCalc*ti.button35.background:	rgb:4/2/8
+
+! ENTER
+XCalc*ti.button26.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button26.label:	\277
+XCalc*ti.button26.background:	rgb:2/3/6
+! ON
+XCalc*ti.button31.font:	-adobe-symbol-*-*-*-*-*-120-*-*-*-*-*-*
+XCalc*ti.button31.label:	\340
+XCalc*ti.button31.background:	rgb:9/4/8
