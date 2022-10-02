@@ -281,7 +281,7 @@ cds() {
 }
 
 pkg_search() {
-	pkglocate "$1" | cut -d ':' -f 1 | sort -u | fzf
+	pkglocate "$1" | cut -d ':' -f 1 | sort -u | fzf --preview="pkg_info {}"
 }
 
 mkcd() {
