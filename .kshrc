@@ -50,9 +50,9 @@ elif [[ $(uname -s) == "FreeBSD" ]]; then
 fi
 
 if [[ $HIGHDPI -eq 1 ]]; then
-	alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry=50%+1430+300 --sub-scale=0.5'
+	alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry=50%+1430+300 --sub-scale=0.5 --demuxer-max-bytes=400000KiB'
 else
-	alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry=50%+950+200 --sub-scale=0.7'
+	alias mpv='mpv --no-audio-display --audio-channels=stereo --geometry=50%+950+200 --sub-scale=0.7 --demuxer-max-bytes=400000KiB'
 fi
 
 alias .2='cds ../..'
@@ -72,6 +72,7 @@ alias chromium='chromium --disk-cache-dir=/tmp'
 alias open="xdg-open"
 alias ffplay='ffplay -hide_banner'
 alias gps='sync ; git pull ; sync'
+alias gops='sync ; got fetch && got up; sync'
 alias cal='cal -m -w'
 alias ed='ed -p*'
 alias qw='pkill -9 xidle'
