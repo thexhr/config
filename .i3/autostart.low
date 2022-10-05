@@ -2,7 +2,7 @@
 # Suck in Xmodmap
 xmodmap ~/.Xmodmap 2> /dev/null
 # Set black background
-xsetroot -solid Grey15
+xsetroot -solid '#1C1B22'
 # Set background image
 #exec xwallpaper --zoom ~/Pictures/background &
 # No beep
