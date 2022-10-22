@@ -493,7 +493,6 @@ PATH=$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local
 LESSSECURE=1
 PAGER='less -JWAceX'
 LESS='-Xa'
-PKG_PATH=http://172.23.5.36/pub/OpenBSD/%c/packages/%a:http://ftp.hostserver.de/pub/OpenBSD/%c/packages/%a
 GOT_LOG_DEFAULT_LIMIT=5
 
 # better two-finger touchpad scrolling
