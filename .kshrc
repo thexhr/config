@@ -145,7 +145,6 @@ vmmssh() {
 }
 
 checklatestsnap() {
-	ftp -MVo- http://172.23.5.36/pub/OpenBSD/snapshots/$(uname -m)/BUILDINFO
 	ftp -MVo- "$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)/BUILDINFO"
 	ftp -MVo- http://ftp.openbsd.org/pub/OpenBSD/snapshots/$(uname -m)/BUILDINFO
 }
