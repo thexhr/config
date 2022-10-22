@@ -199,6 +199,9 @@ map <C-X> <ESC>:!ectags -R<CR><CR>:!cscope -kcbqR<CR><CR>
 map <C-Y> <ESC>:!ectags -R<CR><CR>
 map <C-A> <ESC>:cs add ./cscope.out
 
+set tags=tags
+set tags+=~/.tags
+
 set showmatch				" Show matching brackets
 set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
 filetype plugin on
