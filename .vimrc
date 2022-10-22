@@ -291,8 +291,10 @@ set cursorline
 ab VG Viele Grüsse
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jump to the previous/next tab.
-noremap J gT
-noremap K gt
+"noremap J gT
+"noremap K gt
+noremap { gT
+noremap } gt
 " Close tabs with Ctrl + w
 noremap <leader>w :tabclose<cr>
 " Save all 
