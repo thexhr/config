@@ -465,7 +465,7 @@ else
 fi
 
 if [[ $(id -u) -eq 0 ]]; then
-	PS1='\h$PS1_TRENNER\\033[0;101m\u\\033[0m \w [$?]\n\$ '
+	PS1='\\033[30;101m\h\\033[0m \w$(_error_code) \033[38;5;11m\$\033[m '
 elif [[ $(whoami) = "xhr" ]] || [[ $(whoami) = "matthiaschmidt" ]]; then
 	PS1='\h \w$(_polyglot_branch_status)$(_error_code) \033[38;5;11m\$\033[m '
 else
