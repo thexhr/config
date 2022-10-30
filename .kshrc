@@ -460,14 +460,16 @@ _error_code() {
 
 if [ -z "$SSH_CLIENT" ]; then
 	PS1_TRENNER="!!"
+	PS1_S=""
 else
 	PS1_TRENNER="@"
+	PS1_S="@"
 fi
 
 if [[ $(id -u) -eq 0 ]]; then
 	PS1='\\033[30;101m\h\\033[0m \w$(_error_code) \033[38;5;11m\$\033[m '
 elif [[ $(whoami) = "xhr" ]] || [[ $(whoami) = "matthiaschmidt" ]]; then
-	PS1='\h \w$(_polyglot_branch_status)$(_error_code) \033[38;5;11m\$\033[m '
+	PS1='\h${PS1_S} \w$(_polyglot_branch_status)$(_error_code) \033[38;5;11m\$\033[m '
 else
 	PS1='\h$PS1_TRENNER\u \w$(_polyglot_branch_status) [$?]\n\$ '
 fi
