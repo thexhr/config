@@ -47,6 +47,9 @@ bindsym $mod+b border toggle
 # Toggle status bar
 bindsym $mod+Shift+backslash bar mode toggle
 
+# Run copydeimos script
+bindsym $mod+Shift+period exec --no-startup-id "~/Documents/bin/copydeimos"
+
 # Border style
 new_window pixel 1
 new_float pixel 1
