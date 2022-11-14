@@ -1,0 +1,7 @@
+theme = "bogster"
+
+[editor]
+true-color = true
+line-number = "relative"
+
+[keys.normal]
