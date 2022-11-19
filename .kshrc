@@ -14,7 +14,7 @@ else
 fi
 
 psg() {
-	ps daux | grep "$@" | grep -v "grep $@"
+	ps faux | grep "$@" | grep -v "grep $@"
 }
 
 if [[ $(uname -s) == "Linux" ]]; then
@@ -33,10 +33,6 @@ elif [[ $(uname -s) == "OpenBSD" ]]; then
 
 	bind '^L'=clear-screen
 
-	psg() {
-		ps faux | grep "$@" | grep -v "grep $@"
-	}
-
 	# Enable SIGINFO with ^T
 	stty status ^T
 elif [[ $(uname -s) == "Darwin" ]]; then
@@ -54,6 +50,10 @@ elif [[ $(uname -s) == "FreeBSD" ]]; then
 	alias ll='$LS -GFlho'
 
 	bind '^L'=clear-screen
+
+	psg() {
+		ps daux | grep "$@" | grep -v "grep $@"
+	}
 
 	# Enable SIGINFO with ^T
 	stty status ^T
