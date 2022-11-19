@@ -14,7 +14,7 @@ else
 fi
 
 psg() {
-	ps aux | grep "$@" | grep -v "grep $@"
+	ps daux | grep "$@" | grep -v "grep $@"
 }
 
 if [[ $(uname -s) == "Linux" ]]; then
