@@ -13,6 +13,10 @@ else
     LS='ls'
 fi
 
+psg() {
+	ps aux | grep "$@" | grep -v "grep $@"
+}
+
 if [[ $(uname -s) == "Linux" ]]; then
 	alias ls='ls --color=auto -h --file-type -s'
 	alias ll='ls -l'
@@ -29,11 +33,19 @@ elif [[ $(uname -s) == "OpenBSD" ]]; then
 
 	bind '^L'=clear-screen
 
+	psg() {
+		ps faux | grep "$@" | grep -v "grep $@"
+	}
+
 	# Enable SIGINFO with ^T
 	stty status ^T
 elif [[ $(uname -s) == "Darwin" ]]; then
 	alias ls='$LS -G'
 	alias ll='$LS -GFlho'
+
+	psg() {
+		ps aux | grep "$@" | grep -v "grep $@"
+	}
 
 	bind '^L'=clear-screen
 	export MACPATH=/opt/homebrew/bin/:/opt/homebrew/sbin
@@ -265,10 +277,6 @@ sshopen() {
 cvspsdiff() {
 	[ -z "$1" ] && return
 	cvsps -q -s "$1" -g | cdiff
-}
-
-psg() {
-	ps aux | grep "$@" | grep -v "grep $@"
 }
 
 qrcodegen() {
