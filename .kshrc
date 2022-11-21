@@ -311,7 +311,6 @@ showwifi() {
 showmyipaddress() {
 	echo "My external IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
 	echo "My external IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
-	echo "My external PTR  : $(ftp -M -o - http://icanhazptr.com 2> /dev/null)"
 }
 
 calc() {
