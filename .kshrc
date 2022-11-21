@@ -207,14 +207,6 @@ updatepkgs() {
 
 	sync && doas pkg_add -ui $_option $_args
 	sync
-
-	return
-
-	if [ ! -d /var/pkg_mirror ]; then
-		doas mkdir /var/pkg_mirror
-	fi
-	doas mount_nfs -s -a 4 -T -r 32768 -w 32768 -o noatime,ro,intr mx.xosc.net:/pkg /var/pkg_mirror
-	doas umount /var/pkg_mirror/
 }
 
 getbsdrd() {
