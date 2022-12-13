@@ -2,6 +2,8 @@
 	name = the xhr
 	email = xhr@giessen.ccc.de
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHB+4++HOuOW9SVonVAxNMRcwnpGknQgYNKFWUFaGmtb
+	#name = schmidtm
+	#email = schmidtm@mathematik.uni-marburg.de
 
 [sendemail]
 	smtpserver = 127.0.0.1
