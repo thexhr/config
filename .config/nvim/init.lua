@@ -24,10 +24,8 @@ vim.o.history = 100				-- Remember N lines in history
 
 -- Colorscheme settings
 vim.o.termguicolors = true		-- 24bit TUI colors
-vim.cmd [[colorscheme moonfly]]
-vim.g.lightline = {
-  colorscheme = 'moonfly',
-}
+vim.o.background = 'dark'
+vim.cmd [[colorscheme duskfox]]
 
 -------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -103,7 +101,8 @@ vim.keymap.set('n', '<F2>', '<cmd>set invpaste paste?<cr>', {desc = ''})
 
 require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
-	'bluz71/vim-moonfly-colors';	-- Color scheme
+	'EdenEast/nightfox.nvim';		-- Color scheme
+	'rmehri01/onenord.nvim';
 	'itchyny/lightline.vim';		-- Status line
 	'neovim/nvim-lspconfig';		-- Configs for LSP client
 	'hrsh7th/cmp-nvim-lsp';			-- nvim-cmp source for neovim's built-in LSP
