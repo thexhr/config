@@ -4,23 +4,25 @@
 -- MISC CONFIGURATIONS
 -------------------------------------------------------------------------------
 
-vim.o.backup = false 			-- No backup files
-vim.o.swapfile = false			-- No swap files
-vim.o.modeline = false			-- No modeline
-vim.o.ignorecase = true			-- Ignore cases when searching
-vim.o.smartcase = true			-- Ignore uppercase except for search
-vim.o.tabstop = 4				-- 4 chars tab
-vim.o.shiftwidth = 4			-- Also 4 for indent
-vim.o.number = true				-- Show line number
-vim.o.relativenumber = true		-- Relative line numbers
-vim.o.cursorline = true			-- Show cursor line
-vim.o.showmatch = true			-- Show matching bracket
-vim.o.undolevels = 200			-- Reduce undo levels
-vim.o.mouse = ''				-- Disable mouse actions
-vim.o.synmaxcol = 300			-- Max column in which to search for syntax
-vim.o.splitright = true			-- Vertical split to the right
-vim.o.splitbelow = true			-- Horizontal split to the bottom
-vim.o.history = 100				-- Remember N lines in history
+local set = vim.opt
+
+set.backup = false 				-- No backup files
+set.swapfile = false			-- No swap files
+set.modeline = false			-- No modeline
+set.ignorecase = true			-- Ignore cases when searching
+set.smartcase = true			-- Ignore uppercase except for search
+set.tabstop = 4					-- 4 chars tab
+set.shiftwidth = 4				-- Also 4 for indent
+set.number = true				-- Show line number
+set.relativenumber = true		-- Relative line numbers
+set.cursorline = true			-- Show cursor line
+set.showmatch = true			-- Show matching bracket
+set.undolevels = 200			-- Reduce undo levels
+set.mouse = ''					-- Disable mouse actions
+set.synmaxcol = 300				-- Max column in which to search for syntax
+set.splitright = true			-- Vertical split to the right
+set.splitbelow = true			-- Horizontal split to the bottom
+set.history = 100				-- Remember N lines in history
 
 -- Colorscheme settings
 vim.o.termguicolors = true		-- 24bit TUI colors
