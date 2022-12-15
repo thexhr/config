@@ -11,6 +11,7 @@ vim.o.ignorecase = true			-- Ignore cases when searching
 vim.o.smartcase = true			-- Ignore uppercase except for search
 vim.o.tabstop = 4				-- 4 chars tab
 vim.o.shiftwidth = 4			-- Also 4 for indent
+vim.o.number = true				-- Show line number
 vim.o.relativenumber = true		-- Relative line numbers
 vim.o.cursorline = true			-- Show cursor line
 vim.o.showmatch = true			-- Show matching bracket
