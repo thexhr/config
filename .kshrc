@@ -93,7 +93,7 @@ alias weather='curl http://wttr.in/Karlsruhe'
 alias dig='dig +noall +answer +comment'
 alias gdb='gdb -q'
 alias egdb='egdb -q'
-alias vim='vim -p'
+alias vim='nvim -p'
 
 #############################################################################
 # FUNCTIONS
