@@ -25,9 +25,8 @@ set.splitbelow = true			-- Horizontal split to the bottom
 set.history = 100				-- Remember N lines in history
 
 -- Colorscheme settings
-vim.o.termguicolors = true		-- 24bit TUI colors
-vim.o.background = 'dark'
-vim.cmd [[colorscheme duskfox]]
+set.termguicolors = true		-- 24bit TUI colors
+vim.cmd([[ colorscheme vombatidae ]])
 
 -------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -110,8 +109,7 @@ vim.keymap.set('n', '<F2>', '<cmd>set invpaste paste?<cr>', {desc = ''})
 
 require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
-	'EdenEast/nightfox.nvim';		-- Color scheme
-	'rmehri01/onenord.nvim';
+	'octol/vombatidae-vim';
 	'itchyny/lightline.vim';		-- Status line
 	'neovim/nvim-lspconfig';		-- Configs for LSP client
 	'hrsh7th/cmp-nvim-lsp';			-- nvim-cmp source for neovim's built-in LSP
@@ -175,7 +173,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 -- Set completeopt to have a better completion experience.
-vim.o.completeopt = 'menuone,noselect'
+set.completeopt = 'menuone,noselect'
 
 ------------------------------------------------------------------------------
 -- nvim-cmp setup from https://tkg.codes/guide-to-modern-neovim-setup-2021/
