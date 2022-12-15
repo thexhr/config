@@ -44,7 +44,7 @@ vim.api.nvim_exec(
 )
 
 -- Show trailing whitespace
-vim.fn.matchadd('errorMsg', [[\s\+$]]) 
+vim.fn.matchadd('errorMsg', [[\s\+$]])
 
 -- When opening a file, always jump to the latest positions
 vim.api.nvim_exec([[
