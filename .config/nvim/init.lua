@@ -53,6 +53,10 @@ vim.api.nvim_exec([[
 	  \ | exe 'normal! g`"' | endif]],
 false)
 
+-- Enable spell checking
+vim.g.spelllang=en,de
+vim.keymap.set('n', '<F3>', '<cmd>set spell!<cr>', {desc = 'Set spell'})
+
 -------------------------------------------------------------------------------
 -- KEYBINDINGS
 -------------------------------------------------------------------------------
