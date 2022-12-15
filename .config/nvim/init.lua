@@ -18,6 +18,9 @@ vim.o.showmatch = true			-- Show matching bracket
 vim.o.undolevels = 200			-- Reduce undo levels
 vim.o.mouse = ''				-- Disable mouse actions
 vim.o.synmaxcol = 300			-- Max column in which to search for syntax
+vim.o.splitright = true			-- Vertical split to the right
+vim.o.splitbelow = true			-- Horizontal split to the bottom
+vim.o.history = 100				-- Remember N lines in history
 
 -- Colorscheme settings
 vim.o.termguicolors = true		-- 24bit TUI colors
