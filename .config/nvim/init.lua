@@ -23,6 +23,8 @@ set.synmaxcol = 300				-- Max column in which to search for syntax
 set.splitright = true			-- Vertical split to the right
 set.splitbelow = true			-- Horizontal split to the bottom
 set.history = 100				-- Remember N lines in history
+-- File extensions to be ignored in wildmenu
+set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 
 -- Colorscheme settings
 set.termguicolors = true		-- 24bit TUI colors
@@ -103,6 +105,10 @@ vim.keymap.set('x', '>', '>gv', {desc = ''})
 -- F2 for toggling paste mode
 vim.keymap.set('n', '<F2>', '<cmd>set invpaste paste?<cr>', {desc = ''})
 
+-- Reformat paragraph or the whole document.  All content will be reduced to
+-- match textwidth.
+vim.keymap.set('n', '<Esc>a', 'gqap', { desc = 'Format paragraph on textwidth'})
+vim.keymap.set('n', '<Esc>q', 'ggggG', { desc = 'Format all on textwidth'})
 -------------------------------------------------------------------------------
 -- PLUGINS
 -------------------------------------------------------------------------------
