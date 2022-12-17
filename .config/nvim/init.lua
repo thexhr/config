@@ -29,7 +29,7 @@ set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 
 -- Colorscheme settings
 set.termguicolors = true		-- 24bit TUI colors
-vim.cmd([[ colorscheme vombatidae ]])
+vim.cmd [[ colorscheme vombatidae ]]
 
 -------------------------------------------------------------------------------
 -- FUNCTIONS
