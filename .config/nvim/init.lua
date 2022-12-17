@@ -60,6 +60,21 @@ false)
 vim.g.spelllang=en,de
 vim.keymap.set('n', '<F3>', '<cmd>set spell!<cr>', {desc = 'Set spell'})
 
+-- Toggle between multiple languages for spell checking
+vim.g.lang_c = 0
+vim.g.lang_a = { 'de', 'en' }
+function _G.ToggleLang()
+	vim.g.lang_c = (vim.g.lang_c + 1) % #(vim.g.lang_a)
+	-- Lua array indexes start with 1, so plus 1 here
+	local i = vim.g.lang_c+1
+	local sl = 'set spelllang='..vim.g.lang_a[i]
+	vim.api.nvim_command('set spell')
+	vim.api.nvim_command(sl)
+	print("Spellcheck language is", vim.g.lang_a[i])
+end
+
+vim.keymap.set('n', '<Esc>l', '<cmd>lua ToggleLang()<cr>')
+
 -------------------------------------------------------------------------------
 -- KEYBINDINGS
 -------------------------------------------------------------------------------
