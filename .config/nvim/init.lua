@@ -29,7 +29,7 @@ set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 
 -- Colorscheme settings
 set.termguicolors = true		-- 24bit TUI colors
-vim.cmd [[ colorscheme vombatidae ]]
+vim.cmd [[ colorscheme xhr2 ]]
 
 -------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -131,7 +131,6 @@ vim.keymap.set('n', '<Esc>q', 'ggggG', { desc = 'Format all on textwidth'})
 
 require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
-	'octol/vombatidae-vim';
 	'itchyny/lightline.vim';		-- Status line
 	'neovim/nvim-lspconfig';		-- Configs for LSP client
 	'hrsh7th/cmp-nvim-lsp';			-- nvim-cmp source for neovim's built-in LSP
