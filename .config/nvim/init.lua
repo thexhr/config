@@ -29,7 +29,11 @@ set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 
 -- Colorscheme settings
 set.termguicolors = true		-- 24bit TUI colors
-vim.cmd [[ colorscheme xhr2 ]]
+-- vim.cmd [[ colorscheme xhr ]]
+require('onedark').setup {
+	    style = 'darker'
+	}
+require('onedark').load()
 
 -------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -133,6 +137,7 @@ require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
 	'itchyny/lightline.vim';		-- Status line
 	'neovim/nvim-lspconfig';		-- Configs for LSP client
+	'navarasu/onedark.nvim';
 	'hrsh7th/cmp-nvim-lsp';			-- nvim-cmp source for neovim's built-in LSP
 	'hrsh7th/nvim-cmp';				-- completion engine plugin for neovim
 	'saadparwaiz1/cmp_luasnip';		-- luasnip completion source for nvim-cmp
