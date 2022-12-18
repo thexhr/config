@@ -31,8 +31,8 @@ set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 set.termguicolors = true		-- 24bit TUI colors
 -- vim.cmd [[ colorscheme xhr ]]
 require('onedark').setup {
-	    style = 'darker'
-	}
+	style = 'darker'
+}
 require('onedark').load()
 
 -------------------------------------------------------------------------------
