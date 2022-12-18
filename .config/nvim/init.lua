@@ -135,7 +135,7 @@ vim.keymap.set('n', '<Esc>q', 'ggggG', { desc = 'Format all on textwidth'})
 
 require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
-	'itchyny/lightline.vim';		-- Status line
+	'nvim-lualine/lualine.nvim';	-- Fancier statusline
 	'neovim/nvim-lspconfig';		-- Configs for LSP client
 	'navarasu/onedark.nvim';
 	'hrsh7th/cmp-nvim-lsp';			-- nvim-cmp source for neovim's built-in LSP
@@ -146,6 +146,15 @@ require "paq" {
 
 -- luasnip setup
 luasnip = require 'luasnip'
+
+require('lualine').setup {
+	options = {
+		icons_enabled = false,
+		theme = 'onedark',
+		component_separators = '|',
+		section_separators = '',
+	},
+}
 
 -------------------------------------------------------------------------------
 -- LSP settings from https://tkg.codes/guide-to-modern-neovim-setup-2021/
