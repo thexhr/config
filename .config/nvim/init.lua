@@ -137,7 +137,7 @@ require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
 	'nvim-lualine/lualine.nvim';	-- Fancier statusline
 	'neovim/nvim-lspconfig';		-- Configs for LSP client
-	'navarasu/onedark.nvim';
+	'navarasu/onedark.nvim';		-- Color scheme
 	'hrsh7th/cmp-nvim-lsp';			-- nvim-cmp source for neovim's built-in LSP
 	'hrsh7th/nvim-cmp';				-- completion engine plugin for neovim
 	'saadparwaiz1/cmp_luasnip';		-- luasnip completion source for nvim-cmp
