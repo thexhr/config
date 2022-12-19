@@ -410,7 +410,9 @@ fi
 
 set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 
-set -A complete_ifconfig_1 -- $(ifconfig | grep ^[a-z] | cut -d: -f1)
+if [[ $(uname -s) != "Linux" ]]; then
+	set -A complete_ifconfig_1 -- $(ifconfig | grep ^[a-z] | cut -d: -f1)
+fi
 
 if [ -d /var/db/pkg ]; then
 	PKG_LIST=$(/bin/ls -1 /var/db/pkg)
