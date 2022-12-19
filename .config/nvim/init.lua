@@ -29,11 +29,7 @@ set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 
 -- Colorscheme settings
 set.termguicolors = true		-- 24bit TUI colors
--- vim.cmd [[ colorscheme xhr ]]
-require('onedark').setup {
-	style = 'darker'
-}
-require('onedark').load()
+vim.cmd [[ colorscheme xhr3 ]]
 
 -------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -129,6 +125,7 @@ vim.keymap.set('n', '<F2>', '<cmd>set invpaste paste?<cr>', {desc = ''})
 -- match textwidth.
 vim.keymap.set('n', '<Esc>a', 'gqap', { desc = 'Format paragraph on textwidth'})
 vim.keymap.set('n', '<Esc>q', 'ggggG', { desc = 'Format all on textwidth'})
+
 -------------------------------------------------------------------------------
 -- PLUGINS
 -------------------------------------------------------------------------------
@@ -137,7 +134,6 @@ require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
 	'nvim-lualine/lualine.nvim';	-- Fancier statusline
 	'neovim/nvim-lspconfig';		-- Configs for LSP client
-	'navarasu/onedark.nvim';		-- Color scheme
 	'hrsh7th/cmp-nvim-lsp';			-- nvim-cmp source for neovim's built-in LSP
 	'hrsh7th/nvim-cmp';				-- completion engine plugin for neovim
 	'saadparwaiz1/cmp_luasnip';		-- luasnip completion source for nvim-cmp
