@@ -13,6 +13,7 @@ set.ignorecase = true			-- Ignore cases when searching
 set.smartcase = true			-- Ignore uppercase except for search
 set.tabstop = 4					-- 4 chars tab
 set.shiftwidth = 4				-- Also 4 for indent
+set.autoindent = true			-- Indent automatically
 set.number = true				-- Show line number
 set.relativenumber = true		-- Relative line numbers
 set.cursorline = true			-- Show cursor line
