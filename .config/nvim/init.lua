@@ -131,6 +131,11 @@ vim.keymap.set('n', '<Esc>q', 'ggggG', { desc = 'Format all on textwidth'})
 -- PLUGINS
 -------------------------------------------------------------------------------
 
+--[[ Paq bootstrap
+git clone --depth=1 https://github.com/savq/paq-nvim.git \
+    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+]]--
+
 require "paq" {
 	"savq/paq-nvim";				-- Let Paq manage itself
 	'nvim-lualine/lualine.nvim';	-- Fancier statusline
