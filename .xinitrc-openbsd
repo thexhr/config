@@ -18,7 +18,7 @@ for m in /usr/local/share/fonts/*; do
 done
 
 HIGHDPI=0
-xrandr | grep -w connected | grep 2880 > /dev/null
+xrandr | grep -w connected | egrep "(2880|3840)" > /dev/null
 if [ $? -eq 0 ]; then
 	# We have a high DPI monitor connected
 	HIGHDPI=1
