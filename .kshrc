@@ -214,7 +214,8 @@ updatepkgs() {
 		_option="-D snap"
 	fi
 
-	sync && doas pkg_add -ui $_option $_args
+	sync
+	doas pkg_add -ui $_option $_args
 	sync
 }
 
