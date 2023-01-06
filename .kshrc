@@ -23,7 +23,8 @@ if [[ $(uname -s) == "Linux" ]]; then
 	alias rm='rm --preserve-root --one-file-system -I'
 	alias cps='sync ; cvs up ; sync'
 	if [ -x /usr/bin/dircolors ]; then
-		test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+		test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
+			eval "$(dircolors -b)"
 	fi
 	bind -m '^L'=clear'^J'
 elif [[ $(uname -s) == "OpenBSD" ]]; then
@@ -157,7 +158,8 @@ vmmssh() {
 # Check the mirror configured in /etc/installurl and main OpenBSD mirror for
 # the latest build data of a snapshot
 checklatestsnap() {
-	ftp -MVo- "$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)/BUILDINFO"
+	ftp -MVo- "$(egrep -m 1 "^(ftp|http|https)" \
+		/etc/installurl)/snapshots/$(uname -m)/BUILDINFO"
 	ftp -MVo- http://ftp.openbsd.org/pub/OpenBSD/snapshots/$(uname -m)/BUILDINFO
 }
 
@@ -216,22 +218,29 @@ updatepkgs() {
 
 # Download and verify an OpenBSD ramdisk kernel
 getbsdrd() {
-	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
+	local _f="/etc/installurl"
+	local _mirror="$(egrep -m 1 "^(http|https)" ${_f})/snapshots/$(uname -m)"
 
 	ftp -V -o /tmp/bsd.rd "$_mirror/bsd.rd" || return 1
 	ftp -V -o /tmp/SHA256.sig "$_mirror/SHA256.sig" || return 1
 
-	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd.rd
+	cd /tmp && \
+		signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" \
+		-x /tmp/SHA256.sig bsd.rd
 }
 
 # Download and verify an OpenBSD single CPU kernel and save it as /bsd.vm
 getbsdvm() {
-	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
+	local _f="/etc/installurl"
+	local _mirror="$(egrep -m 1 "^(http|https)" ${_f})/snapshots/$(uname -m)"
 
 	ftp -V -o /tmp/bsd "$_mirror/bsd" || return 1
 	ftp -V -o /tmp/SHA256.sig "$_mirror/SHA256.sig" || return 1
 
-	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd && doas mv /tmp/bsd /bsd.vm
+	cd /tmp && \
+		signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" \
+		-x /tmp/SHA256.sig bsd && \
+		doas mv /tmp/bsd /bsd.vm
 }
 
 # Shows all processes that listen on TCP/UDP ports including owner, address
@@ -246,8 +255,11 @@ openports() {
 		_filter1="internet6"
 	fi
 
-	printf "%-10s %-13s %-5s %-5s %-9s %s\n" "USER" "COMMAND" "PID" "PROTO" "FAMILY" "LOCAL ADDRESS"
-	fstat | grep "${_filter1}" | grep -vE "${_filter2}" | awk '{ printf("%-10s %-13s %5s %-5s %-9s %s\n", $1,$2,$3,$7,$5,$9); }' | sort -u
+	printf "%-10s %-13s %-5s %-5s %-9s %s\n" \
+		"USER" "COMMAND" "PID" "PROTO" "FAMILY" "LOCAL ADDRESS"
+	fstat | grep "${_filter1}" | grep -vE "${_filter2}" | \
+		awk '{ printf("%-10s %-13s %5s %-5s %-9s %s\n", $1,$2,$3,$7,$5,$9); }' |\
+		sort -u
 }
 
 # Search the local ports tree for a keyword
@@ -263,7 +275,8 @@ psearch() {
 # Load all SSH keys in ~/.ssh (no sub directories) into the SSH agent
 sshopen() {
 		# The following is only needed on WSL not on other OSes
-		[ -f "/proc/version" ] && grep -qE "(Microsoft|WSL)" /proc/version 2> /dev/null
+		[ -f "/proc/version" ] && \
+			grep -qE "(Microsoft|WSL)" /proc/version 2> /dev/null
 		if [ $? -eq 0 ]; then
 			/usr/bin/keychain -q --nogui $HOME/.ssh/id_ed25519
 			return
@@ -285,8 +298,10 @@ cvspsdiff() {
 
 # Generate a QR code from an URL in the clipboard
 qrcodegen() {
-	# Idea from https://dataswamp.org/~solene/2021-03-25-computer-to-phone-text.html
-	xclip -o | qrencode -o - > ~/qrclip.png && sxiv -g 600x600 ~/qrclip.png && rm ~/qrclip.png
+	# From https://dataswamp.org/~solene/2021-03-25-computer-to-phone-text.html
+	xclip -o | qrencode -o - > ~/qrclip.png && \
+		sxiv -g 600x600 ~/qrclip.png && \
+		rm ~/qrclip.png
 }
 
 # cd into a directory or $HOME and execute ls -lh afterwards
@@ -319,8 +334,8 @@ showwifi() {
 
 # Show infos about my external IP address
 showmyipaddress() {
-	echo "My external IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
-	echo "My external IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
+	echo "External IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
+	echo "External IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
 }
 
 # Command line calculator using bc
@@ -329,7 +344,7 @@ calc() {
 }
 
 # Copied from https://github.com/agkozak/polyglot/ MIT license
-_polyglot_branch_status() {
+_poly_br_status() {
   POLYGLOT_REF="$(env git symbolic-ref --quiet HEAD 2> /dev/null)"
   case $? in        # See what the exit code is.
     0) ;;           # $POLYGLOT_REF contains the name of a checked-out branch.
@@ -396,8 +411,8 @@ tog() {
 	TOG_COLORS=1 TERM=xterm /usr/local/bin/tog "$@"
 }
 
-# http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
-
+# Quickly Navigate your Filesystem from the Command Line
+# From https://jeroenjanssens.com/navigate/
 export MARKPATH=$HOME/.marks
 jump() {
     cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
@@ -409,7 +424,8 @@ unmark() {
     rm -i "$MARKPATH/$1"
 }
 marks() {
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && \
+	echo
 }
 
 #############################################################################
@@ -444,22 +460,23 @@ if [ -d /var/db/pkg ]; then
 fi
 
 # relayctl completion.  Second level only for 'show'
-set -A complete_relayctl_1 -- monitor show load poll reload stop redirect table host log
+set -A complete_relayctl_1 -- monitor show load poll reload stop redirect \
+	table host log
 set -A complete_relayctl_2 -- summary hosts redirects relays routers sessions
 
 set -A complete_unwindctl_1 -- reload log status
 
 if [ -d /etc/rc.d ]; then
 	RCD_LIST=$(/bin/ls /etc/rc.d)
-	set -A complete_rcctl_1 -- get getdef set check reload restart stop start disable enable order ls
+	set -A complete_rcctl_1 -- get getdef set check reload restart stop \
+		start disable enable order ls
 	set -A complete_rcctl_2 -- $RCD_LIST
 
 	alias drcctl="doas rcctl"
-	set -A complete_drcctl_1 -- get getdef set check reload restart stop start disable enable order ls
+	set -A complete_drcctl_1 -- get getdef set check reload restart stop \
+		start disable enable order ls
 	set -A complete_drcctl_2 -- $RCD_LIST
 fi
-
-set -A complete_tarsnap_1 -- --list-archives --print-stats --fsck --fsck-prune --nuke --verify-config --version --checkpoint-bytes --configfile --dry-run --exclude --humanize-numbers --keyfile --totals
 
 set -A complete_got_1 -- $(got -h 2>&1 | sed -n s/commands://p)
 
@@ -492,9 +509,9 @@ fi
 if [[ $(id -u) -eq 0 ]]; then
 	PS1='\\033[30;101m\h\\033[0m \w$(_error_code) \033[38;5;11m\$\033[m '
 elif [[ $(whoami) = "xhr" ]] || [[ $(whoami) = "matthiaschmidt" ]]; then
-	PS1='\h${PS1_S} \w$(_polyglot_branch_status)$(_error_code) \033[38;5;11m\$\033[m '
+	PS1='\h${PS1_S} \w$(_poly_br_status)$(_error_code) \033[38;5;11m\$\033[m '
 else
-	PS1='\h$PS1_TRENNER\u \w$(_polyglot_branch_status) [$?]\n\$ '
+	PS1='\h$PS1_TRENNER\u \w$(_poly_br_status) [$?]\n\$ '
 fi
 
 #############################################################################
@@ -514,7 +531,8 @@ HISTSIZE=30000
 HISTFILE=$HOME/.sh_history
 HISTCONTROL=ignoredups:ignorespace
 BLOCKSIZE=M
-PATH=$MACPATH:$HOME/Documents/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin
+PATH=$MACPATH:$HOME/Documents/bin:/bin:/sbin
+PATH=$PATH:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin
 LESSSECURE=1
 PAGER='less -JWAceX'
 LESS='-Xa'
@@ -527,5 +545,5 @@ export MOZ_ACCELERATED=1
 # force webrender to enable
 export MOZ_WEBRENDER=1
 
-export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE PKG_PATH FETCH_CMD
-export GOT_LOG_DEFAULT_LIMIT
+export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE PKG_PATH
+export FETCH_CMD GOT_LOG_DEFAULT_LIMIT
