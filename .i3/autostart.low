@@ -14,7 +14,7 @@ xset dpms 0 0 120
 # Set keyboard layout
 setxkbmap -layout us -variant altgr-intl -model nodeadkeys
 # sct - Redshift clone
-sct 3400
+exec /usr/local/bin/sctd 4200 &
 # xbattmon on the bottom
 exec xbattmon -p bottom -t 2 &
 # Start xautolock
