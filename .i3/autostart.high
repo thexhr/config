@@ -16,7 +16,7 @@ exec xbacklight -set 40% &
 # Set keyboard layout
 setxkbmap -layout us -variant altgr-intl -model nodeadkeys
 # sct - Redshift clone
-exec /usr/local/bin/sctd 5000 &
+exec /usr/local/bin/sctd 4200 &
 # xbattmon on the bottom
 exec xbattmon -p bottom -t 2 &
 # Start xautolock
