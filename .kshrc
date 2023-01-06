@@ -1,4 +1,6 @@
-# sh/ksh initialization
+#############################################################################
+# KSH CONFIG FILE - https://github.com/thexhr/config
+#############################################################################
 
 [ -f $HOME/.kshrc.private ] && . $HOME/.kshrc.private
 
