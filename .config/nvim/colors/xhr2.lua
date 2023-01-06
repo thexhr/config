@@ -1,6 +1,4 @@
 local colors = {
--- content here will not be touched
--- PATCH_OPEN
 Normal = {fg = "#E4E0D8", bg = "#1F1F1F"},
 Boolean = {fg = "#FF776B"},
 CmpItemAbbrDeprecated = {fg = "#564A48", strikethrough = true},
@@ -66,8 +64,6 @@ VertSplit = {fg = "#454545", bg = "#454545"},
 Visual = {fg = "#C4C6CA", bg = "#564A48"},
 VisualNOS = {fg = "#C4C6CA", bg = "#454545"},
 WarningMsg = {fg = "#FF776B"},
--- PATCH_CLOSE
--- content here will not be touched
 }
 
 -- colorschemes generally want to do this
