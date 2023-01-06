@@ -113,11 +113,6 @@ gennewcert() {
 		-addext subjectAltName=DNS:$1
 }
 
-# Neat trick from https://github.com/lf94/peek-for-tmux/blob/master/README.md
-p() {
-	tmux split-window -p 33 more $@ || exit;
-}
-
 # Enable audio and video recording on OpenBSD. Needs doas permissions for
 # the calling user.  Also set mic source to my headset and ajust volume.
 enablevideoconf() {
