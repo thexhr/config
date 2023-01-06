@@ -118,6 +118,8 @@ p() {
 	tmux split-window -p 33 more $@ || exit;
 }
 
+# Enable audio and video recording on OpenBSD. Needs doas permissions for
+# the calling user.  Also set mic source to my headset and ajust volume.
 enablevideoconf() {
 	echo "[+] Enable video recording"
 	doas sysctl kern.video.record=1
@@ -129,6 +131,7 @@ enablevideoconf() {
 	sndioctl input.level=0.25
 }
 
+# Disable audio and video recording on OpenBSD.
 disablevideoconf() {
 	echo "[+] Disable video recording"
 	doas sysctl kern.video.record=0
@@ -156,21 +159,27 @@ vmmssh() {
 	ssh -o StrictHostKeyChecking=no -l ${_user} 100.64.${_id}.3
 }
 
+# Check the mirror configured in /etc/installurl and main OpenBSD mirror for
+# the latest build data of a snapshot
 checklatestsnap() {
 	ftp -MVo- "$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)/BUILDINFO"
 	ftp -MVo- http://ftp.openbsd.org/pub/OpenBSD/snapshots/$(uname -m)/BUILDINFO
 }
 
+# Show if any of the mounted, local partitions has a lost+found directory.
+# Handy to detect lost files after fsck of an unclean file system
 lostandfoundcheck() {
 	for mp in $(mount -t ffs | cut -d ' ' -f 3); do
 		[[ -d ${mp}/lost+found ]] && echo "${mp}/lost+found exists"
 	done
 }
 
+# Reload .kshrc
 kshrc() {
 	. $HOME/.kshrc
 }
 
+# Update OpenBSD src/ and ports/ checkout either via got(1) or git(1)
 updatesrc() {
 	if [ ! -d "/var/git" ]; then
 		local _oldpwd="$PWD"
@@ -199,6 +208,7 @@ updatesrc() {
 	fi
 }
 
+# Update all installed packages on OpenBSD.
 updatepkgs() {
 	local _option="" _args=$1
 	if [[ -n $(sysctl -n kern.version | cut -d ' ' -f2 | grep beta) ]]; then
@@ -209,6 +219,7 @@ updatepkgs() {
 	sync
 }
 
+# Download and verify an OpenBSD ramdisk kernel
 getbsdrd() {
 	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
 
@@ -218,6 +229,7 @@ getbsdrd() {
 	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd.rd
 }
 
+# Download and verify an OpenBSD single CPU kernel and save it as /bsd.vm
 getbsdvm() {
 	local _mirror="$(egrep -m 1 "^(ftp|http|https)" /etc/installurl)/snapshots/$(uname -m)"
 
@@ -227,6 +239,8 @@ getbsdvm() {
 	cd /tmp && signify -C -p "/etc/signify/openbsd-$(uname -r | tr -d '.')-base.pub" -x /tmp/SHA256.sig bsd && doas mv /tmp/bsd /bsd.vm
 }
 
+# Shows all processes that listen on TCP/UDP ports including owner, address
+# and address family
 openports() {
 	local _filter1='internet'
 	local _filter2='icmp|raw|<-|->'
@@ -241,6 +255,7 @@ openports() {
 	fstat | grep "${_filter1}" | grep -vE "${_filter2}" | awk '{ printf("%-10s %-13s %5s %-5s %-9s %s\n", $1,$2,$3,$7,$5,$9); }' | sort -u
 }
 
+# Search the local ports tree for a keyword
 psearch() {
         local pt="/usr/ports"
 
@@ -250,6 +265,7 @@ psearch() {
         cd ${pt} && make search name=${1}
 }
 
+# Load all SSH keys in ~/.ssh (no sub directories) into the SSH agent
 sshopen() {
 		# The following is only needed on WSL not on other OSes
 		[ -f "/proc/version" ] && grep -qE "(Microsoft|WSL)" /proc/version 2> /dev/null
@@ -266,35 +282,42 @@ sshopen() {
         done
 }
 
+# Colorful diff for CVS changesets
 cvspsdiff() {
 	[ -z "$1" ] && return
 	cvsps -q -s "$1" -g | cdiff
 }
 
+# Generate a QR code from an URL in the clipboard
 qrcodegen() {
 	# Idea from https://dataswamp.org/~solene/2021-03-25-computer-to-phone-text.html
 	xclip -o | qrencode -o - > ~/qrclip.png && sxiv -g 600x600 ~/qrclip.png && rm ~/qrclip.png
 }
 
+# cd into a directory or $HOME and execute ls -lh afterwards
 cds() {
 	test -z "$1" && cd $HOME && ls -lh && return
 	cd "$1" && ls -lah
 }
 
+# Use pkglocate and fzf to have a neat ports tree finder
 pkg_search() {
 	pkglocate "$1" | cut -d ':' -f 1 | sort -u | fzf --preview="pkg_info {}"
 }
 
+# Combined mkdir and cd
 mkcd() {
 	[[ -n $1 ]] || return 0
 	[[ -d $1 ]] || mkdir -p "$1"
 	[[ -d $1 ]] && builtin cd "$1"
 }
 
+# wget clone with curl
 cget() {
 	curl -OL --compressed "$@"
 }
 
+# Show associated access point on OpenBSD
 showwifi() {
 	ifconfig | grep ieee | awk {'print $3'}
 }
@@ -305,6 +328,7 @@ showmyipaddress() {
 	echo "My external IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
 }
 
+# Command line calculator using bc
 calc() {
 	echo "scale=3;$@" | bc -l
 }
@@ -361,6 +385,7 @@ _polyglot_branch_status() {
   unset POLYGLOT_REF POLYGLOT_GIT_STATUS POLYGLOT_SYMBOLS
 }
 
+# Reload pf firewall config after success validity check
 lpf() {
 	local _pf=${1:-/etc/pf.conf}
 	doas pfctl -n -f ${_pf} && doas pfctl -F rules && doas pfctl -f ${_pf}
@@ -371,6 +396,7 @@ nohistory() {
 	HISTFILE=/dev/null
 }
 
+# Warp got(1)'s tog(1) to have colors
 tog() {
 	TOG_COLORS=1 TERM=xterm /usr/local/bin/tog "$@"
 }
@@ -452,6 +478,7 @@ set -A complete_got_1 -- $(got -h 2>&1 | sed -n s/commands://p)
 # PROMPT
 #############################################################################
 
+# Format shell return code != 0 in red
 _error_code() {
 	local _temp=$?
 	if [ $_temp -ne 0 ]; then
