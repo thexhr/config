@@ -100,7 +100,7 @@ exec ~/Documents/bin/batterymonitor &
 # Sync X clipboard buffers
 exec autocutsel -fork &
 # sct - Redshift clone
-exec /usr/local/bin/sctd 4200 &
+exec /usr/local/bin/ctempd 6200 &
 # xbattmon on the bottom
 exec xbattmon -p bottom -t 2 &
 # Start xautolock
