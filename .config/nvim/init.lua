@@ -171,6 +171,8 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fs', builtin.search_history, {})
 vim.keymap.set('n', '<leader>fc', builtin.lsp_incoming_calls, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
+vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, {})
+vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, {})
 
 -------------------------------------------------------------------------------
 -- LSP settings from https://tkg.codes/guide-to-modern-neovim-setup-2021/
