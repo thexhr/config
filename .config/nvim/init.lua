@@ -144,6 +144,8 @@ require "paq" {
 	'hrsh7th/nvim-cmp';				-- completion engine plugin for neovim
 	'saadparwaiz1/cmp_luasnip';		-- luasnip completion source for nvim-cmp
 	'L3MON4D3/LuaSnip';				-- Snippet Engine for Neovim written in Lua
+	'nvim-lua/plenary.nvim';		-- Telescope dependecy
+	'nvim-telescope/telescope.nvim';-- Fast and fuzzy search
 }
 
 -- luasnip setup
@@ -157,6 +159,18 @@ require('lualine').setup {
 		section_separators = '',
 	},
 }
+
+-------------------------------------------------------------------------------
+-- Telescope config
+-------------------------------------------------------------------------------
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fs', builtin.search_history, {})
+vim.keymap.set('n', '<leader>fc', builtin.lsp_incoming_calls, {})
+vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 
 -------------------------------------------------------------------------------
 -- LSP settings from https://tkg.codes/guide-to-modern-neovim-setup-2021/
@@ -185,7 +199,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>x', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
