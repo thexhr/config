@@ -173,6 +173,7 @@ vim.keymap.set('n', '<leader>fc', builtin.lsp_incoming_calls, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, {})
 vim.keymap.set('n', '<leader>fd', builtin.lsp_definitions, {})
+vim.keymap.set('n', '<leader>c', builtin.command_history, {})
 
 -------------------------------------------------------------------------------
 -- LSP settings from https://tkg.codes/guide-to-modern-neovim-setup-2021/
