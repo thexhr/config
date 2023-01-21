@@ -58,9 +58,12 @@ CmpItemKindFunction = {link = "TSFunction"},
 CmpItemKindKeyword = {link = "TSKeyword"},
 CmpItemKindMethod = {link = "TSMethod"},
 CmpItemKindProperty = {link = "TSProperty"},
-TabLine = {fg = "#d3d3d3", bg = "#363636"},
-TabLineFill = {fg = "#d3d3d3", bg = "#363636"},
-TabLineSel = {fg = "#d3d3d3", bg = "#1f2329"},
+-- Selected tab
+TabLineSel = {fg = "#272D2D", bg = "#88B966"},
+-- Inactive tab
+TabLine = {fg = "#d3d3d3", bg = "#3E4452" },
+-- Whole line
+TabLineFill = {fg = "#d3d3d3", bg = "#2C323C"},
 TSText = {fg = "#E4E0D8"},
 CmpItemKindText = {link = "TSText"},
 CmpItemKindInterface = {link = "TSType"},
