@@ -147,7 +147,10 @@ require "paq" {
 	'L3MON4D3/LuaSnip';				-- Snippet Engine for Neovim written in Lua
 	'nvim-lua/plenary.nvim';		-- Telescope dependecy
 	'nvim-telescope/telescope.nvim';-- Fast and fuzzy search
+	'lewis6991/impatient.nvim';		-- Startup cache
 }
+
+require('impatient')
 
 -- luasnip setup
 luasnip = require 'luasnip'
