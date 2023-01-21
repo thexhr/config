@@ -25,6 +25,7 @@ set.splitright = true			-- Vertical split to the right
 set.splitbelow = true			-- Horizontal split to the bottom
 set.history = 100				-- Remember N lines in history
 set.spellsuggest = 'best,10'	-- Show the best 10 suggestions re spellcheck
+ set.showtabline = 2			-- Always show tab line
 -- File extensions to be ignored in wildmenu
 set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 
