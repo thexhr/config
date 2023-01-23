@@ -128,6 +128,17 @@ vim.keymap.set('n', '<F2>', '<cmd>set invpaste paste?<cr>', {desc = ''})
 vim.keymap.set('n', '<Esc>a', 'gqap', { desc = 'Format paragraph on textwidth'})
 vim.keymap.set('n', '<Esc>q', 'ggggG', { desc = 'Format all on textwidth'})
 
+-- Allow to move selected lines in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Cursor remains at the same position when joining lines
+vim.keymap.set("n", "J", "mzJ`z")
+
+-- Screen recenters when searching
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 -------------------------------------------------------------------------------
 -- PLUGINS
 -------------------------------------------------------------------------------
