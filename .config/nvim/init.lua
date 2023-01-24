@@ -139,6 +139,9 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- Don't preserve the word the clipboard is pasted into
+vim.keymap.set("v", "p", '"_dP')
+
 -------------------------------------------------------------------------------
 -- PLUGINS
 -------------------------------------------------------------------------------
