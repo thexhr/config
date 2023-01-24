@@ -452,6 +452,10 @@ set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 
 if [[ $(uname -s) != "Linux" ]]; then
 	set -A complete_ifconfig_1 -- $(ifconfig | grep ^[a-z] | cut -d: -f1)
+
+	set -A complete_vmctl_1 -- start stop console stat status create load \
+		receieve pause reset send unpause wait
+	set -A complete_vmctl_2 -- $(vmctl status | awk '!/NAME/{print $NF}')
 fi
 
 if [ -d /var/db/pkg ]; then
@@ -482,10 +486,6 @@ if [ -d /etc/rc.d ]; then
 fi
 
 set -A complete_got_1 -- $(got -h 2>&1 | sed -n s/commands://p)
-
-set -A complete_vmctl_1 -- start stop console stat status create load \
-	receieve pause reset send unpause wait
-set -A complete_vmctl_2 -- $(vmctl status | awk '!/NAME/{print $NF}')
 
 # /tmp/.man-list is generated upon boot by /etc/rc.local with
 # find /usr/share/man/ -type f | sed -e 's/.*\///' -e 's/\.[0-9]//' | sort -u
