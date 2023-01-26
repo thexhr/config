@@ -453,36 +453,38 @@ set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM
 if [[ $(uname -s) != "Linux" ]]; then
 	set -A complete_ifconfig_1 -- $(ifconfig | grep ^[a-z] | cut -d: -f1)
 
+fi
+
+if [[ $(uname -s) == "OpenBSD" ]]; then
 	set -A complete_vmctl_1 -- start stop console stat status create load \
 		receieve pause reset send unpause wait
 	set -A complete_vmctl_2 -- $(vmctl status | awk '!/NAME/{print $NF}')
-fi
+	if [ -d /var/db/pkg ]; then
+		PKG_LIST=$(/bin/ls -1 /var/db/pkg)
+		set -A complete_pkg_info -- $PKG_LIST
 
-if [ -d /var/db/pkg ]; then
-	PKG_LIST=$(/bin/ls -1 /var/db/pkg)
-	set -A complete_pkg_info -- $PKG_LIST
+		alias dpkgdel="doas pkg_delete"
+		set -A complete_dpkgdel_1 -- $PKG_LIST
+	fi
 
-	alias dpkgdel="doas pkg_delete"
-	set -A complete_dpkgdel_1 -- $PKG_LIST
-fi
+	# relayctl completion.  Second level only for 'show'
+	set -A complete_relayctl_1 -- monitor show load poll reload stop redirect \
+		table host log
+	set -A complete_relayctl_2 -- summary hosts redirects relays routers sessions
 
-# relayctl completion.  Second level only for 'show'
-set -A complete_relayctl_1 -- monitor show load poll reload stop redirect \
-	table host log
-set -A complete_relayctl_2 -- summary hosts redirects relays routers sessions
+	set -A complete_unwindctl_1 -- reload log status
 
-set -A complete_unwindctl_1 -- reload log status
+	if [ -d /etc/rc.d ]; then
+		RCD_LIST=$(/bin/ls /etc/rc.d)
+		set -A complete_rcctl_1 -- get getdef set check reload restart stop \
+			start disable enable order ls
+		set -A complete_rcctl_2 -- $RCD_LIST
 
-if [ -d /etc/rc.d ]; then
-	RCD_LIST=$(/bin/ls /etc/rc.d)
-	set -A complete_rcctl_1 -- get getdef set check reload restart stop \
-		start disable enable order ls
-	set -A complete_rcctl_2 -- $RCD_LIST
-
-	alias drcctl="doas rcctl"
-	set -A complete_drcctl_1 -- get getdef set check reload restart stop \
-		start disable enable order ls
-	set -A complete_drcctl_2 -- $RCD_LIST
+		alias drcctl="doas rcctl"
+		set -A complete_drcctl_1 -- get getdef set check reload restart stop \
+			start disable enable order ls
+		set -A complete_drcctl_2 -- $RCD_LIST
+	fi
 fi
 
 set -A complete_got_1 -- $(got -h 2>&1 | sed -n s/commands://p)
