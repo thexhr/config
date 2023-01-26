@@ -85,9 +85,6 @@ vim.keymap.set('n', '<Esc>l', '<cmd>lua ToggleLang()<cr>')
 -- Enable C-A for the command line
 vim.api.nvim_exec([[ cnoremap <C-A> <Home> ]], false)
 
--- Y yank the whole line
-vim.api.nvim_set_keymap('n', 'Y', '^y$', { noremap = true })
-
 -- Disable search highlights with space
 vim.keymap.set('n', '<space>', '<cmd>noh<cr>', {desc = 'Disable highlight'})
 
