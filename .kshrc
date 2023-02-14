@@ -455,10 +455,12 @@ if [[ $(uname -s) != "Linux" ]]; then
 
 fi
 
-if [[ $(uname -s) == "OpenBSD" ]]; then
+if [[ $(uname -s) == "OpenBSD" ]] && [[ -S "/var/run/vmd.sock" ]]; then
 	set -A complete_vmctl_1 -- start stop console stat status create load \
 		receieve pause reset send unpause wait
 	set -A complete_vmctl_2 -- $(vmctl status | awk '!/NAME/{print $NF}')
+fi
+if [[ $(uname -s) == "OpenBSD" ]]; then
 	if [ -d /var/db/pkg ]; then
 		PKG_LIST=$(/bin/ls -1 /var/db/pkg)
 		set -A complete_pkg_info -- $PKG_LIST
