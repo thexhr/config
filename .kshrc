@@ -337,9 +337,26 @@ showwifi() {
 
 # Show infos about my external IP address
 showmyipaddress() {
-	echo "External IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
-	echo "External IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
+	local JV4=$(mktemp /tmp/ipaddress4.XXXXXX)
+	local JV6=$(mktemp /tmp/ipaddress6.XXXXXX)
+
+	curl -4 -s ifconfig.co/json > $JV4
+	curl -6 -s ifconfig.co/json > $JV6
+
+	echo "External v4\t: $(jq -r '.ip' $JV4)"
+	echo "External v6\t: $(jq -r '.ip' $JV6)"
+	echo "Country\t\t: $(jq -r '.country_iso' $JV4)"
+	echo "City\t\t: $(jq -r '.city' $JV4)"
+	echo "ASN\t\t: $(jq -r '.asn' $JV4) ($(jq -r '.asn_org' $JV4))"
+
+	rm -f $JV4 $JV6
 }
+# Replaced with the version but keep it if the ifconfig.co services
+# goes down
+#showmyipaddress() {
+#	echo "External IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
+#	echo "External IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
+#}
 
 # Command line calculator using bc
 calc() {
