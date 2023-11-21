@@ -1,6 +1,6 @@
-# $Id: .cwmrc,v 1.6 2018/10/09 10:05:14 cvs Exp $
+# $Id: .cwmrc,v 1.37 2020/12/04 10:30:10 cvs Exp $
 #
-# Mostly copied from https://hub.darcs.net/raichoo/rcfiles/browse/cwm/cwmrc
+# Some parts copied from https://hub.darcs.net/raichoo/rcfiles/browse/cwm/
 # Thanks!
 
 #############################################################################
@@ -12,19 +12,18 @@ unbind-key all
 
 # configuration
 bind-key 4-Return terminal
-bind-key 4S-Return "st -g 100x35 -e tmux"
+bind-key 4S-Return "xterm -geometry 100x35 -e tmux"
 bind-key 4S-q window-delete
 bind-key 4-i window-menu-label
 bind-key 4-m window-maximize
-bind-key 4S-l lock
 bind-key 4S-e quit
-bind-key 4-d menu-cmd
-bind-key 4-o menu-ssh
-bind-key 4S-d menu-exec #dmenu_run
+bind-key 4-d "rofi -show combi"
+bind-key 4S-d menu-exec
 bind-key 4-f window-fullscreen
 bind-key 4S-f window-freeze
 bind-key 4-p window-hide
 bind-key 4-0 group-toggle-all
+bind-key 4-backslash "sync"
 
 # Show only group n, hiding other groups
 bind-key 4-1 group-only-1
@@ -59,11 +58,19 @@ bind-key 4M-7 group-toggle-7
 bind-key 4M-8 group-toggle-8
 bind-key 4M-9 group-toggle-9
 
+# Close all windows in the group
+bind-key MS-1 group-close-1
+bind-key MS-2 group-close-2
+bind-key MS-3 group-close-3
+bind-key MS-4 group-close-4
+bind-key MS-5 group-close-5
+bind-key MS-6 group-close-6
+bind-key MS-7 group-close-7
+bind-key MS-8 group-close-8
+bind-key MS-9 group-close-9
+
 # Toggle group membership of current window.
 bind-key 4-g window-group
-
-# Stick current window to all groups
-bind-key 4S-g window-stick
 
 # Raise, lower current window
 bind-key 4-Up window-raise
@@ -71,15 +78,15 @@ bind-key 4-Down window-lower
 
 # Forward and reverse cycle through windows
 bind-key M-Tab window-cycle
-bind-key M-q window-rcycle
+bind-key MS-Tab window-rcycle
 
 # Forward and reverse cycle through groups
 bind-key 4-Tab group-cycle
-bind-key 4-q group-rcycle
+bind-key 4S-Tab group-rcycle
 
 # Forward and reverse cycle through windows in current group
 bind-key 4-bracketright window-cycle-ingroup
-bind-key 4-bracketleft window-cycle-ingroup
+bind-key 4-bracketleft window-rcycle-ingroup
 
 # Launch window search menu.
 bind-key 4-s menu-window
@@ -87,8 +94,10 @@ bind-key 4-s menu-window
 # Current window is placed at the top/left of the screen,
 # maximized horizontally/vertically and resized to
 # half of the vertical/horizontal screen space.
-bind-key 4S-bracketright window-htile
+#bind-key 4S-bracketright window-htile
 bind-key 4S-bracketleft window-vtile
+# Tile master at 65%
+vtile 55
 
 # Resize window in the respective direction
 bind-key 4-k window-resize-up-big
@@ -112,7 +121,7 @@ bind-key 4M-l window-snap-right
 bind-key 4S-r restart
 
 # Lock screen with xlock
-bind-key CM-l lock
+bind-key CM-l "xlock -mode blank"
 
 #  Vertically/Horizontally maximize current window
 bind-key 4-semicolon window-vmaximize
@@ -122,15 +131,16 @@ bind-key 4-dead_acute window-hmaximize
 bind-mouse 4-1 window-move
 bind-mouse 4-3 window-resize
 
-# Launch window search menu
-bind-mouse 4M-1 menu-window
+# sndio volume
+bind-key 4C-9 "sndioctl output.level=-0.1"
+bind-key 4C-0 "sndioctl output.level=+0.1"
 
 #############################################################################
 # SETTINGS
 #############################################################################
 
 # Minimum distance to snap-to adjacent edge, in pixels.
-snapdist 10
+snapdist 5
 
 # Toggle sticky group mode.  The default behavior for new windows
 # is to not assign any group.  By enabling sticky group mode,
@@ -150,45 +160,33 @@ fontname "fixed-10"
 ignore bar
 ignore lemonbar
 ignore log
+ignore xclock
+ignore top
 
 # Define a gap for status bar at bottom
-gap 0 15 0 0
+gap 20 20 20 20
 
 #############################################################################
 # COLORS
 #############################################################################
 
-#color activeborder "#700707"
-color activeborder "#838485"
-#color activeborder "#00C8FF"
+color activeborder "#101218"
 color inactiveborder "#000000"
 color menubg "#282C34"
 color menufg "#e32929"
 color font "#FFFFFF"
 color selfont "#000000"
 color urgencyborder "#e32929"
-color ungroupborder "#EF5939"
-color groupborder "#B8E673"
+color groupborder "#FF00FB"
+color ungroupborder "#FFFF00"
 
 #############################################################################
 # COMMANDS
 #############################################################################
 
-command lock "xlock -mode blank -timeout 5 -icongeometry 10x10 -info ' '" \
-	"-bg black -fg darkgray -validate ' ' -username ' ' -password ' '" \
-	"-font fixed +description -planfont fixed"
-command term "st -g 100x35"
-command mutt "st -t neomutt -c neomutt -g 125x50+100+100 -e neomutt"
-command log "st -t log -g 130x16+990+660 -c log -e tail -f /var/log/messages /var/log/daemon"
-command ff-default "/usr/local/bin/xodo ffdbus --as firefox"
-command ff-incognito "/usr/local/bin/xodo ffdbus --as firefoxi --no-remote"
-command iridium-in "/usr/local/bin/xodo iridium --as iridium --enable-unveil --site-per-process --incognito --disk-cache-dir=/tmp/"
-command torbrowser "/usr/local/bin/xodo tor-browser --as torbrowser"
-command cmus "st -t cmus -c cmus -e cmus"
-command clock "xclock -hd red -hl white"
-
-autogroup 0 "monitor"
 autogroup 1 "log"
 autogroup 1 "neomutt"
-autogroup 3 "firefox"
+autogroup 2 "dev"
+autogroup 3 "Firefox"
+autogroup 9 "monitor"
 
