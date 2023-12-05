@@ -52,10 +52,8 @@ bindsym $mod+b border toggle
 bindsym $mod+Shift+backslash bar mode toggle
 
 # Border style
-#new_window pixel 1
 default_border pixel 1
 default_floating_border pixel 1
-#new_float pixel 1
 
 # scratchpad
 bindsym $mod+m move scratchpad
