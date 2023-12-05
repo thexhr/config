@@ -223,7 +223,6 @@ set	$bg	#000000
 set $ia #8f8f8f
 
 bar {
-    #status_command i3status
     swaybar_command swaybar
     # Hide the bar by default.  Only visible for notification or via key
     mode hide
