@@ -1,0 +1,23 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 388,
+       "width": 644,
+       "x": 0,
+       "y": 0
+    },
+    "name": "ws51",
+    "percent": 1,
+    "swallows": [
+       {
+       "class": "^ws51$",
+       "instance": "^ws51$",
+       "title": "^ws51$"
+       }
+    ],
+    "type": "con"
+}
+
