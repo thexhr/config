@@ -31,11 +31,11 @@ exec xbattmon &
 #exec i3-msg "workspace 2; append_layout /home/xhr/.config/sway/ws/i3-layout-ws-2" &
 #exec i3-msg "workspace 3; append_layout /home/xhr/.config/sway/ws/i3-layout-ws-3" &
 
-exec foot -e tmux &
+exec foot tmux &
 #exec firefox &
-exec foot -T log -e tail -f /var/log/messages &
-exec foot T top -e top -I -1 &
-exec foot -T profanity -e profanity &
-exec foot -T mutt -e screen -S 23 mutt &
+exec foot -T log tail -f /var/log/messages &
+exec foot T top top -I -1 &
+#exec foot -T profanity profanity &
+exec foot -T mutt screen -S 23 mutt &
 exec foot -T scratchpad &
 
