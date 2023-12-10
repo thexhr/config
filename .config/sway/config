@@ -27,9 +27,9 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec foot
-bindsym $mod+Shift+Return exec "foot -e tmux"
+bindsym $mod+Shift+Return exec "foot tmux"
 
-bindsym $mod+backslash exec --no-startup-id "foot -e sync"
+bindsym $mod+backslash exec --no-startup-id "foot sync"
 
 # kill focused window
 bindsym $mod+Shift+q kill
