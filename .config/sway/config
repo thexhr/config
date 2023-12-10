@@ -173,7 +173,7 @@ bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your X session.' -b 'Yes, exit sway' 'swaymsg exit'"
 
 # Start programs
-bindsym $mod+bracketleft exec "swaylock"
+bindsym $mod+bracketleft exec "swaylock -c 1C1B22"
 
 # Show selection:
 bindsym $mod+Insert exec --no-startup-id ~/Documents/bin/showclip
