@@ -13,7 +13,7 @@ exec xbattmon &
 #exec i3-msg "workspace 2; append_layout /home/xhr/.config/sway/ws/i3-layout-ws-2" &
 #exec i3-msg "workspace 3; append_layout /home/xhr/.config/sway/ws/i3-layout-ws-3" &
 
-exec foot tmux &
+exec foot -T tmux tmux &
 #exec firefox &
 exec foot -T log tail -f /var/log/messages &
 exec foot T top top -I -1 &
