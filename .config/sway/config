@@ -190,8 +190,9 @@ bindsym $mod+Ctrl+0 exec "sndioctl output.level=+0.1"
 
 input "type:keyboard" {
 	xkb_layout us
-	xkb_variant ,altgr-intel
+	xkb_variant altgr-intl
 	xkb_model nodeadkeys
+	xkb_options caps:escape,altwin:prtsc_rwin
 }
 
 ##############################################################################
