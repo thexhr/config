@@ -3,24 +3,6 @@
 xmodmap ~/.Xmodmap 2> /dev/null
 # Set black background
 swaybg -c '#1C1B22' &
-# Set background image
-#exec xwallpaper --zoom ~/Pictures/background &
-# No beep
-#xset -b
-# Enable screen powermanagement
-#xset +dpms
-# No suspend, no standy, turn off screen after 120 secs
-#xset dpms 0 0 120
-# Set keyboard layout
-setxkbmap -layout us -variant altgr-intl -model nodeadkeys
-# Speed up trackpint
-#xinput set-prop 8 'Device Accel Constant Deceleration' 0.4
-# Enabled trackpoint scrolling
-#xinput set-prop 8 'WS Pointer Wheel Emulation' 1
-# Scroll with middle button and trackpad
-#xinput set-prop 8 'WS Pointer Wheel Emulation Button' 2
-# Natural scrolling with Trackpoint
-#xinput set-button-map 8 1 2 3 5 4 7 6
 # Start mute headphone script
 #exec ~/Documents/bin/mute_headphone &
 # Start wifiwatcher script
