@@ -188,6 +188,12 @@ bindsym $mod+Home exec --no-startup-id ~/Documents/bin/keyblayoutoggle
 bindsym $mod+Ctrl+9 exec "sndioctl output.level=-0.1"
 bindsym $mod+Ctrl+0 exec "sndioctl output.level=+0.1"
 
+input "type:keyboard" {
+	xkb_layout us
+	xkb_variant ,altgr-intel
+	xkb_model nodeadkeys
+}
+
 ##############################################################################
 # Colors
 ##############################################################################
