@@ -224,7 +224,7 @@ bar {
     swaybar_command swaybar
     status_command i3status
     # Hide the bar by default.  Only visible for notification or via key
-    mode hide
+    #mode hide
     hidden_state hide
     modifier $mod+Ctrl
     position top
