@@ -13,15 +13,6 @@ bindsym $mod+Shift+p gaps inner current minus 5
 # draw borders on windows only if there is more than one window in a workspace
 smart_borders on
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below. ISO 10646 = Unicode
-
-#font -misc-fixed-medium-r-normal--10-120-75-75-C-70-iso10646-1
-
-#font pango:
-
-#font -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-*
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -237,7 +228,6 @@ bar {
     hidden_state hide
     modifier $mod+Ctrl
     position top
-	font -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-*
 	colors {
 		background $bg
 		focused_workspace	$bg	$bg	#00cd00
