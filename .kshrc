@@ -415,6 +415,16 @@ _poly_br_status() {
   unset POLYGLOT_REF POLYGLOT_GIT_STATUS POLYGLOT_SYMBOLS
 }
 
+__got_ps1() {
+	local _format _branch _status
+	_format=$1
+	_branch=$(got branch 2>/dev/null | grep -v conf_set_now)
+	_status=$?
+	if [ ${_status} -eq 0 ]; then
+		printf "$_format" $_branch
+	fi
+}
+
 # Reload pf firewall config after success validity check
 lpf() {
 	local _pf=${1:-/etc/pf.conf}
@@ -537,7 +547,7 @@ fi
 if [[ $(id -u) -eq 0 ]]; then
 	PS1='\\033[30;101m\h\\033[0m \w$(_error_code) \033[38;5;11m\$\033[m '
 elif [[ $(whoami) = "xhr" ]] || [[ $(whoami) = "matthiaschmidt" ]]; then
-	PS1='\h${PS1_S} \w$(_poly_br_status)$(_error_code) \033[38;5;11m\$\033[m '
+	PS1='\h${PS1_S} \w$(__got_ps1 " (%s)")$(_error_code) \033[38;5;11m\$\033[m '
 else
 	PS1='\h$PS1_TRENNER\u \w$(_poly_br_status) [$?]\n\$ '
 fi
