@@ -415,6 +415,7 @@ _poly_br_status() {
   unset POLYGLOT_REF POLYGLOT_GIT_STATUS POLYGLOT_SYMBOLS
 }
 
+# from https://github.com/qbit/ohmyksh
 __got_ps1() {
 	local _format _branch _status
 	_format=$1
