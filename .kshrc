@@ -426,6 +426,10 @@ __got_ps1() {
 	fi
 }
 
+src() {
+	cd /usr/src/*/$1 || return
+}
+
 # Reload pf firewall config after success validity check
 lpf() {
 	local _pf=${1:-/etc/pf.conf}
