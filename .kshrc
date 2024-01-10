@@ -426,6 +426,20 @@ __got_ps1() {
 	fi
 }
 
+# pushd and popd inspired by
+# https://pestilenz.org/~ckeen/blog/posts/pushpop.txt.html
+pushd() {
+	export __DIRSTK="${__DIRSTK}:$(pwd)"
+}
+
+popd() {
+	DIR=`echo $__DIRSTK|cut -f 1 -d:`
+	if [ "$DIR" != "" ]; then
+		cd $DIR
+	fi
+	export __DIRSTK=`echo $__DIRSTK | cut -f 2- -d:`
+}
+
 src() {
 	cd /usr/src/*/$1 || return
 }
