@@ -183,6 +183,9 @@ bindsym $mod+End exec --no-startup-id ~/Documents/bin/ducksearch
 # Toggle keyboard layout
 bindsym $mod+Home exec --no-startup-id ~/Documents/bin/keyblayoutoggle
 
+# Toggle touchpad
+bindsym $mod+equal exec --no-startup-id ~/Documents/bin/toogle_touchpad.sh
+
 # sndio volume
 bindsym $mod+Ctrl+9 exec "sndioctl output.level=-0.1"
 bindsym $mod+Ctrl+0 exec "sndioctl output.level=+0.1"
