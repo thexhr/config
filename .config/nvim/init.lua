@@ -92,6 +92,8 @@ vim.keymap.set('n', '<space>', '<cmd>noh<cr>', {desc = 'Disable highlight'})
 vim.keymap.set('n', '<Bslash>s', '<cmd>write<cr>', {desc = 'Save'})
 vim.keymap.set('n', '<Bslash>q', '<cmd>quitall<cr>',
 	{desc = 'Quit all windows'})
+vim.keymap.set('n', '<Bslash>w', '<cmd>quit<cr>',
+	{desc = 'Quit current window'})
 vim.keymap.set('n', '<Bslash>r', '<cmd>source %<cr>',
 	{desc = 'Reload config'})
 
@@ -159,6 +161,8 @@ require "paq" {
 	'nvim-lua/plenary.nvim';		-- Telescope dependecy
 	'nvim-telescope/telescope.nvim';-- Fast and fuzzy search
 	'lewis6991/impatient.nvim';		-- Startup cache
+	'godlygeek/tabular';			-- Needed for vim markdown
+	'preservim/vim-markdown';		-- Markdown formatting
 }
 
 require('impatient')
@@ -293,4 +297,15 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+------------------------------------------------------------------------------
+-- vim markdown setup from https://jdhao.github.io/2019/01/15/markdown_edit_preview_nvim/
+------------------------------------------------------------------------------
+
+-- disable header folding
+vim.g.vim_markdown_folding_disabled = 1
+
+-- disable math tex conceal feature
+vim.g.tex_conceal = ""
+vim.g.vim_markdown_math = 1
 
