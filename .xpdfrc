@@ -10,8 +10,8 @@ workerThreads		3
 # use some vi like keybindings
 bind j singlePage nextPage
 bind k singlePage prevPage
-bind j continuous scrollDown(50)
-bind k continuous scrollUp(50)
+bind j continuous scrollDown(100)
+bind k continuous scrollUp(100)
 # Toggle continuous / single page mode
 bind c any toggleContinuousMode
 
