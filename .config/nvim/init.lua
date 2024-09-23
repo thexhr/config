@@ -232,7 +232,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- Enable the following language servers. If you ever find yourself needing
 -- another programming language support, you'll have to find its LSP, add
 -- it to this list and make sure it is installed in your system!
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'gopls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
