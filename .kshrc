@@ -154,7 +154,8 @@ vmmssh() {
 		return
 	fi
 
-	ssh -o StrictHostKeyChecking=no -l ${_user} 100.64.${_id}.3
+	ssh -o StrictHostKeyChecking=no -l ${_user} -i $HOME/.ssh/special/vmm \
+		100.64.${_id}.3
 }
 
 # Check the mirror configured in /etc/installurl and main OpenBSD mirror for
