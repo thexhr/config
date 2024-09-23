@@ -25,7 +25,9 @@ set.splitright = true			-- Vertical split to the right
 set.splitbelow = true			-- Horizontal split to the bottom
 set.history = 100				-- Remember N lines in history
 set.spellsuggest = 'best,10'	-- Show the best 10 suggestions re spellcheck
- set.showtabline = 2			-- Always show tab line
+set.showtabline = 2				-- Always show tab line
+set.conceallevel = 2			-- Conceal text, e.g. for Markdown
+
 -- File extensions to be ignored in wildmenu
 set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 
@@ -161,8 +163,6 @@ require "paq" {
 	'nvim-lua/plenary.nvim';		-- Telescope dependecy
 	'nvim-telescope/telescope.nvim';-- Fast and fuzzy search
 	'lewis6991/impatient.nvim';		-- Startup cache
-	'godlygeek/tabular';			-- Needed for vim markdown
-	'preservim/vim-markdown';		-- Markdown formatting
 }
 
 require('impatient')
