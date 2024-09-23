@@ -1,0 +1,17 @@
+# Zoom to page
+initialZoom			page
+# Show one page at a time
+initialDisplayMode 	single
+# Small sidebar
+initialSidebarWidth	150
+# Have some more threads
+workerThreads		3
+
+# use some vi like keybindings
+bind j singlePage nextPage
+bind k singlePage prevPage
+bind j continuous scrollDown(50)
+bind k continuous scrollUp(50)
+# Toggle continuous / single page mode
+bind c any toggleContinuousMode
+
