@@ -24,6 +24,10 @@ for m in /usr/local/share/fonts/*; do
 	fi
 done
 
+if [ -f "$HOME/.ssh/special/vmm" ]; then
+	ssh-add "$HOME/.ssh/special/vmm"
+fi
+
 HIGHDPI=0
 xrandr | grep -w connected | egrep "(2880|3840)" > /dev/null
 if [ $? -eq 0 ]; then
