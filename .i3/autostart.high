@@ -26,7 +26,7 @@ xinput set-prop "/dev/wsmouse0" "Device Accel Constant Deceleration" 0.2
 # Natural scrolling with Trackpoint
 #xinput set-button-map 8 1 2 3 5 4 7 6
 # Color profile
-exec xcalib ~/Documents/$(hostname -s).icm &
+#exec xcalib ~/Documents/$(hostname -s).icm &
 
 exec i3-msg "workspace 1; append_layout /home/xhr/.i3/ws/i3-layout-ws-1" &
 exec i3-msg "workspace 2; append_layout /home/xhr/.i3/ws/i3-layout-ws-2" &
