@@ -36,9 +36,12 @@ xterm*bellIsUrgent: true
 xterm*borderWidth: 0
 ! Disable enabling xterm fullscreen with Alt + Enter
 XTerm*fullscreen: never
-!xterm*font: xft:fixed-10
+
+xterm*faceName: CascadiaMono
+xterm*faceSize: 10
+
 !xterm*font: -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-XTerm*font : -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1
+!XTerm*font : -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1
 XTerm*font1: -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-1
 XTerm*font2: -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1
 XTerm*font3: -*-terminus-medium-*-*-*-16-*-*-*-*-*-iso10646-1
@@ -71,9 +74,6 @@ URxvt*fading: 30
 ! Set transparent background
 !URxvt*transparent: true
 !URxvt*shading:20
-
-URxvt*background: black
-URxvt*foreground: gray
 
 ! general ----------------------------------------------------------------------
 
