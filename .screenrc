@@ -1,6 +1,6 @@
 term xterm-256color
 startup_message off
 hardstatus off
-hardstatus alwayslastline
+#hardstatus alwayslastline
 #hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
-hardstatus string '%{= gk} [%S] %w %= "%H.xosc.net" %c %d-%m-%y'
+#hardstatus string '%{= gk} [%S] %w %= "%H.xosc.net" %c %d-%m-%y'
