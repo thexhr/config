@@ -591,6 +591,7 @@ HISTCONTROL=ignoredups:ignorespace
 BLOCKSIZE=M
 PATH=$MACPATH:$HOME/Documents/bin:/bin:/sbin
 PATH=$PATH:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin
+GOPATH=$HOME/.local/share/go
 LESSSECURE=1
 PAGER='less -JWAceX'
 LESS='-Xa'
@@ -604,4 +605,4 @@ export MOZ_ACCELERATED=1
 export MOZ_WEBRENDER=1
 
 export PATH HOME TERM LSCOLORS HISTSIZE BLOCKSIZE PAGER LESSSECURE PKG_PATH
-export FETCH_CMD GOT_LOG_DEFAULT_LIMIT
+export FETCH_CMD GOT_LOG_DEFAULT_LIMIT GOPATH
