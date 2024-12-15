@@ -61,6 +61,15 @@ vim.api.nvim_exec([[
 	  \ | exe 'normal! g`"' | endif]],
 false)
 
+-- Don't show line numbers in the builtin terminal
+vim.api.nvim_create_autocmd('TermOpen', {
+	group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+	end,
+})
+
 -- Enable spell checking
 vim.g.spelllang=en,de
 vim.keymap.set('n', '<F3>', '<cmd>set spell!<cr>', {desc = 'Set spell'})
