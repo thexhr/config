@@ -25,8 +25,6 @@ xterm*multiScroll: true
 xterm*utf8: true
 xterm*locale: true
 xterm*eightBitInput: true
-xterm*background: black
-xterm*foreground: gray
 !xterm*background: #100010000000
 !xterm*foreground: #7FFFDFFFDFFF
 xterm*cursorColor: white
@@ -38,9 +36,12 @@ xterm*bellIsUrgent: true
 xterm*borderWidth: 0
 ! Disable enabling xterm fullscreen with Alt + Enter
 XTerm*fullscreen: never
-!xterm*font: xft:fixed-10
-!xterm*font: -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-XTerm*font : -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-1
+
+!xterm*renderFont: true
+xterm*faceName: CascadiaMono
+xterm*faceSize: 11
+
+!XTerm*font : -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-1
 XTerm*font1: -*-terminus-medium-*-*-*-16-*-*-*-*-*-iso10646-1
 XTerm*font2: -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1
 XTerm*font3: -*-terminus-medium-*-*-*-16-*-*-*-*-*-iso10646-1
@@ -74,15 +75,31 @@ URxvt*fading: 30
 !URxvt*transparent: true
 !URxvt*shading:20
 
-URxvt*background: black
-URxvt*foreground: gray
-
 ! general ----------------------------------------------------------------------
-!*font:	-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*
-!*font: -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-*font: -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-*
-*background:            black
-*foreground:            white
+
+!*background:            black
+!*foreground:            gray
+
+*background: #222222
+*foreground: #E0E0CE
+
+!*color0: #222222
+!*color1: #FFFFFF
+*color2: #21C7A8
+!*color3: #FFFFFF
+!*color4: #F9F9F9
+!*color5: #989898
+!*color6: #666666
+!*color7: #D3D3D3
+
+!*color8: #7490CD
+!*color9: #D2B281
+*color10: #21C7A8
+!*color11: #977CEA
+!*color12: #000000
+!*color13: #AC9F90
+!*color14: #7DD6CF
+!*color15: #E0E0CE
 
 XCalc*Cursor:	pencil
 
