@@ -34,18 +34,18 @@
             "current_border_width": 1,
             "floating": "auto_off",
             "geometry": {
-               "height": 340,
-               "width": 644,
+               "height": 532,
+               "width": 884,
                "x": 0,
                "y": 0
             },
             "name": "xterm",
-            "percent": 0.448148148148148,
+            "percent": 0.377777777777778,
             "swallows": [
                {
                 "class": "^XTerm$",
                 "instance": "^xterm$",
-                "title": "^profanity$"
+                "title": "^systat$"
                }
             ],
             "type": "con"
@@ -61,7 +61,7 @@
                "y": 0
             },
             "name": "xterm",
-            "percent": 0.269444444444444,
+            "percent": 0.303281133482476,
             "swallows": [
                {
                 "class": "^XTerm$",
@@ -82,7 +82,7 @@
                "y": 0
             },
             "name": "xterm",
-            "percent": 0.282407407407407,
+            "percent": 0.318941088739747,
             "swallows": [
                {
                 "class": "^XTerm$",
