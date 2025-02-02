@@ -1,0 +1,23 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 340,
+       "width": 644,
+       "x": 0,
+       "y": 0
+    },
+    "name": "tmux",
+    "percent": 1,
+    "swallows": [
+       {
+        "class": "^XTerm$",
+        "instance": "^xterm$",
+        "title": "^tmux$"
+       }
+    ],
+    "type": "con"
+}
+
