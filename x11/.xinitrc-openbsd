@@ -43,10 +43,10 @@ if [ $HIGHDPI -eq 1 ]; then
 	_xpath=~/.Xresources
 	if [[ -h ${_xpath} ]]; then
 		rm ${_xpath}
-		ln -s ~/Documents/git/config/.Xresources-high ${_xpath}
+		ln -s ~/.dotfiles/x11/.Xresources-high ${_xpath}
 		xrdb -merge ${_xpath}
 	elif [[ ! -e ${_xpath} ]]; then
-		ln -s ~/Documents/git/config/.Xresources-high ${_xpath}
+		ln -s ~/.dotfiles/x11/.Xresources-high ${_xpath}
 		xrdb -merge ${_xpath}
 	fi
 
@@ -65,10 +65,10 @@ else
 	_xpath=~/.Xresources
 	if [[ -h ${_xpath} ]]; then
 		rm ${_xpath}
-		ln -s ~/Documents/git/config/.Xresources ${_xpath}
+		ln -s ~/.dotfiles/x11/.Xresources ${_xpath}
 		xrdb -merge ${_xpath}
 	elif [[ ! -e ${_xpath} ]]; then
-		ln -s ~/Documents/git/config/.Xresources ${_xpath}
+		ln -s ~/.dotfiles/x11/.Xresources ${_xpath}
 		xrdb -merge ${_xpath}
 	fi
 
@@ -89,7 +89,7 @@ fi
 _apath=~/.i3status.conf
 if [[ -h ${_apath} ]]; then
 	rm ${_apath}
-	ln -s ~/Documents/git/config/.i3status.conf.$(hostname -s) ${_apath}
+	ln -s ~/.dotfiles/i3/.i3status.conf.$(hostname -s) ${_apath}
 fi
 
 [[ -e ~/.profile ]] && . ~/.profile &
