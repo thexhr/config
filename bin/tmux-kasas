@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# tmux Kill Active Session And Switch
+
+if [ -z $TMUX ]; then
+	exit 1
+fi
+
+CURRENT=$(tmux display-message -p '#S')
+SWITCHTO=$(tmux ls -F "#S"| grep -v $(tmux display-message -p '#S') | head -1)
+
+if [ -z $CURRENT -o -z $SWITCHTO ]; then
+	exit 2
+fi
+
+tmux switchc -t "$SWITCHTO"
+
+tmux kill-session -t "$CURRENT"
