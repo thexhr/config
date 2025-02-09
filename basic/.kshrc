@@ -74,6 +74,7 @@ alias .2='cds ../..'
 alias .3='cds ../../..'
 alias .4='cds ../../../..'
 alias j='jump'
+alias z='fuzzyjump'
 alias c='cvs'
 alias g='got'
 alias h='history -60 | sort -k2 | uniq -f2 | sort -bn'
@@ -478,6 +479,12 @@ marks() {
 	echo
 }
 
+fuzzyjump() {
+	_selected=$(find $MARKPATH/$1/ -type d -maxdepth 3 -mindepth 1 | fzf)
+	[ -z "$_selected" ] && return
+    cd -P "$_selected" 2>/dev/null || echo "No such mark: $1"
+}
+
 #############################################################################
 # COMPLETIONS
 #############################################################################
@@ -543,6 +550,7 @@ set -A complete_got_1 -- $(got -h 2>&1 | sed -n s/commands://p)
 [[ -f /tmp/.man-list ]] && set -A complete_man -- $(cat /tmp/.man-list)
 
 [[ -d $HOME/.marks ]] && set -A complete_j -- $(/bin/ls $HOME/.marks)
+[[ -d $HOME/.marks ]] && set -A complete_z -- $(/bin/ls $HOME/.marks)
 
 #############################################################################
 # PROMPT
