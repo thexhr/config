@@ -159,9 +159,7 @@ fontname "fixed-10"
 # Ignore, and do not warp to, windows with these names
 ignore bar
 ignore lemonbar
-ignore log
 ignore xclock
-ignore top
 
 # Define a gap for status bar at bottom
 gap 20 20 20 20
@@ -170,7 +168,7 @@ gap 20 20 20 20
 # COLORS
 #############################################################################
 
-color activeborder "#101218"
+color activeborder "#8f8f8f"
 color inactiveborder "#000000"
 color menubg "#282C34"
 color menufg "#e32929"
@@ -185,8 +183,10 @@ color ungroupborder "#FFFF00"
 #############################################################################
 
 autogroup 1 "log"
-autogroup 1 "neomutt"
-autogroup 2 "dev"
+autogroup 1 "mutt"
+autogroup 1 "systat"
+autogroup 1 "top"
 autogroup 3 "Firefox"
-autogroup 9 "monitor"
+autogroup 9 "cmus"
+autogroup 9 "spotify"
 
