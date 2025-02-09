@@ -1,0 +1,35 @@
+#!/bin/sh
+# $Id: cwm-session,v 1.13 2020/12/08 10:33:24 cvs Exp $
+
+# Suck in Xmodmap
+[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
+# Set black background
+xsetroot -solid '#1C1B22'
+# Set background image
+#exec xwallpaper --zoom ~/Pictures/background &
+# No beep
+xset -b
+# Enable screen powermanagement
+xset +dpms
+# No suspend, no standy, turn off screen after 120 secs
+xset dpms 0 0 120
+# Set keyboard layout
+setxkbmap -layout us -variant altgr-intl -model nodeadkeys
+# Speed up touchpad
+xinput set-prop "/dev/wsmouse0" "Device Accel Constant Deceleration" 0.2
+# Enabled trackpoint scrolling
+#xinput set-prop 8 'WS Pointer Wheel Emulation' 1
+# Scroll with middle button and trackpad
+#xinput set-prop 8 'WS Pointer Wheel Emulation Button' 2
+# Natural scrolling with Trackpoint
+#xinput set-button-map 8 1 2 3 5 4 7 6
+# Start i3status with lemonbar
+#~/Documents/bin/i3s | lemonbar -b -u 0 -a 0 &
+
+#exec firefox &
+exec xterm -geometry 111x24-20-20 -n log -T log -e tail -f /var/log/messages &
+exec xterm -geometry 111x24-20+689 -n top -T top -e top -I -1 &
+exec xterm -geometry 111x29-20+20 -n systat -T systat -e systat &
+exec xterm -geometry 144x80+20+20 -n mutt -T mutt -e screen -S 23 mutt &
+
+exec cwm
