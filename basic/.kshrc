@@ -485,6 +485,14 @@ fuzzyjump() {
     cd -P "$_selected" 2>/dev/null || echo "No such mark: $1"
 }
 
+function fzf-histo {
+	RES=$(fzf --tac --no-sort -e < $HISTFILE)
+	test -n "$RES" || return
+	eval "$RES"
+}
+
+bind -m ^R=fzf-histo^J
+
 #############################################################################
 # COMPLETIONS
 #############################################################################
