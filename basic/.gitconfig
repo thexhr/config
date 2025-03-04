@@ -35,6 +35,7 @@
 	rename = copy
 	compaction-heuristic = true
 	noprefix = true
+	algorithm = histogram
 
 [pager]
 	color = true
@@ -43,7 +44,21 @@
 	color = auto
 [push]
 	default = simple
+	autoSetupRemote = true
+	followTags = true
 [gpg]
 	format = ssh
 [gpg "ssh"]
 	allowedSignersFile = /home/xhr/.ssh/allowed_signers
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[init]
+	defaultBranch = main
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
