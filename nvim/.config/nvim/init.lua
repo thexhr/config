@@ -35,6 +35,10 @@ set.wildignore = '*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store'
 set.termguicolors = true		-- 24bit TUI colors
 vim.cmd [[ colorscheme xhr3 ]]
 
+vim.diagnostic.config({
+	virtual_lines = true
+})
+
 -------------------------------------------------------------------------------
 -- FUNCTIONS
 -------------------------------------------------------------------------------
