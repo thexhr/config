@@ -277,6 +277,8 @@ for_window [class="mpv"] floating enable
 for_window [class="Tor Browser"] floating enable
 for_window [class="firefox"] border none
 for_window [class="Navigator"] border none
+for_window [class="Navigator"] gaps inner 0
+for_window [class="firefox"] gaps inner 0
 for_window [class="About Firefox"] border none
 for_window [title="Firefox Preferences"] floating enable
 
