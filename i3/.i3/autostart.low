@@ -36,7 +36,7 @@ exec xterm -e tmux &
 exec firefox &
 exec xterm -n log -T log -e tail -f /var/log/messages &
 exec xterm -n top -T top -e top -I -1 &
-exec xterm -n profanity -T profanity -e profanity &
+exec xterm -n systat -T systat -e systat &
 exec xterm -n mutt -T mutt -e screen -S 23 mutt &
 exec xterm -T scratchpad &
 
