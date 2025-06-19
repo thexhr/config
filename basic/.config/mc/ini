@@ -15,6 +15,7 @@ confirm_exit=false
 confirm_directory_hotlist_delete=false
 confirm_view_dir=false
 safe_delete=false
+safe_overwrite=false
 use_8th_bit_as_meta=false
 mouse_move_pages_viewer=true
 mouse_close_dialog=false
@@ -24,7 +25,6 @@ wrap_mode=true
 old_esc_mode=true
 cd_symlinks=true
 show_all_if_ambiguous=false
-use_file_to_guess_type=true
 alternate_plus_minus=false
 only_leading_plus_minus=true
 show_output_starts_shell=false
@@ -61,6 +61,7 @@ editor_group_undo=false
 editor_state_full_filename=false
 editor_ask_filename_before_edit=false
 nice_rotating_dash=true
+shadows=true
 mcview_remember_file_position=false
 auto_fill_mkdir_name=true
 copymove_persistent_attr=true
@@ -73,7 +74,7 @@ num_history_items_recorded=60
 vfs_timeout=60
 ftpfs_directory_timeout=900
 ftpfs_retry_seconds=30
-fish_directory_timeout=900
+shell_directory_timeout=900
 editor_tab_spacing=8
 editor_word_wrap_line_length=72
 editor_option_save_mode=0
@@ -83,26 +84,19 @@ editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
 skin=default
 
-safe_overwrite=false
-
-filepos_max_saved_entries=1024
-
-shadows=true
-shell_directory_timeout=900
-
 [Layout]
+output_lines=0
+left_panel_size=64
+top_panel_size=37
 message_visible=true
 keybar_visible=true
-xterm_title=true
-output_lines=0
+xterm_title=false
 command_prompt=true
 menubar_visible=true
 free_space=true
 horizontal_split=true
 vertical_equal=true
-left_panel_size=31
 horizontal_equal=true
-top_panel_size=37
 
 [Misc]
 timeformat_recent=%b %e %H:%M
@@ -120,22 +114,15 @@ base_color=
 xterm-256color=
 color_terminals=
 
-st-256color=
-
-screen-256color=
-
-tmux-256color=
-
-vt220=
-
 [Panels]
+simple_swap=false
 show_mini_info=true
-kilobyte_si=true
+kilobyte_si=false
 mix_all_files=false
 show_backups=true
-show_dot_files=true
-fast_reload=false
-fast_reload_msg_shown=false
+show_dot_files=false
+fast_reload=true
+fast_reload_msg_shown=true
 mark_moves_down=true
 reverse_files_only=true
 auto_save_setup_panels=false
@@ -146,28 +133,11 @@ mouse_move_pages=true
 filetype_mode=true
 permission_mode=false
 torben_fj_mode=false
-quick_search_mode=0
+quick_search_mode=2
 select_flags=6
 
-simple_swap=false
-
-[FindFile]
-file_case_sens=true
-file_shell_pattern=true
-file_find_recurs=true
-follow_symlinks=false
-file_skip_hidden=false
-file_all_charsets=false
-content_case_sens=true
-content_regexp=false
-content_first_hit=false
-content_whole_words=false
-content_all_charsets=false
-ignore_dirs_enable=true
-ignore_dirs=
-
 [Panelize]
-Find *.orig after patching=find . -name \\*.orig -print
 Find rejects after patching=find . -name \\*.rej -print
+Find *.orig after patching=find . -name \\*.orig -print
 Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
 Modified git files=git ls-files --modified
