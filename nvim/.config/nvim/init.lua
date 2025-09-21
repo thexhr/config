@@ -219,7 +219,6 @@ vim.keymap.set('n', '<leader>c', builtin.command_history, {})
 -- LSP settings from https://tkg.codes/guide-to-modern-neovim-setup-2021/
 -------------------------------------------------------------------------------
 
-local nvim_lsp = require 'lspconfig'
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -255,10 +254,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- it to this list and make sure it is installed in your system!
 local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'gopls' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  vim.lsp.enable(servers)
 end
 
 -- Make runtime files discoverable to the server.
