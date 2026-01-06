@@ -108,7 +108,8 @@ exec /usr/local/bin/ctempd 5500 &
 # xbattmon on the bottom
 exec xbattmon -p bottom -t 2 &
 # Start xautolock
-exec xidle -program "/usr/X11R6/bin/xlock +description -bg Gray19" &
+#exec xidle -program "/usr/X11R6/bin/xlock +description -bg Gray19" &
+exec xidle -program "/usr/local/bin/i3lock -t -i ~/Pictures/default" &
 
 #exec dbus-launch --exit-with-session ssh-agent /home/xhr/Documents/bin/cwm-session
 exec dbus-launch --exit-with-session ssh-agent i3
