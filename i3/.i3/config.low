@@ -228,7 +228,7 @@ bar {
     hidden_state hide
     modifier $mod+Ctrl
     position top
-	font -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-*
+	font -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*
 	colors {
 		background $bg
 		focused_workspace	$bg	$bg	#00cd00
