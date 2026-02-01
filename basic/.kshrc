@@ -595,8 +595,6 @@ set bell-style none
 # VARIABLES
 #############################################################################
 
-[ -d $HOME/.keychain ] && . $HOME/.keychain/LWKA-6Q7VRN2-sh
-
 LSCOLORS=Dxfxcxdxbxegedabagacad
 HISTSIZE=30000
 HISTFILE=$HOME/.sh_history
