@@ -138,8 +138,10 @@ disablevideoconf() {
 	doas sysctl kern.audio.record=0
 }
 
-# Connect to a vmm(4) VM which uses the "local interface" networking scheme
+# Connect to a vmm(4) VM
 vmmssh() {
+	local _v6
+
 	if [ -z "$1" ]; then
 		echo "Usage: vmmssh <name of the vmm VM> [user]"
 		echo ""
@@ -148,15 +150,8 @@ vmmssh() {
 	fi
 
 	local _user="${2:-root}"
-	local _id=$(vmctl show $1| tail -1 | awk '{ print $1}')
 
-	if [ "${_id}" = "ID" ]; then
-		echo "No VM named $1 found"
-		return
-	fi
-
-	ssh -o StrictHostKeyChecking=no -l ${_user} -i $HOME/.ssh/special/vmm \
-		100.64.${_id}.3
+	ssh -o StrictHostKeyChecking=no -l ${_user} -i $HOME/.ssh/special/vmm "$1"
 }
 
 # Check the mirror configured in /etc/installurl and main OpenBSD mirror for
