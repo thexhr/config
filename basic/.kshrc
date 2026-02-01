@@ -348,12 +348,6 @@ showmyipaddress() {
 
 	rm -f $JV4 $JV6
 }
-# Replaced with the version but keep it if the ifconfig.co services
-# goes down
-#showmyipaddress() {
-#	echo "External IPv4 : $(ftp -4 -M -o - http://icanhazip.com 2> /dev/null)"
-#	echo "External IPv6 : $(ftp -6 -M -o - http://icanhazip.com 2> /dev/null)"
-#}
 
 # Command line calculator using bc
 calc() {
