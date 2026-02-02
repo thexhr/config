@@ -140,8 +140,6 @@ disablevideoconf() {
 
 # Connect to a vmm(4) VM
 vmmssh() {
-	local _v6
-
 	if [ -z "$1" ]; then
 		echo "Usage: vmmssh <name of the vmm VM> [user]"
 		echo ""
@@ -151,7 +149,7 @@ vmmssh() {
 
 	local _user="${2:-root}"
 
-	ssh -o StrictHostKeyChecking=no -l ${_user} -i $HOME/.ssh/special/vmm "$1"
+	ssh -4 -o StrictHostKeyChecking=no -l ${_user} -i $HOME/.ssh/special/vmm "$1"
 }
 
 # Check the mirror configured in /etc/installurl and main OpenBSD mirror for
